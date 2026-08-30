@@ -24,7 +24,8 @@
     "judge:calibrate": "tsx scripts/calibrate-judge.ts",
     "eval": "tsx scripts/run-eval.ts",
     "leaderboard": "tsx scripts/leaderboard.ts",
-    "rescore": "tsx scripts/rescore.ts"
+    "rescore": "tsx scripts/rescore.ts",
+    "failures": "tsx scripts/failures.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",
