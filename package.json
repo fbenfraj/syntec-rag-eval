@@ -20,7 +20,8 @@
     "gold:review": "tsx scripts/review-gold.ts",
     "gold:apply-review": "tsx scripts/apply-review.ts",
     "gold:review-pack": "tsx scripts/llm-review-pack.ts",
-    "gold:apply-llm-review": "tsx scripts/apply-llm-review.ts"
+    "gold:apply-llm-review": "tsx scripts/apply-llm-review.ts",
+    "judge:calibrate": "tsx scripts/calibrate-judge.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",
