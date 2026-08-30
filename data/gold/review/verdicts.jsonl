@@ -1,0 +1,154 @@
+# Paste ChatGPT's JSONL replies below — part 1, then 2, then 3.
+# One JSON object per line. Order does not matter; duplicates keep the last one.
+# Lines that are not JSON (this comment, stray ``` fences, any prose) are ignored.
+# Expecting 150 lines, ids q001 to q150. Then run: pnpm gold:apply-llm-review
+{"id":"q001","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q002","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q003","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q004","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q005","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q006","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q007","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q008","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q009","status":"bad_question","confidence":"high","note":"Le texte source vise uniquement la Moselle, le Bas-Rhin et le Haut-Rhin, pas les Vosges.","corrected":""}
+{"id":"q010","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q011","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q012","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q013","status":"bad_question","confidence":"high","note":"Le texte ne dit pas que l'information dans le délai d'un mois concerne l'intention de mettre en place un congé de reclassement.","corrected":""}
+{"id":"q014","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q015","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q016","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q017","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q018","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q019","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q020","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q021","status":"bad_question","confidence":"low","note":"Le texte vise spécifiquement le non-paiement total ou partiel du salaire minimum légal ou conventionnel, alors que la question parle plus largement d'un paiement incorrect.","corrected":""}
+{"id":"q022","status":"bad_question","confidence":"high","note":"Le texte n'indique pas que la règle de fin à la réalisation de l'objet avec deux mois de prévenance s'applique au CDD de remplacement d'un salarié absent.","corrected":""}
+{"id":"q023","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q024","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q025","status":"bad_question","confidence":"low","note":"Le texte ne précise pas un ordre d'information « en premier lieu » et ne rattache pas clairement le préfet à la notification initiale du projet de fermeture.","corrected":""}
+{"id":"q026","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q027","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q028","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q029","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q030","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q031","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q032","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q033","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q034","status":"bad_question","confidence":"high","note":"Le texte concerne le dépassement en urgence de la durée quotidienne maximale de travail, pas simplement le fait de travailler plus longtemps que d'habitude.","corrected":""}
+{"id":"q035","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q036","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q037","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q038","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q039","status":"bad_question","confidence":"high","note":"Le texte ne donne pas la durée du délai de carence ni sa formule de calcul, seulement le principe qu'il dépend de la durée du contrat.","corrected":""}
+{"id":"q040","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q041","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q042","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q043","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q044","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q045","status":"wrong","confidence":"high","note":"Le seuil de 50 % est calculé sur les suffrages exprimés en faveur d'organisations reconnues représentatives au premier tour des dernières élections des titulaires au CSE, pas simplement sur tous les suffrages exprimés.","corrected":"L'accord est signé par une ou plusieurs organisations syndicales représentatives ayant recueilli au moins 50 % des suffrages exprimés en faveur d'organisations reconnues représentatives au premier tour des dernières élections des titulaires au comité social et économique, quel que soit le nombre de votants, ou par le conseil d'entreprise."}
+{"id":"q046","status":"bad_question","confidence":"high","note":"La question ne précise pas quelles règles ont été méconnues, alors que le texte énumère des violations entraînant la requalification et prévoit au moins une exception.","corrected":""}
+{"id":"q047","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q048","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q049","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q050","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q051","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q052","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q053","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q054","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q055","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q056","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q057","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q058","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q059","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q060","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q061","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q062","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q063","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q064","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q065","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q066","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q067","status":"bad_question","confidence":"high","note":"L'extrait indique que l'avenant est rendu obligatoire et donne la date de l'arrêté, mais ne précise pas que son application obligatoire commence le 18 octobre 1991.","corrected":""}
+{"id":"q068","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q069","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q070","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q071","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q072","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q073","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q074","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q075","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q076","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q077","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q078","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q079","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q080","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q081","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q082","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q083","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q084","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q085","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q086","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q087","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q088","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q089","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q090","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q091","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q092","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q093","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q094","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q095","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q096","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q097","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q098","status":"ok","confidence":"low","note":"","corrected":""}
+{"id":"q099","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q100","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q101","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q102","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q103","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q104","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q105","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q106","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q107","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q108","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q109","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q110","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q111","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q112","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q113","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q114","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q115","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q116","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q117","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q118","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q119","status":"wrong","confidence":"high","note":"La copie aux organisations syndicales représentatives n'est prévue que lorsque la négociation de l'accord visé à l'article L. 1233-24-1 est engagée, le cas échéant.","corrected":"L'administration peut à tout moment faire des observations ou propositions à l'employeur sur la procédure ou les mesures sociales. Elle en adresse simultanément copie au comité social et économique et, lorsque la négociation de l'accord concerné est engagée, le cas échéant aux organisations syndicales représentatives."}
+{"id":"q120","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q121","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q122","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q123","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q124","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q125","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q126","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q127","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q128","status":"ok","confidence":"high","note":"","corrected":""}
+{"id":"q129","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q130","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q131","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q132","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q133","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q134","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q135","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q136","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q137","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q138","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q139","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q140","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q141","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q142","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q143","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q144","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q145","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q146","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q147","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q148","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q149","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
+{"id":"q150","status":"ok","supported":true,"confidence":"high","note":"","corrected":""}
