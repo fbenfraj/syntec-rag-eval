@@ -6,7 +6,10 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "corpus:fetch": "./scripts/fetch-corpus.sh",
-    "corpus:build": "tsx scripts/build-corpus.ts"
+    "corpus:build": "tsx scripts/build-corpus.ts",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "corpus:load": "tsx scripts/load-corpus.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",

@@ -53,11 +53,20 @@ collide — see `docs/decisions.md`.
 ## Development
 
 ```bash
-nvm use          # Node 22
+nvm use                       # Node 22
 pnpm install
-pnpm test        # vitest
-pnpm typecheck   # tsc --noEmit
+cp .env.example .env
+pnpm db:up                    # Postgres 16 + pgvector on port 57557
+pnpm corpus:fetch             # download the DILA dumps (once, ~1.3 GB)
+pnpm corpus:build             # write data/corpus/articles.jsonl
+pnpm corpus:load              # apply the schema and load it
+pnpm test                     # vitest, including the database tests
+pnpm typecheck                # tsc --noEmit
 ```
+
+The database uses port 57557 rather than 5432 so it cannot collide with another Postgres
+on the machine — `pnpm corpus:load` starts by dropping tables, so pointing it at the
+wrong database would be expensive.
 
 ## Status
 

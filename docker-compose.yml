@@ -1,0 +1,23 @@
+# Port 57557 rather than 5432 deliberately: this is a throwaway eval database and it must
+# never collide with another Postgres already running on the machine. The compose project
+# name is namespaced for the same reason.
+name: syntec-rag-eval
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: syntec-rag-eval-db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: syntec
+    ports: ['57557:5432']
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d syntec']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  db-data:

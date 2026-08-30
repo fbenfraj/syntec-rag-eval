@@ -16,6 +16,24 @@ Tags, the same five `/pos-discover` uses:
 
 ---
 
+## D-005 — The eval database listens on port 57557
+
+- **Tag:** Decision
+- **Date:** 2026-08-30
+- **Status:** active
+- **Level:** L1
+
+**Decision.** `docker-compose.yml` publishes Postgres on 57557, not 5432 or the 5433 the
+plan named, and the compose project is named `syntec-rag-eval`.
+
+**Why.** Development machines usually already run a Postgres, often several — this one
+has a Supabase stack on 54321-54324. A collision on a well-known port either fails the
+container start or, worse, points `DATABASE_URL` at somebody else's database, and the
+schema here begins with `DROP TABLE`. An unusual port makes that mistake impossible.
+`getPool()` refuses to default the connection string for the same reason.
+
+---
+
 ## D-001 — Source the corpus from DILA open data, not the Légifrance API
 
 - **Tag:** Decision
