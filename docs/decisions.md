@@ -67,6 +67,59 @@ the weaker move.
 
 ---
 
+## D-007 — The gold set is constructed from the corpus, then spot-checked
+
+- **Tag:** Decision
+- **Date:** 2026-08-30
+- **Status:** active
+- **Level:** L2
+
+**Decision.** Answerable questions are produced by choosing an article first and writing a
+question it answers, so `requiredArticles` is correct by construction. Every row carries a
+`provenance` field, and only rows a human has read are marked `human-verified`.
+
+**Why.** Hand-labelling 150 questions requires a labour-law specialist, and there isn't
+one. Construction removes that requirement for the part that matters most: retrieval
+metrics are scored against the citation, and the citation is the article the question was
+written from — it cannot be wrong. What construction does not certify is the wording of
+the reference answer, so that is checked on a sample and the counts are published rather
+than glossed.
+
+**Considered and rejected.** Asserting a hand-labelled set would have been a stronger
+claim and a false one. Skipping human review entirely was cheaper but leaves nothing
+verified. A smaller fully-reviewed set was the alternative; it trades wider error bars on
+every leaderboard number for tighter confidence per row, and at 60 questions the bars get
+wide enough to hide the differences between adjacent rungs.
+
+---
+
+## D-008 — Unanswerable questions are verified against the corpus, not asserted
+
+- **Tag:** Decision
+- **Date:** 2026-08-30
+- **Status:** active
+- **Level:** L2
+
+**Decision.** Every drafted `unanswerable` question is retrieved against the real corpus
+and scored by the reranker. Any question the corpus in fact answers is discarded and
+redrafted. Ten drafts were rejected this way while building the set.
+
+**Why.** Asked for an unanswerable question, the model produced "what is the maximum number
+of overtime hours per week?" — which the code answers in full. Left in, that row scores a
+correct answer as a false refusal, corrupting both refusal accuracy and the false-refusal
+rate: the two numbers this project exists to publish honestly, and the two that are
+meaningless if either is contaminated.
+
+**Known limitation, to be published.** The check rejects on topical similarity, not on
+answerability. A question about a different collective agreement is genuinely unanswerable
+here, yet retrieves topically similar Syntec articles and gets rejected. The surviving
+unanswerable questions are therefore topically distant from the corpus, which makes
+refusing them easier than refusing a near-miss. Refusal accuracy from this set is an
+optimistic estimate, and the failure catalogue must say so rather than let the number
+stand unqualified.
+
+---
+
 ## D-001 — Source the corpus from DILA open data, not the Légifrance API
 
 - **Tag:** Decision

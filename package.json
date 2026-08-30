@@ -14,7 +14,11 @@
     "embed": "tsx scripts/embed-corpus.ts",
     "spend": "tsx scripts/spend.ts",
     "baseline:build": "tsx scripts/build-baseline.ts",
-    "baseline:embed": "tsx scripts/embed-corpus.ts --fixed"
+    "baseline:embed": "tsx scripts/embed-corpus.ts --fixed",
+    "gold:generate": "tsx scripts/generate-gold.ts",
+    "gold:validate": "tsx scripts/validate-gold.ts",
+    "gold:review": "tsx scripts/review-gold.ts",
+    "gold:apply-review": "tsx scripts/apply-review.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",

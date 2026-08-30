@@ -71,20 +71,48 @@ export function isInForce(etat: string | undefined): boolean {
 }
 
 /**
+ * States for a version that once applied and no longer does: replaced by a later wording,
+ * or repealed outright.
+ *
+ * These are kept in the corpus on purpose. Citing law that has been superseded is the
+ * characteristic failure of a legal retrieval system, and a corpus of only current text
+ * makes that failure impossible to observe — the date filter would have nothing to filter
+ * and would score as a no-op whether it worked or not.
+ */
+export function isSuperseded(etat: string | undefined): boolean {
+  return etat === 'MODIFIE' || etat === 'ABROGE' || etat === 'ABROGE_DIFF' || etat === 'PERIME'
+}
+
+/**
  * One in-force Code du travail article. Returns [] for repealed, superseded or future
  * versions, of which the LEGI dump holds several for every article number.
  */
-export function parseLegiArticleXml(xml: string): Article[] {
-  if (!isInForce(tagText(xml, 'ETAT'))) return []
+export function parseLegiArticleXml(xml: string, options: { includeSuperseded?: boolean } = {}): Article[] {
+  const etat = tagText(xml, 'ETAT')
+  const superseded = isSuperseded(etat)
+  if (!isInForce(etat) && !(options.includeSuperseded === true && superseded)) return []
+
   const articleId = tagText(xml, 'NUM')
   if (articleId === undefined || articleId.length === 0) return []
+  // A superseded version has no usable end date unless DILA gives one; without it the
+  // version cannot be placed in time and is worse than useless as a distractor.
+  if (superseded && endDate(tagText(xml, 'DATE_FIN')) === null) return []
+
   const titles = [...xml.matchAll(/<TITRE_TM[^>]*>([\s\S]*?)<\/TITRE_TM>/g)].map((m) => m[1]!.trim())
-  return toArticles(xml, {
+  const articles = toArticles(xml, {
     source: 'code',
     articleId,
     title: titles.at(-1) ?? 'Code du travail',
     precedence: 0,
   })
+  // Superseded versions share an article number with the current one, so the id carries
+  // the version's own Légifrance id to stay unique and traceable.
+  if (!superseded) return articles
+  const versionId = tagText(xml, 'ID')?.replace(/^LEGIARTI0*/, '') ?? 'unknown'
+  return articles.map((article) => ({
+    ...article,
+    id: article.id.replace(`code:${articleId}`, `code:${articleId}@${versionId}`),
+  }))
 }
 
 /**

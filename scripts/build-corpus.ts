@@ -91,7 +91,7 @@ function buildConvention(): Article[] {
 function buildCode(): Article[] {
   const articles: Article[] = []
   for (const path of filesUnder(CODE_ARTICLES).sort()) {
-    for (const article of parseLegiArticleXml(readFileSync(path, 'utf8'))) {
+    for (const article of parseLegiArticleXml(readFileSync(path, 'utf8'), { includeSuperseded: true })) {
       if (isCodeArticleInScope(article.articleId)) articles.push(article)
     }
   }
@@ -105,6 +105,9 @@ function summarise(articles: Article[]): void {
     byKind.set(key, (byKind.get(key) ?? 0) + 1)
   }
   for (const [key, count] of [...byKind].sort()) console.log(`  ${key}: ${count}`)
+
+  const superseded = articles.filter((article) => article.effectiveTo !== null).length
+  console.log(`  superseded versions (carry an end date): ${superseded}`)
 
   const byTheme = new Map<string, number>()
   for (const article of articles.filter((a) => a.source === 'code')) {

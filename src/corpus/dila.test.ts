@@ -52,6 +52,22 @@ describe('parseLegiArticleXml', () => {
   it('drops an article version that is no longer in force', () => {
     expect(parseLegiArticleXml(codeXml.replace('<ETAT>VIGUEUR</ETAT>', '<ETAT>ABROGE</ETAT>'))).toEqual([])
   })
+
+  it('keeps a superseded version when asked, under a version-specific id', () => {
+    const old = codeXml
+      .replace('<ETAT>VIGUEUR</ETAT>', '<ETAT>ABROGE</ETAT>')
+      .replace('<DATE_FIN>2999-01-01</DATE_FIN>', '<DATE_FIN>2016-08-10</DATE_FIN>')
+    const [article] = parseLegiArticleXml(old, { includeSuperseded: true })
+    expect(article?.articleId).toBe('L1221-19')
+    expect(article?.effectiveTo).toBe('2016-08-10')
+    expect(article?.id).toMatch(/^code:L1221-19@\d+$/)
+    expect(article?.id).not.toBe('code:L1221-19')
+  })
+
+  it('drops a superseded version that has no end date, since it cannot be placed in time', () => {
+    const undatable = codeXml.replace('<ETAT>VIGUEUR</ETAT>', '<ETAT>ABROGE</ETAT>')
+    expect(parseLegiArticleXml(undatable, { includeSuperseded: true })).toEqual([])
+  })
 })
 
 describe('conventionArticleId', () => {
