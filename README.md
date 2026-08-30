@@ -31,6 +31,25 @@ chat UI.
 
 Node 22, pnpm, TypeScript, vitest, zod, Postgres 16 + pgvector, Next.js 15.
 
+## Corpus
+
+Built from the two DILA open-data dumps (Licence Ouverte, no API key):
+
+| Source | Dump | What is kept |
+|---|---|---|
+| Code du travail | LEGI (`LEGITEXT000006072050`) | in-force articles in the four themes — 1,019 |
+| Syntec, IDCC 1486 | KALI (`KALICONT000005635173`) | every in-force article — 1,089 |
+
+```bash
+pnpm corpus:fetch   # download and unpack the dumps into data/raw (gitignored)
+pnpm corpus:build   # write data/corpus/articles.jsonl (committed)
+```
+
+The dumps are pinned to the `20250713-140000` snapshot, so a rebuild reproduces the same
+2,108 articles and any corpus change shows up as a diff. Convention articles are
+identified by their Légifrance id rather than their article number, because numbers
+collide — see `docs/decisions.md`.
+
 ## Development
 
 ```bash
@@ -42,8 +61,8 @@ pnpm typecheck   # tsc --noEmit
 
 ## Status
 
-In progress. Corpus format and JSONL I/O are in place; parsers, indexing, the eval
-harness and the report page are next.
+In progress. The corpus is built and committed (2,108 articles). Indexing, the eval
+harness, the gold set and the report page are next.
 
 ## Licence
 

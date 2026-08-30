@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ARTICLE>
+<META>
+<META_COMMUN>
+<ID>KALIARTI000047513825</ID>
+<ANCIEN_ID/>
+<ORIGINE>KALI</ORIGINE>
+<URL>article/KALI/ARTI/00/00/47/51/38/KALIARTI000047513825.xml</URL>
+<NATURE>Article</NATURE>
+</META_COMMUN>
+<META_SPEC>
+<META_ARTICLE>
+
+<NUM>3.4</NUM>
+<TITRE>Période d'essai</TITRE>
+
+<ETAT>VIGUEUR_ETEN</ETAT>
+
+
+<CALIPSOS/>
+<HISTORIQUE/>
+<DATE_DEBUT>2023-05-01</DATE_DEBUT>
+<DATE_FIN>2999-01-01</DATE_FIN>
+<DATE_DEB_EXT>2999-01-01</DATE_DEB_EXT>
+<DATE_FIN_EXT>2999-01-01</DATE_FIN_EXT>
+<TYPE>AUTONOME</TYPE>
+
+</META_ARTICLE>
+</META_SPEC>
+</META>
+<CONTEXTE>
+<TEXTE cid="KALITEXT000044253019" date_publi="2999-01-01" date_signature="2021-07-16" nature="Convention collective nationale" nor="ASET2150857M" num="46" num_parution_jo="">
+<TITRE_TXT c_titre_court="Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 16 juillet 2021" debut="2023-05-01" fin="2999-01-01" id_txt="KALITEXT000044253019">Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 16 juillet 2021 (Avenant n° 46 du 16 juillet 2021)</TITRE_TXT>
+
+
+<TM>
+<TITRE_TM debut="2023-05-01" fin="2999-01-01" id="KALISCTA000044253036">Annexes</TITRE_TM>
+<TM>
+<TITRE_TM debut="2023-05-01" fin="2999-01-01" id="KALISCTA000047504922">Annexe 1 : convention collective nationale </TITRE_TM>
+<TM>
+<TITRE_TM debut="2023-05-01" fin="2999-01-01" id="KALISCTA000044253041">Titre 3 Conditions d'engagement et d'exécution du contrat de travail</TITRE_TM>
+</TM>
+</TM>
+</TM>
+</TEXTE>
+<CONTENEUR cid="KALICONT000005635173" date_publi="2023-05-01" etat="VIGUEUR_ETEN" nature="IDCC" num="1486" titre="Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 16 juillet 2021 (Avenant n° 46 du 16 juillet 2021)" url="conteneur/KALI/CONT/00/00/05/63/51/KALICONT000005635173.xml"/>
+</CONTEXTE>
+<VERSIONS>
+<VERSION etat="REMPLACE">
+<LIEN_ART debut="2023-05-01" etat="REMPLACE" fin="2023-05-01" id="KALIARTI000044253063" num="3.4" origine="KALI"/>
+</VERSION>
+<VERSION etat="REMPLACE">
+<LIEN_ART debut="2023-05-01" etat="REMPLACE" fin="2023-05-01" id="KALIARTI000047513121" num="3.4" origine="KALI"/>
+</VERSION>
+<VERSION etat="VIGUEUR_ETEN">
+<LIEN_ART debut="2023-05-01" etat="VIGUEUR_ETEN" fin="2999-01-01" id="KALIARTI000047513825" num="3.4" origine="KALI"/>
+</VERSION>
+</VERSIONS>
+<BLOC_TEXTUEL>
+<CONTENU>
+<p align="left">La période d'essai et la possibilité de la renouveler ne se présument pas. Elles sont expressément stipulées dans la proposition d'embauche ou le contrat de travail.</p>
+<p align="left">La durée de la période d'essai et de son renouvellement est la suivante :<br/>
+– du coefficient 230 au coefficient 250 inclus de la grille de classification des emplois ETAM, la période d'essai est de 2 mois maximum. Elle peut être renouvelée pour une durée de 2 mois maximum ;<br/>
+– du coefficient 275 au coefficient 500 inclus de la grille de classification des emplois ETAM, la période d'essai est de 3 mois maximum. Elle peut être renouvelée pour une durée de 3 mois maximum ;<br/>
+– du coefficient 95 au coefficient 270 de la grille de classification des emplois ingénieurs et cadres, la période d'essai est de 4 mois maximum. Elle peut être renouvelée pour une durée de 4 mois maximum.</p>
+<p align="left">Le renouvellement de la période d'essai est exceptionnel et doit faire l'objet d'un accord écrit du salarié et de l'employeur.</p>
+<p align="left">Au cours de la période d'essai, les deux parties peuvent se séparer en respectant les délais de prévenance suivants :</p>
+
+<table border="1">
+<tbody>
+<tr>
+<th/>
+<th colspan="2">Durées des délais de prévenance en cas de rupture de la période d'essai</th>
+</tr>
+<tr>
+<th>Temps de présence dans l'entreprise</th>
+<th>À l'initiative de l'employeur</th>
+<th>À l'initiative du salarié</th>
+</tr>
+<tr>
+<td align="center">Inférieur à 8 jours</td>
+<td align="center">24 heures</td>
+<td align="center">24 heures</td>
+</tr>
+<tr>
+<td align="center">Entre 8 jours et 1 mois</td>
+<td align="center">48 heures</td>
+<td align="center">24 heures</td>
+</tr>
+<tr>
+<td align="center">Au-delà d'1 mois et jusqu'à 3 mois</td>
+<td align="center">2 semaines</td>
+<td align="center">48 heures</td>
+</tr>
+<tr>
+<td align="center">Au-delà de 3 mois et jusqu'à 6 mois</td>
+<td align="center">1 mois</td>
+<td align="center">48 heures</td>
+</tr>
+<tr>
+<td align="center">Au-delà de 6 mois et jusqu'à 8 mois</td>
+<td align="center">6 semaines</td>
+<td align="center">48 heures</td>
+</tr>
+</tbody>
+</table>
+
+<p align="left">La période d'essai, renouvellement inclus, ne peut être prolongée du fait de la durée du délai de prévenance. Ainsi, lorsqu'eu égard à la date de notification de la rupture de la période d'essai, le délai de prévenance ne peut être respecté par l'employeur, son inexécution ouvre droit pour le salarié à une indemnité compensatrice. Cette indemnité est égale au montant des salaires et avantages que le salarié aurait perçus s'il avait accompli son travail jusqu'à l'expiration du délai de prévenance, indemnité compensatrice de congés payés comprise.</p>
+<p align="left">L'indemnité compensatrice n'est pas due au salarié en cas de dispense d'exécution du délai de prévenance sollicitée par le salarié et acceptée par l'employeur.</p>
+<p align="left">Pendant la période d'essai, la durée des absences autorisées pour la recherche d'emploi doit être calculée sur la base de 2 heures pour chaque jour ouvré compté entre la date de notification de la rupture de la période d'essai, d'une part, et la fin de l'activité du salarié dans l'entreprise, d'autre part.  </p>
+<p align="left">Lorsque la rupture est à l'initiative du salarié, les heures d'absences autorisées pour la recherche d'emploi ne donnent pas lieu à rémunération.</p>
+<p align="left">
+<font color="#808080">
+<em>NOTA : Coefficient des ouvriers et employés : au lieu de « 230 », lire « 240 » à compter de l'entrée en vigueur de l'avenant n° 2 du 29 septembre 2022. (Avenant n° 2 du 27 octobre 2022, art. 8 - BOCC 2022-49).</em>
+</font>
+</p>
+</CONTENU>
+</BLOC_TEXTUEL>
+<LIENS>
+<LIEN cidtexte="KALITEXT000046033571" datesignatexte="2022-03-31" id="KALIARTI000046033577" naturetexte="Avenant" nortexte="ASET2250549M" num="2" numtexte="1" sens="cible" typelien="CITATION">Révision de la CCN - art. 2 (VE)</LIEN>
+<LIEN cidtexte="KALITEXT000046744424" datesignatexte="2022-09-29" id="KALITEXT000046744424" naturetexte="Avenant" nortexte="ASET2251349M" num="" numtexte="2" sens="source" typelien="CITATION">Salaires minimaux hiérarchiques (ETAM) (VE)</LIEN>
+<LIEN cidtexte="KALITEXT000047006904" datesignatexte="2022-10-27" id="KALIARTI000047006931" naturetexte="Avenant" nortexte="ASET2251468M" num="8" numtexte="2" sens="cible" typelien="MODIFIE">Modifications de la convention collective - art. 8 (VNE)</LIEN>
+<LIEN cidtexte="KALITEXT000047006904" datesignatexte="2022-10-27" id="KALIARTI000047006931" naturetexte="Avenant" nortexte="ASET2251468M" num="8" numtexte="2" sens="source" typelien="CITATION">Modifications de la convention collective - art. 8 (VE)</LIEN>
+
+</LIENS>
+
+
+
+<INFORMATIONS_COMPLEMENTAIRES>
+<CONTENU/>
+</INFORMATIONS_COMPLEMENTAIRES>
+</ARTICLE>
