@@ -1,0 +1,49 @@
+:root {
+  --bg: #fbfbf9;
+  --fg: #16161a;
+  --muted: #6b6b76;
+  --line: #e3e3dd;
+  --accent: #1c4f8b;
+  --good: #1c6b45;
+  --bad: #9b2c2c;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #121214; --fg: #ececef; --muted: #9a9aa4; --line: #2a2a30; --accent: #7fb3ee; --good: #6bbf92; --bad: #e08585; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 ui-serif, Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 46rem; margin: 0 auto; padding: 4rem 1.25rem 6rem; }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.15rem; margin: 3rem 0 .75rem; letter-spacing: -0.01em; }
+h3 { font-size: 1rem; margin: 2rem 0 .5rem; }
+p { margin: 0 0 1rem; }
+a { color: var(--accent); }
+.lede { font-size: 1.1rem; color: var(--fg); }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+code, .mono, table { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.headline { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 2rem 0; }
+.headline div { background: var(--bg); padding: 1rem; }
+.headline .n { font-size: 1.75rem; font-variant-numeric: tabular-nums; display: block; letter-spacing: -0.02em; }
+.headline .k { font-size: .8rem; color: var(--muted); display: block; margin-top: .25rem; }
+.scroll { overflow-x: auto; margin: 1rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .82rem; }
+th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--line); }
+/* Only the numeric columns must stay on one line; the description column may wrap, which
+   is what keeps the table inside the page instead of cutting the results off the edge. */
+th:not(:nth-child(2)), td:not(:nth-child(2)) { white-space: nowrap; }
+td:nth-child(2) { white-space: normal; min-width: 11rem; line-height: 1.35; }
+th { font-weight: 600; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.best td { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.up { color: var(--good); }
+.down { color: var(--bad); }
+.note { border-left: 2px solid var(--line); padding-left: 1rem; color: var(--muted); font-size: .9rem; }
+.links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 1rem 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }

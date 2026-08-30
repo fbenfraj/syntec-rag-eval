@@ -1,0 +1,70 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: syntec
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+
+    env:
+      # CI uses the standard port; the local compose file deliberately does not, to avoid
+      # colliding with a developer's own Postgres.
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/syntec
+      # No provider keys in CI. Everything below runs offline, which is the point: a test
+      # suite that needs a key is a test suite nobody runs on a pull request.
+      LLM_CACHE_DIR: .cache
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Tests
+        run: pnpm test
+
+      - name: Gold set is valid
+        run: pnpm gold:validate
+
+      - name: Published numbers match the committed results
+        run: |
+          pnpm rescore
+          pnpm leaderboard
+          pnpm failures
+          pnpm site:data
+          # A metric change must be committed with the results it produces. If regenerating
+          # them moves a number, the published tables no longer match the raw rows.
+          git diff --exit-code -- results/ || {
+            echo '::error::Regenerating the reports changed them. Commit the regenerated results.'
+            exit 1
+          }
+
+      - name: Report site builds
+        run: |
+          cd site
+          pnpm install --no-frozen-lockfile
+          pnpm build

@@ -81,11 +81,49 @@ The database uses port 57557 rather than 5432 so it cannot collide with another 
 on the machine — `pnpm corpus:load` starts by dropping tables, so pointing it at the
 wrong database would be expensive.
 
+## Results
+
+Six configurations, 142 labelled questions. Full tables in
+[`results/LEADERBOARD.md`](results/LEADERBOARD.md); every run is committed, so the score
+history is in git.
+
+| rung | adds | recall@5 | answers | repealed retrieved |
+|---|---|---|---|---|
+| `baseline` | fixed chunks | 84.2 % | 76.7 % | 66.7 % |
+| `article` | article chunks | 85.8 % | 80.8 % | 67.5 % |
+| `hybrid` | + lexical | 78.3 % | 74.2 % | 61.7 % |
+| `rerank` | + rerank | 87.5 % | 81.7 % | 62.5 % |
+| `rewrite` | + query rewrite | 88.3 % | 81.7 % | 63.3 % |
+| `filtered` | + date filter and precedence | **90.8 %** | 80.0 % | **0.0 %** |
+
+Three things worth reading the tables for:
+
+- **Hybrid search made retrieval worse**, by 7.5 points. Published as measured. Reranking
+  then recovered it and more.
+- **Two thirds of queries retrieved repealed law** until the date filter, which takes it to
+  zero. The model answers correctly from text that no longer applies — an error no accuracy
+  metric can see, and the one that matters most in law.
+- **31 of 142 questions fail**, split by cause in
+  [`results/FAILURES.md`](results/FAILURES.md): 4 retrieval misses, 10 generation misses,
+  10 false refusals, 7 citation misses. The first two have different fixes, which is why
+  they are never merged into one number.
+
+The ablation also caught two real bugs in the system it measures — a precedence bonus that
+was ten times the score range, and a date filter that was a no-op on 84 % of the set. Both
+are written up in [`docs/decisions.md`](docs/decisions.md) with what they cost.
+
+## Report site
+
+`site/` renders the committed results as a static page, in French with an English version.
+
+```bash
+pnpm site:data          # freeze results/summary.json
+cd site && pnpm install && pnpm build
+```
+
 ## Status
 
-In progress. The corpus is built, committed and embedded (2,108 articles), and dense,
-lexical and hybrid retrieval work. The ablation ladder, the gold set, the eval harness and
-the report page are next.
+Complete through the eval harness, leaderboard, failure catalogue and report site.
 
 ## Licence
 

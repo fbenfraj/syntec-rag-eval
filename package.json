@@ -25,7 +25,8 @@
     "eval": "tsx scripts/run-eval.ts",
     "leaderboard": "tsx scripts/leaderboard.ts",
     "rescore": "tsx scripts/rescore.ts",
-    "failures": "tsx scripts/failures.ts"
+    "failures": "tsx scripts/failures.ts",
+    "site:data": "tsx scripts/site-data.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",
