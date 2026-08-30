@@ -3,6 +3,7 @@ import { mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { complete, embed, embedQuery, rerankScores } from './client.js'
+import { totalSpentEur } from './budget.js'
 
 const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
   new Response(JSON.stringify(body), { status, headers })
@@ -14,6 +15,8 @@ beforeEach(async () => {
   process.env.ANTHROPIC_API_KEY = 'test-anthropic-key'
   process.env.VOYAGE_API_KEY = 'test-voyage-key'
   process.env.ANTHROPIC_WORKSPACE_ID = 'wrkspc_test'
+  process.env.SPEND_LEDGER = join(process.env.LLM_CACHE_DIR!, 'spend.jsonl')
+  delete process.env.BUDGET_EUR
   fetchMock = vi.fn()
   vi.stubGlobal('fetch', fetchMock)
 })
@@ -123,5 +126,38 @@ describe('rerankScores', () => {
   it('does not call the provider for an empty candidate list', async () => {
     expect(await rerankScores('q', [])).toEqual([])
     expect(fetchMock).not.toHaveBeenCalled()
+  })
+})
+
+describe('the budget guard', () => {
+  const reply = { content: [{ type: 'text', text: 'ok' }], usage: { input_tokens: 1_000_000, output_tokens: 0 } }
+
+  it('records what a real call cost', async () => {
+    fetchMock.mockResolvedValueOnce(json(reply))
+    await complete({ model: 'test-model', system: 's', user: 'u' })
+    expect(totalSpentEur()).toBeCloseTo(1, 6)
+  })
+
+  it('records nothing for a cache hit, because a cache hit is free', async () => {
+    fetchMock.mockImplementation(() => Promise.resolve(json(reply)))
+    await complete({ model: 'test-model', system: 's', user: 'u' })
+    await complete({ model: 'test-model', system: 's', user: 'u' })
+    expect(totalSpentEur()).toBeCloseTo(1, 6)
+  })
+
+  it('refuses to call the provider once the cap is reached', async () => {
+    process.env.BUDGET_EUR = '1'
+    fetchMock.mockImplementation(() => Promise.resolve(json(reply)))
+    await complete({ model: 'test-model', system: 's', user: 'first' })
+    await expect(complete({ model: 'test-model', system: 's', user: 'second' })).rejects.toThrow(/budget reached/)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('caps embeddings and reranking too, not only generation', async () => {
+    process.env.BUDGET_EUR = '1'
+    fetchMock.mockImplementation(() => Promise.resolve(json(reply)))
+    await complete({ model: 'test-model', system: 's', user: 'first' })
+    await expect(embed(['texte'])).rejects.toThrow(/budget reached/)
+    await expect(rerankScores('q', ['a'])).rejects.toThrow(/budget reached/)
   })
 })

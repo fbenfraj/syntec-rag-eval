@@ -23,6 +23,9 @@ function envFile(path = '.env'): Record<string, string> {
 export default defineConfig({
   test: {
     include: ['src/**/*.test.ts'],
+    // The database tests share one Postgres, and each rebuilds the schema. Running test
+    // files in parallel lets one file's DROP TABLE run under another file's assertions.
+    fileParallelism: false,
     env: { ...envFile(), ...process.env } as Record<string, string>,
   },
 })

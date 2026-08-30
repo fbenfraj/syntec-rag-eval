@@ -50,6 +50,18 @@ The dumps are pinned to the `20250713-140000` snapshot, so a rebuild reproduces 
 identified by their Légifrance id rather than their article number, because numbers
 collide — see `docs/decisions.md`.
 
+## Cost control
+
+Provider spend is capped in code, not by intention. Every billed call appends to a ledger
+and checks the running total first, so a runaway loop stops at the cap rather than at the
+invoice. Cache hits cost nothing and are not recorded.
+
+```bash
+pnpm spend        # what has been spent, by model, and what is left
+```
+
+The cap is `BUDGET_EUR` (default 20). Raising it is a deliberate edit.
+
 ## Development
 
 ```bash
@@ -60,6 +72,7 @@ pnpm db:up                    # Postgres 16 + pgvector on port 57557
 pnpm corpus:fetch             # download the DILA dumps (once, ~1.3 GB)
 pnpm corpus:build             # write data/corpus/articles.jsonl
 pnpm corpus:load              # apply the schema and load it
+pnpm embed                    # embed the corpus (~0.07 EUR, resumable)
 pnpm test                     # vitest, including the database tests
 pnpm typecheck                # tsc --noEmit
 ```
@@ -70,8 +83,9 @@ wrong database would be expensive.
 
 ## Status
 
-In progress. The corpus is built and committed (2,108 articles). Indexing, the eval
-harness, the gold set and the report page are next.
+In progress. The corpus is built, committed and embedded (2,108 articles), and dense,
+lexical and hybrid retrieval work. The ablation ladder, the gold set, the eval harness and
+the report page are next.
 
 ## Licence
 

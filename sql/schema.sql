@@ -12,7 +12,7 @@ CREATE TABLE articles (
   effective_from date,
   effective_to   date,
   precedence     int  NOT NULL,
-  embedding      vector(1536),
+  embedding      vector(1024),  -- voyage-law-2; see src/llm/client.ts
   tsv            tsvector GENERATED ALWAYS AS (
                    to_tsvector('french', title || ' ' || content)
                  ) STORED
@@ -36,7 +36,7 @@ CREATE TABLE articles_fixed (
   effective_from date,
   effective_to   date,
   precedence     int  NOT NULL,
-  embedding      vector(1536),
+  embedding      vector(1024),  -- voyage-law-2; see src/llm/client.ts
   tsv            tsvector GENERATED ALWAYS AS (
                    to_tsvector('french', title || ' ' || content)
                  ) STORED

@@ -10,7 +10,9 @@
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
     "corpus:load": "tsx scripts/load-corpus.ts",
-    "smoke": "tsx scripts/smoke-providers.ts"
+    "smoke": "tsx scripts/smoke-providers.ts",
+    "embed": "tsx scripts/embed-corpus.ts",
+    "spend": "tsx scripts/spend.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",

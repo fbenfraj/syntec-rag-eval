@@ -1,4 +1,6 @@
 import { cached } from './cache.js'
+import { assertWithinBudget, recordSpend } from './budget.js'
+import { costEur } from './pricing.js'
 import type { Completion } from './pricing.js'
 
 export const GENERATION_MODEL = process.env.GENERATION_MODEL ?? 'claude-haiku-4-5-20251001'
@@ -22,7 +24,7 @@ const RETRYABLE = new Set([408, 429, 500, 502, 503, 504, 529])
  * single rate limit must not end the run; a non-retryable error is raised immediately so a
  * bad request is not mistaken for a flaky network.
  */
-async function postJson(url: string, headers: Record<string, string>, body: unknown, attempts = 5): Promise<unknown> {
+async function postJson(url: string, headers: Record<string, string>, body: unknown, attempts = 8): Promise<unknown> {
   let lastError: Error | undefined
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     const response = await fetch(url, {
@@ -37,7 +39,9 @@ async function postJson(url: string, headers: Record<string, string>, body: unkn
     if (!RETRYABLE.has(response.status) || attempt === attempts) throw lastError
 
     const retryAfter = Number(response.headers.get('retry-after'))
-    const backoffMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2 ** attempt * 250
+    // Capped exponential backoff. A free-tier rate limit resets on a one-minute window,
+    // so the ceiling is well above a minute rather than a few seconds.
+    const backoffMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : Math.min(2 ** attempt * 500, 90_000)
     await new Promise((resolve) => setTimeout(resolve, backoffMs))
   }
   throw lastError ?? new Error(`${url} failed`)
@@ -53,6 +57,7 @@ interface AnthropicResponse {
  * bills to. Sending it explicitly keeps this project's spend off any other workspace.
  */
 async function callProvider(args: { model: string; system: string; user: string; maxTokens: number }) {
+  assertWithinBudget()
   const headers: Record<string, string> = {
     'x-api-key': requireEnv('ANTHROPIC_API_KEY'),
     'anthropic-version': '2023-06-01',
@@ -68,29 +73,39 @@ async function callProvider(args: { model: string; system: string; user: string;
     messages: [{ role: 'user', content: args.user }],
   })) as AnthropicResponse
 
+  const usage = { inputTokens: response.usage.input_tokens, outputTokens: response.usage.output_tokens }
+  recordSpend({ model: args.model, ...usage, eur: costEur({ model: args.model, ...usage }) })
   return {
     text: response.content.filter((block) => block.type === 'text').map((block) => block.text ?? '').join(''),
-    inputTokens: response.usage.input_tokens,
-    outputTokens: response.usage.output_tokens,
+    ...usage,
   }
 }
 
 interface VoyageEmbeddings {
   data: { embedding: number[]; index: number }[]
-  usage: { total_tokens: number }
+  usage?: { total_tokens: number }
 }
 
 async function callEmbeddings(texts: string[], inputType: 'document' | 'query') {
+  assertWithinBudget()
   const response = (await postJson(
     'https://api.voyageai.com/v1/embeddings',
     { authorization: `Bearer ${requireEnv('VOYAGE_API_KEY')}` },
     { model: EMBEDDING_MODEL, input: texts, input_type: inputType },
   )) as VoyageEmbeddings
+  const inputTokens = response.usage?.total_tokens ?? 0
+  recordSpend({
+    model: EMBEDDING_MODEL,
+    inputTokens,
+    outputTokens: 0,
+    eur: costEur({ model: EMBEDDING_MODEL, inputTokens, outputTokens: 0 }),
+  })
   return [...response.data].sort((a, b) => a.index - b.index).map((row) => row.embedding)
 }
 
 interface VoyageRerank {
   data: { index: number; relevance_score: number }[]
+  usage?: { total_tokens: number }
 }
 
 export interface CompleteArgs {
@@ -133,11 +148,19 @@ export async function embedQuery(text: string): Promise<number[]> {
 export async function rerankScores(query: string, documents: string[]): Promise<number[]> {
   if (documents.length === 0) return []
   return cached(['rerank', RERANK_MODEL, query, documents], async () => {
+    assertWithinBudget()
     const response = (await postJson(
       'https://api.voyageai.com/v1/rerank',
       { authorization: `Bearer ${requireEnv('VOYAGE_API_KEY')}` },
       { model: RERANK_MODEL, query, documents, return_documents: false },
     )) as VoyageRerank
+    const rerankTokens = response.usage?.total_tokens ?? 0
+    recordSpend({
+      model: RERANK_MODEL,
+      inputTokens: rerankTokens,
+      outputTokens: 0,
+      eur: costEur({ model: RERANK_MODEL, inputTokens: rerankTokens, outputTokens: 0 }),
+    })
     const scores = Array<number>(documents.length).fill(0)
     for (const row of response.data) scores[row.index] = row.relevance_score
     return scores
