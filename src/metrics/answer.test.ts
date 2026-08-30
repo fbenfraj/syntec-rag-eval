@@ -77,3 +77,22 @@ describe('refusalRates', () => {
     expect(rates.refusalAccuracy).toBe(0.5)
   })
 })
+
+describe('citationCorrectness on chunked retrieval', () => {
+  it('credits a citation of a fixed-size chunk of the required article', () => {
+    // The baseline rung shows the model chunks, so this is what it can cite.
+    expect(citationCorrectness(['code:L1221-19#chunk-2'], ['code:L1221-19'])).toBe(1)
+  })
+
+  it('credits a citation of a table lifted out of the required article', () => {
+    expect(citationCorrectness(['convention:47513825#table-1'], ['convention:47513825'])).toBe(1)
+  })
+
+  it('still refuses to credit a superseded version', () => {
+    expect(citationCorrectness(['code:L1221-19@6902466'], ['code:L1221-19'])).toBe(0)
+  })
+
+  it('counts two chunks of one article as one citation', () => {
+    expect(citationCorrectness(['code:a#chunk-1', 'code:a#chunk-2'], ['code:a'])).toBe(1)
+  })
+})

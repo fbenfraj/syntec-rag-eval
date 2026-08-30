@@ -1,3 +1,4 @@
+import { canonicalArticleId } from '../corpus/chunk.js'
 import type { GoldQuestion } from '../gold/types.js'
 import type { Answer } from '../answer/answer.js'
 
@@ -9,8 +10,12 @@ import type { Answer } from '../answer/answer.js'
  */
 export function citationCorrectness(citations: string[], required: string[]): number {
   if (citations.length === 0 && required.length === 0) return 1
-  const cited = new Set(citations)
-  const needed = new Set(required)
+  // Citations are canonicalised the same way retrieval hits are. The baseline rung shows
+  // the model fixed-size chunks, so it cites `code:L1221-19#chunk-2`; comparing that raw
+  // against the gold `code:L1221-19` scored the rung at zero and read as a total failure
+  // to cite, when the article named was right.
+  const cited = new Set(citations.map(canonicalArticleId))
+  const needed = new Set(required.map(canonicalArticleId))
   if (cited.size === 0 || needed.size === 0) return 0
   const overlap = [...cited].filter((citation) => needed.has(citation)).length
   if (overlap === 0) return 0

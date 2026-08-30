@@ -120,6 +120,52 @@ stand unqualified.
 
 ---
 
+## D-009 — Precedence is a rank head start, not a score bonus
+
+- **Tag:** Decision
+- **Date:** 2026-08-31
+- **Status:** active
+- **Level:** L2
+
+**Decision.** `boostPrecedence` moves a convention article `PRECEDENCE_RANK_BONUS = 2`
+places up the list. It does not add anything to the score.
+
+**Why.** Two score-based versions failed on scale, and the ablation is what caught it.
+A flat `+0.15` is reasonable against a cosine similarity in [0, 1] and meaningless against
+a reciprocal-rank-fusion score of about 0.016 — the bonus was ten times the entire range,
+so every convention article outranked every code article whatever the question. The
+`filtered` rung scored **recall 37.5% against 88.3%** for the rung below it, and every miss
+had retrieved five convention articles for a question the Code answers. The obvious repair,
+a relative `+15%`, failed for the opposite reason: RRF compresses ranks 1 to 10 into a 15%
+spread, so a percentage bonus quietly buys nine places.
+
+Ranks are the unit the ordering is actually in, so a head start expressed in ranks behaves
+identically whatever produced the scores. After the fix the same rung scores **recall
+90.8%**, the best on the ladder.
+
+**What it cost, and what it bought.** One rung re-run, EUR 0.50. The bug was invisible in
+every unit test written against cosine-scale scores and would have shipped as a published
+result claiming that date filtering and precedence make retrieval worse.
+
+---
+
+## D-010 — An undated question is asked today
+
+- **Tag:** Decision
+- **Date:** 2026-08-31
+- **Status:** active
+- **Level:** L2
+
+**Decision.** `runEval` passes `asOfDefault`, the run date, for any gold question without
+its own `asOf`.
+
+**Why.** 119 of 142 questions carry no date, and treating that as "no date constraint" made
+the date filter a no-op for 84% of the set — the rung could not be measured at all. Somebody
+asking a labour-law question today wants the law as it stands today. With the default in
+place, retrieval of repealed articles drops from **63.3% to 0.0%**.
+
+---
+
 ## D-001 — Source the corpus from DILA open data, not the Légifrance API
 
 - **Tag:** Decision

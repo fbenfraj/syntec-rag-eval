@@ -32,12 +32,16 @@ const ordered = LADDER.map((config) => latest.get(config.name)).filter((run): ru
 if (ordered.length === 0) throw new Error('no results matched a ladder rung')
 
 const pct = (value: number | null) => (value === null ? 'n/a' : `${(value * 100).toFixed(1)}%`)
-const delta = (current: number | null, previous: number | null, invert = false) => {
+/**
+ * Signed change in percentage points against the rung below. Always signed, never
+ * annotated as good or bad: which direction is an improvement depends on the column, and
+ * the columns say so themselves.
+ */
+const delta = (current: number | null, previous: number | null) => {
   if (current === null || previous === null) return ''
   const difference = (current - previous) * 100
   if (Math.abs(difference) < 0.05) return ' (=)'
-  const better = invert ? difference < 0 : difference > 0
-  return ` (${better ? '+' : ''}${difference.toFixed(1)}${better ? '' : ''})`
+  return ` (${difference > 0 ? '+' : '−'}${Math.abs(difference).toFixed(1)})`
 }
 
 const capabilities = (name: string) => {
@@ -73,7 +77,7 @@ ordered.forEach((run, index) => {
   const a = run.aggregates
   lines.push(
     `| \`${run.config}\` | ${capabilities(run.config)} | ${pct(a.recallAt5)}${delta(a.recallAt5, previous?.recallAt5 ?? null)} | ` +
-      `${pct(a.fullRecallAt5)} | ${a.mrr.toFixed(3)} | ${pct(a.supersededRate)}${delta(a.supersededRate, previous?.supersededRate ?? null, true)} |`,
+      `${pct(a.fullRecallAt5)} | ${a.mrr.toFixed(3)} | ${pct(a.supersededRate)}${delta(a.supersededRate, previous?.supersededRate ?? null)} |`,
   )
 })
 
@@ -94,7 +98,7 @@ ordered.forEach((run, index) => {
   const a = run.aggregates
   lines.push(
     `| \`${run.config}\` | ${pct(a.answerCorrectness)}${delta(a.answerCorrectness, previous?.answerCorrectness ?? null)} | ` +
-      `${pct(a.citationCorrectness)} | ${pct(a.refusalAccuracy)} | ${pct(a.falseRefusalRate)}${delta(a.falseRefusalRate, previous?.falseRefusalRate ?? null, true)} |`,
+      `${pct(a.citationCorrectness)}${delta(a.citationCorrectness, previous?.citationCorrectness ?? null)} | ${pct(a.refusalAccuracy)} | ${pct(a.falseRefusalRate)}${delta(a.falseRefusalRate, previous?.falseRefusalRate ?? null)} |`,
   )
 })
 

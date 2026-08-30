@@ -41,6 +41,7 @@ export interface RunResult {
   model: string
   judgeModel: string
   goldSetSize: number
+  asOfDefault: string
   startedAt: string
   rows: EvalRow[]
   aggregates: Aggregates
@@ -53,12 +54,22 @@ export async function runEval(args: {
   model: string
   judgeModel: string
   startedAt: string
+  /**
+   * The date a question without its own `asOf` is taken to be asked on.
+   *
+   * Most gold questions carry no date, and treating that as "no date constraint" made the
+   * date filter a no-op for 119 of 142 questions — the rung could not be measured. Someone
+   * asking a labour-law question today wants the law as it stands today, so today is the
+   * honest default, and a `dated` question still overrides it.
+   */
+  asOfDefault: string
   onProgress?: (done: number, total: number) => void
 }): Promise<RunResult> {
   const rows: EvalRow[] = []
 
   for (const [index, question] of args.questions.entries()) {
-    const retrieval = await retrieveWithCost(args.pool, question.question, args.config, question.asOf)
+    const asOf = question.asOf ?? args.asOfDefault
+    const retrieval = await retrieveWithCost(args.pool, question.question, args.config, asOf)
     const result = await answer(question.question, retrieval.hits, args.model)
 
     // An unanswerable question is scored by whether the system refused, not by a judge:
@@ -90,7 +101,7 @@ export async function runEval(args: {
       retrievedIds: retrieval.hits.map((hit) => hit.id),
       requiredArticles: question.requiredArticles,
       citations: result.citations,
-      supersededRetrieved: supersededInTopK(retrieval.hits, args.config.k, question.asOf),
+      supersededRetrieved: supersededInTopK(retrieval.hits, args.config.k, asOf),
       costEur: costEur(result.completion) + retrieval.costEur,
       inputTokens: result.completion.inputTokens,
       outputTokens: result.completion.outputTokens,
@@ -106,6 +117,7 @@ export async function runEval(args: {
     model: args.model,
     judgeModel: args.judgeModel,
     goldSetSize: args.questions.length,
+    asOfDefault: args.asOfDefault,
     startedAt: args.startedAt,
     rows,
     aggregates: aggregate(rows),
