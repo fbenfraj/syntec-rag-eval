@@ -57,9 +57,44 @@ if (!scoring) {
 
   await mkdir(dirname(samplePath), { recursive: true })
   await writeFile(samplePath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8')
-  console.log(`wrote ${samplePath} — ${rows.length} rows`)
-  console.log('Set "humanVerdict" to true or false on every row, then run with --score.')
-  console.log('Judge the candidate against the reference only. Do not look at judgeVerdict first.')
+
+  // A markdown sheet as well as the JSONL: editing 60 JSON lines by hand invites a typo
+  // that silently drops a row from the sample. The judge's own verdict is deliberately not
+  // shown — seeing it first turns the exercise into agreeing with it.
+  const sheet: string[] = [
+    `# Judge calibration — ${runId}`,
+    '',
+    `${rows.length} answers. For each, decide one thing: **does the produced answer say the same`,
+    'thing as the reference?** Different wording is fine. A different number, a missing central',
+    'element, or vagueness that dodges the question is not.',
+    '',
+    'Mark `[x]` if it matches the reference, `[!]` if it does not. Then run:',
+    '',
+    '```',
+    `pnpm judge:apply-calibration ${runId}`,
+    `pnpm judge:calibrate ${runId} --score`,
+    '```',
+    '',
+    'The judge\'s own verdict is hidden on purpose. This sample is the one place in the project',
+    'where a human is not replaceable: agreement between two models would measure whether they',
+    'share a bias, which is exactly what calibration exists to rule out.',
+    '',
+    '---',
+    '',
+  ]
+  for (const row of rows) {
+    sheet.push(`## ${row.questionId}`, '')
+    sheet.push('- [ ] matches the reference', '')
+    sheet.push(`**Question.** ${row.question}`, '')
+    sheet.push(`**Reference.** ${row.expected}`, '')
+    sheet.push(`**Produced.** ${row.actual.replace(/\n/g, ' ') || '_(refused)_'}`, '')
+    sheet.push('---', '')
+  }
+  await writeFile(samplePath.replace(/\.jsonl$/, '.md'), sheet.join('\n'), 'utf8')
+
+  console.log(`wrote ${samplePath}`)
+  console.log(`wrote ${samplePath.replace(/\.jsonl$/, '.md')} — ${rows.length} rows to mark`)
+  console.log('Mark the markdown sheet, then run pnpm judge:apply-calibration <runId>.')
 } else {
   if (!existsSync(samplePath)) throw new Error(`no sample at ${samplePath} — run without --score first`)
   const rows = (await readFile(samplePath, 'utf8'))

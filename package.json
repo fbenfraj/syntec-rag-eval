@@ -26,7 +26,8 @@
     "leaderboard": "tsx scripts/leaderboard.ts",
     "rescore": "tsx scripts/rescore.ts",
     "failures": "tsx scripts/failures.ts",
-    "site:data": "tsx scripts/site-data.ts"
+    "site:data": "tsx scripts/site-data.ts",
+    "judge:apply-calibration": "tsx scripts/apply-calibration.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",

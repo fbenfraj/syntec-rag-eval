@@ -7,3 +7,6 @@ data/raw
 site/.next
 site/out
 site/node_modules
+
+# Calibration is per-machine working state until it is scored.
+data/calibration/*.md
