@@ -6,12 +6,27 @@
  * checked row. A row marked `[-]` is removed from the set entirely.
  */
 import { readFile, writeFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readGoldSet } from '../src/gold/validate.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const review = await readFile(join(root, 'data', 'gold', 'review.md'), 'utf8')
+
+/**
+ * The short sheet produced after a cross-vendor review is the usual input; the full sheet
+ * from `pnpm gold:review` is the fallback. An explicit path wins over both.
+ */
+const candidates = [
+  process.argv[2],
+  join(root, 'data', 'gold', 'review', 'for-human.md'),
+  join(root, 'data', 'gold', 'review.md'),
+].filter((path): path is string => path !== undefined)
+
+const sheet = candidates.find((path) => existsSync(path))
+if (sheet === undefined) throw new Error(`no review sheet found; looked for:\n  ${candidates.join('\n  ')}`)
+console.log(`reading ${sheet.replace(`${root}/`, '')}`)
+const review = await readFile(sheet, 'utf8')
 const questions = await readGoldSet(join(root, 'data', 'gold', 'questions.jsonl'))
 
 const verdicts = new Map<string, { mark: string; fix: string }>()
@@ -21,6 +36,12 @@ for (const block of blocks) {
   const mark = block.match(/^- \[(.)\] verdict/m)?.[1]?.trim() ?? ''
   const fix = block.match(/^- Fix:(.*)$/m)?.[1]?.trim() ?? ''
   if (id !== undefined) verdicts.set(id, { mark, fix })
+}
+
+const marked = [...verdicts.values()].filter((verdict) => verdict.mark.length > 0)
+if (marked.length === 0) {
+  // Silence here would look like success and quietly leave the set unverified.
+  throw new Error(`no rows are marked in ${sheet}. Replace a "[ ]" with [x], [!] or [-] first.`)
 }
 
 let verified = 0

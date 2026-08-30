@@ -1,7 +1,28 @@
 # Gold set
 
-150 questions with verified article citations, used to score every rung of the ablation
+142 questions with verified article citations, used to score every rung of the ablation
 ladder. `questions.jsonl` is one JSON object per line.
+
+## What review actually found
+
+The set was drafted at 150 questions, then reviewed in two passes.
+
+| pass | who | outcome |
+|---|---|---|
+| cross-vendor | a different vendor's model, all 150 rows | 139 ok, 9 bad question, 2 wrong; 10 at low confidence → **19 rows flagged** |
+| human | the 19 flagged rows, plus 8 the reviewer had passed, as a control | 17 confirmed, 2 corrected, 8 dropped |
+
+Result: **142 questions, 19 of them human-verified.**
+
+Two numbers are worth stating plainly, because they are the evidence that the review was
+worth running at all:
+
+- **The reviewer flagged 12.7% of the set.** Roughly one row in eight was wrong or badly
+  posed. Published unreviewed, every metric would have carried that error silently.
+- **The human agreed with all 8 controls.** The rows the reviewer passed held up under
+  inspection, which is what makes its 131 other passes worth anything. Had even one control
+  failed, the flagged list would not have been the whole story and the honest move would
+  have been to review the set by hand.
 
 ## How this set was built, and what that means
 
