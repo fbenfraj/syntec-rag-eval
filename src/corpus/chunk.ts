@@ -41,3 +41,16 @@ export function toFixedChunks(articles: Article[]): Article[] {
 export function articleIdOfChunk(chunkId: string): string {
   return chunkId.replace(/#chunk-\d+$/, '')
 }
+
+/**
+ * The corpus id a retrieved record should be scored as.
+ *
+ * A record may be a fixed-size chunk (`…#chunk-3`) or a table lifted out of an article
+ * (`…#table-1`); retrieving either means the article was found, so both collapse to the
+ * article. A superseded version (`code:L1221-19@6902466`) does **not** collapse: it is a
+ * different text that no longer applies, and treating it as the current article would
+ * score the system's worst failure — citing repealed law — as a success.
+ */
+export function canonicalArticleId(recordId: string): string {
+  return recordId.replace(/#(?:chunk|table)-\d+$/, '')
+}
