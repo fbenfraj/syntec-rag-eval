@@ -34,6 +34,39 @@ schema here begins with `DROP TABLE`. An unusual port makes that mistake impossi
 
 ---
 
+## D-006 — Haiku generates, Sonnet judges, Voyage embeds and reranks
+
+- **Tag:** Decision
+- **Date:** 2026-08-30
+- **Status:** active
+- **Level:** L2
+
+**Decision.** `claude-haiku-4-5` writes answers, `claude-sonnet-4-5` runs the judge,
+`voyage-law-2` embeds (1024 dimensions) and `rerank-2` reranks. All four are overridable
+by environment variable, and every one has a published price in `src/llm/pricing.ts`.
+
+**Why.** The split follows what each number is worth. A cheaper generator makes retrieval
+quality *more* visible, which is the point of an ablation: if a strong model papers over a
+bad retrieval rung, the ladder stops measuring anything. The judge is the opposite case —
+it decides whether every other number is true, so it gets the better model and is
+calibrated against human labels. A dedicated reranker rather than an LLM scoring
+candidates cuts roughly €3-10 off every full run for about €0.20; that alone pays for the
+second provider.
+
+Anthropic sells no embedding endpoint, so a second provider was not optional. Voyage is
+Anthropic's recommended partner and sells the reranker too, so it is one key rather than
+two.
+
+**Considered and rejected.** Sonnet for generation as well would roughly triple the bill
+per run and weaken the ablation's signal. OpenAI `text-embedding-3-small` would have kept
+the schema at 1536 dimensions and is a strong generalist; it is still worth adding later
+as a second leaderboard row, since a second embedding pass over the corpus costs about six
+cents. Whether legal-domain training actually helps on French statute is a measurable
+question, and this repo is the instrument that measures it — asserting it would have been
+the weaker move.
+
+---
+
 ## D-001 — Source the corpus from DILA open data, not the Légifrance API
 
 - **Tag:** Decision
