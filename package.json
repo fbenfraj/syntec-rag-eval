@@ -1,0 +1,27 @@
+{
+  "name": "syntec-rag-eval",
+  "version": "1.0.0",
+  "description": "Measured retrieval over the Code du travail and the Syntec convention collective",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Farouk Ben Fraj",
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "pg": "^8.23.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  }
+}
