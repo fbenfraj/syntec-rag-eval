@@ -161,3 +161,33 @@ describe('the budget guard', () => {
     await expect(rerankScores('q', ['a'])).rejects.toThrow(/budget reached/)
   })
 })
+
+describe('per-text embedding cache', () => {
+  const vectors = (count: number) =>
+    json({ data: Array.from({ length: count }, (_, i) => ({ index: i, embedding: [i] })), usage: { total_tokens: count } })
+
+  it('only asks the provider for the texts it has never seen', async () => {
+    fetchMock.mockImplementationOnce(() => Promise.resolve(vectors(2)))
+    await embed(['a', 'b'])
+
+    fetchMock.mockImplementationOnce(() => Promise.resolve(vectors(1)))
+    await embed(['a', 'b', 'c'])
+
+    expect(JSON.parse((fetchMock.mock.calls[1]![1] as RequestInit).body as string).input).toEqual(['c'])
+  })
+
+  it('does not re-bill the corpus when the batch size changes', async () => {
+    fetchMock.mockImplementationOnce(() => Promise.resolve(vectors(3)))
+    await embed(['a', 'b', 'c'])
+    await embed(['a'])
+    await embed(['b', 'c'])
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('returns vectors aligned to the texts it was given', async () => {
+    fetchMock.mockImplementationOnce(() => Promise.resolve(json({ data: [{ index: 0, embedding: [7] }], usage: { total_tokens: 1 } })))
+    await embed(['cached'])
+    fetchMock.mockImplementationOnce(() => Promise.resolve(json({ data: [{ index: 0, embedding: [9] }], usage: { total_tokens: 1 } })))
+    expect(await embed(['fresh', 'cached'])).toEqual([[9], [7]])
+  })
+})

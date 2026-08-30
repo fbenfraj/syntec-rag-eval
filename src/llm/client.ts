@@ -1,4 +1,4 @@
-import { cached } from './cache.js'
+import { cached, readCached, writeCached } from './cache.js'
 import { assertWithinBudget, recordSpend } from './budget.js'
 import { costEur } from './pricing.js'
 import type { Completion } from './pricing.js'
@@ -125,12 +125,31 @@ export async function complete(args: CompleteArgs): Promise<Completion> {
   })
 }
 
+const documentKey = (text: string) => ['embed', EMBEDDING_MODEL, 'document', text]
+
 /**
  * Embed documents for indexing. `input_type` matters: Voyage embeds a question and a
  * passage differently, and mixing them costs real recall.
+ *
+ * Cached per text rather than per batch. Batching is a rate-limit detail, and keying the
+ * cache on the whole batch meant that re-running with a different batch size re-billed the
+ * entire corpus — which is exactly what a cache is supposed to prevent.
  */
 export async function embed(texts: string[]): Promise<number[][]> {
-  return cached(['embed', EMBEDDING_MODEL, 'document', texts], () => callEmbeddings(texts, 'document'))
+  const vectors = await Promise.all(texts.map((text) => readCached<number[]>(documentKey(text))))
+  const missing = texts.map((text, index) => ({ text, index })).filter(({ index }) => vectors[index] === undefined)
+  if (missing.length === 0) return vectors as number[][]
+
+  const fetched = await callEmbeddings(missing.map(({ text }) => text), 'document')
+  await Promise.all(
+    missing.map(async ({ text, index }, position) => {
+      const vector = fetched[position]
+      if (vector === undefined) throw new Error('embedding provider returned fewer vectors than texts')
+      vectors[index] = vector
+      await writeCached(documentKey(text), vector)
+    }),
+  )
+  return vectors as number[][]
 }
 
 /** Embed a question for searching. */

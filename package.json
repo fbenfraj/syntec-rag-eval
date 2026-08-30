@@ -12,7 +12,9 @@
     "corpus:load": "tsx scripts/load-corpus.ts",
     "smoke": "tsx scripts/smoke-providers.ts",
     "embed": "tsx scripts/embed-corpus.ts",
-    "spend": "tsx scripts/spend.ts"
+    "spend": "tsx scripts/spend.ts",
+    "baseline:build": "tsx scripts/build-baseline.ts",
+    "baseline:embed": "tsx scripts/embed-corpus.ts --fixed"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",

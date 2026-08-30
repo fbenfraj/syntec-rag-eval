@@ -25,6 +25,22 @@ export function cacheKey(key: unknown): string {
  *
  * Failures are never cached — a rate limit must not be remembered as an answer.
  */
+/** Read one cached value, or undefined if it has never been computed. */
+export async function readCached<T>(key: unknown): Promise<T | undefined> {
+  const directory = process.env.LLM_CACHE_DIR ?? '.cache'
+  try {
+    return JSON.parse(await readFile(join(directory, `${cacheKey(key)}.json`), 'utf8')) as T
+  } catch {
+    return undefined
+  }
+}
+
+export async function writeCached(key: unknown, value: unknown): Promise<void> {
+  const directory = process.env.LLM_CACHE_DIR ?? '.cache'
+  await mkdir(directory, { recursive: true })
+  await writeFile(join(directory, `${cacheKey(key)}.json`), JSON.stringify(value), 'utf8')
+}
+
 export async function cached<T>(key: unknown, fn: () => Promise<T>): Promise<T> {
   const directory = process.env.LLM_CACHE_DIR ?? '.cache'
   const path = join(directory, `${cacheKey(key)}.json`)

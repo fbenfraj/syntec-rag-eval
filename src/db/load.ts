@@ -8,7 +8,7 @@ export async function applySchema(pool: pg.Pool): Promise<void> {
   await pool.query(sql)
 }
 
-const INSERT = `INSERT INTO articles
+const insertInto = (table: string) => `INSERT INTO ${table}
     (id, source, article_id, title, content, content_kind, effective_from, effective_to, precedence)
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
   ON CONFLICT (id) DO UPDATE SET
@@ -26,12 +26,17 @@ const INSERT = `INSERT INTO articles
  * corpus can be re-loaded over the old one. Embeddings are left untouched: they are
  * written by the indexing step and cost money to regenerate.
  */
-export async function loadArticles(pool: pg.Pool, articles: Article[]): Promise<number> {
+export async function loadArticles(
+  pool: pg.Pool,
+  articles: Article[],
+  table: 'articles' | 'articles_fixed' = 'articles',
+): Promise<number> {
+  const statement = insertInto(table)
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
     for (const article of articles) {
-      await client.query(INSERT, [
+      await client.query(statement, [
         article.id,
         article.source,
         article.articleId,
