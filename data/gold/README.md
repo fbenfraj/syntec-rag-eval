@@ -18,6 +18,7 @@ question is natural. Those are checked by a human on a sample. Every row carries
 | `provenance` | meaning |
 |---|---|
 | `constructed` | drafted from its cited article, citation correct by construction, answer unreviewed |
+| `llm-reviewed` | checked against its source article by a **different vendor's** model; disagreements were flagged for a human |
 | `human-verified` | a human read the question, the drafted answer and the source article, and confirmed the answer follows from it |
 | `human-written` | written by hand from the start |
 
@@ -71,7 +72,23 @@ covers in full — exactly the mistake that would score a correct answer as a fa
 ## Working on it
 
 ```bash
-pnpm gold:generate 150   # draft from the corpus (overwrites questions.jsonl)
-pnpm gold:validate       # mechanical checks, category mix, overlap
-pnpm gold:review         # print a review sheet for human spot-checking
+pnpm gold:generate 150      # draft from the corpus (overwrites questions.jsonl)
+pnpm gold:validate          # mechanical checks, category mix, overlap
+pnpm gold:review-pack       # build data/gold/review/ for a cross-vendor check
+pnpm gold:apply-llm-review  # fold the verdicts in, emit the short human sheet
+pnpm gold:review            # or: sample a sheet for direct human review
+pnpm gold:apply-review      # fold human verdicts in
 ```
+
+## Why the review is cross-vendor
+
+The set is drafted by one model. Having a second model from the *same* vendor check it
+measures self-consistency, not correctness: two models sharing training data and training
+method tend to misread the same sentence the same way, and they agree most confidently
+exactly where the first one was confidently wrong.
+
+So the check is run by a different vendor's model, and it never produces
+`human-verified` — a model's agreement is evidence, not verification. What anchors the
+chain is a small **control sample**: rows the reviewer passed, read by a human. If the
+human agrees with all of them, the reviewer's passes mean something. If not, the flagged
+list was never the whole story, and the number to publish is that disagreement rate.

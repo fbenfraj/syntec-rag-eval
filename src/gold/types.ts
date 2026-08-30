@@ -29,7 +29,7 @@ export const GoldQuestionSchema = z.object({
   category: z.enum(CATEGORIES),
   asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
   /** How the row was produced, so the write-up can describe the set honestly. */
-  provenance: z.enum(['constructed', 'human-verified', 'human-written']).default('constructed'),
+  provenance: z.enum(['constructed', 'llm-reviewed', 'human-verified', 'human-written']).default('constructed'),
   theme: z.enum(['contract', 'termination', 'working-time', 'pay']).nullable().default(null),
 })
 

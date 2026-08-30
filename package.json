@@ -18,7 +18,9 @@
     "gold:generate": "tsx scripts/generate-gold.ts",
     "gold:validate": "tsx scripts/validate-gold.ts",
     "gold:review": "tsx scripts/review-gold.ts",
-    "gold:apply-review": "tsx scripts/apply-review.ts"
+    "gold:apply-review": "tsx scripts/apply-review.ts",
+    "gold:review-pack": "tsx scripts/llm-review-pack.ts",
+    "gold:apply-llm-review": "tsx scripts/apply-llm-review.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",
