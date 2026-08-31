@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1256px;height:706px;overflow:hidden}
+  body{font-family:Archivo,system-ui,sans-serif;background:#f5f4f1;color:#14141a;display:flex;flex-direction:column}
+  .tri{height:9px;background:linear-gradient(to right,#17265e 0 33.33%,#fff 33.33% 66.66%,#b8202e 66.66% 100%)}
+  .mast{background:#fff;border-bottom:1px solid #dedcd5;padding:22px 56px;display:flex;align-items:center;gap:16px}
+  .name{font-family:Spectral,Georgia,serif;font-size:34px;font-weight:600;color:#17265e;letter-spacing:-.015em;line-height:1.05}
+  .sub{font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6d6d7a;margin-top:3px}
+  main{flex:1;padding:44px 56px 0;display:flex;gap:48px}
+  .left{width:52%}
+  h1{font-family:Spectral,Georgia,serif;font-size:74px;line-height:1.02;letter-spacing:-.03em;color:#17265e;font-weight:500}
+  .lede{margin-top:24px;font-size:23px;line-height:1.45;color:#4a4a56;max-width:22ch}
+  .right{flex:1;display:flex;flex-direction:column;justify-content:flex-start;padding-top:6px}
+  .vh{background:#17265e;color:#fff;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:14px 20px;border-radius:4px 4px 0 0;display:flex;align-items:center;gap:10px}
+  .vb{background:#fff;border:1px solid #dedcd5;border-top:0;border-radius:0 0 4px 4px;padding:26px 22px 22px}
+  .ans{font-family:Spectral,Georgia,serif;font-size:27px;line-height:1.36;color:#14141a}
+  .art{margin-top:22px;border:1px solid #dedcd5;border-left:4px solid #17265e;border-radius:3px;background:#fcfdff;padding:16px 18px}
+  .arow{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .aref{font-family:Spectral,Georgia,serif;font-size:20px;font-weight:600;color:#17265e}
+  .asrc{font-size:15px;color:#6d6d7a}
+  .stamp{margin-left:auto;font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#1c6b45;background:#ecf5f0;border:1px solid #1c6b45;border-radius:3px;padding:5px 9px}
+  .atxt{font-family:Spectral,Georgia,serif;font-size:17px;line-height:1.5;color:#4a4a56}
+  footer{padding:26px 56px 30px;display:flex;align-items:center;gap:36px;border-top:1px solid #dedcd5;margin-top:32px;background:#fff}
+  .stat b{display:block;font-family:Spectral,Georgia,serif;font-size:32px;font-weight:600;color:#17265e;line-height:1}
+  .stat span{display:block;font-size:14px;color:#6d6d7a;margin-top:6px}
+  .by{margin-left:auto;font-size:15px;color:#6d6d7a;text-align:right;line-height:1.4}
+  .by b{color:#14141a;font-weight:600}
+</style></head><body>
+<div class="tri"></div>
+<div class="mast">
+  <svg width="46" height="46" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14.25" fill="#17265e"/><circle cx="15" cy="15" r="9.75" fill="#fff"/><circle cx="15" cy="15" r="5.25" fill="#b8202e"/></svg>
+  <div><div class="name">Le Bon Article</div><div class="sub">Droit du travail · Syntec</div></div>
+</div>
+<main>
+  <div class="left">
+    <h1>La réponse,<br>et l’article<br>qui la fonde.</h1>
+    <p class="lede">Une question de droit du travail. Le texte exact qui y répond, et sa date d’entrée en vigueur.</p>
+  </div>
+  <div class="right">
+    <div class="vh">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+      Réponse fondée sur les textes
+    </div>
+    <div class="vb">
+      <p class="ans">La période d’essai d’un cadre Syntec est de 4 mois maximum, renouvelable une fois.</p>
+      <div class="art">
+        <div class="arow">
+          <span class="aref">Article L1221-19</span>
+          <span class="asrc">code du travail</span>
+          <span class="stamp">En vigueur</span>
+        </div>
+        <p class="atxt">Le contrat de travail à durée indéterminée peut comporter une période d’essai dont la durée maximale est : […] 3° Pour les cadres, de quatre mois.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="stat"><b>3 030</b><span>articles indexés</span></div>
+  <div class="stat"><b>90,8 %</b><span>l’article qui tranche est retrouvé</span></div>
+  <div class="stat"><b>0 %</b><span>texte abrogé servi</span></div>
+  <div class="by"><b>FrajTech</b><br>démonstration mesurée</div>
+</footer>
+</body></html>

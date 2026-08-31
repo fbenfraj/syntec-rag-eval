@@ -42,8 +42,8 @@ can try.
 
 ## Operating Context
 
-Reached from the "Réalisations / Selected work" carousel on frajtech.com, in French and
-English. Read on a laptop, most often in daylight, alongside other tabs. Visitors will not
+Reached from the "Réalisations / Selected work" carousel on frajtech.com — the whole card
+is the link — in French and English. Read on a laptop, most often in daylight, alongside other tabs. Visitors will not
 read linearly; they will try the demo, then scan for whether the numbers hold up.
 
 ## Capabilities and Constraints
@@ -66,7 +66,11 @@ read linearly; they will try the demo, then scan for whether the numbers hold up
 
 ## Brand Commitments
 
-- Name is lowercase: `syntec-rag-eval`.
+- The **product** is called **Le Bon Article**. `syntec-rag-eval` remains the repository and
+  the eval harness; the demonstration a visitor sees is the product, and a repo slug in the
+  masthead read as a weekend project rather than something shipped.
+- The surface borrows an official French register but must never be mistaken for a public
+  service: no Marianne, no state wordmark, and a disclaimer in the chrome of every page.
 - French is the primary language; `/en` is a full translation, not a summary.
 - Voice: plain, exact, unhedged. States what was measured and what was not. Never claims a
   number it cannot show. Never apologises for a bad result.

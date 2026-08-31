@@ -32,11 +32,11 @@ export function Ladder({
     <>
       <p className="legend label">
         <span>
-          <i style={{ background: 'var(--seal)' }} />
+          <i style={{ background: 'var(--blue)' }} />
           {copy.recall}
         </span>
         <span>
-          <i style={{ background: 'var(--rust)' }} />
+          <i style={{ background: 'var(--red)' }} />
           {copy.repealed}
         </span>
       </p>
@@ -186,7 +186,7 @@ export function CorrectnessBand({ best, copy, locale }: { best: RungSummary; cop
 
       <div className="band-key">
         <div>
-          <i style={{ background: 'var(--rust)' }} />
+          <i style={{ background: 'var(--red)' }} />
           <b>{pct(wrong, locale)}</b>
           <span>
             <strong>{copy.wrong}</strong> — {copy.wrongNote}
@@ -196,7 +196,7 @@ export function CorrectnessBand({ best, copy, locale }: { best: RungSummary; cop
           <i
             style={{
               background:
-                'repeating-linear-gradient(-45deg, var(--seal-dim) 0 3px, transparent 3px 6px)',
+                'repeating-linear-gradient(-45deg, #b9c1de 0 4px, var(--paper-3) 4px 8px)',
               border: '1px solid var(--rule-strong)',
             }}
           />
@@ -206,7 +206,7 @@ export function CorrectnessBand({ best, copy, locale }: { best: RungSummary; cop
           </span>
         </div>
         <div>
-          <i style={{ background: 'color-mix(in srgb, var(--verdigris) 55%, var(--ink))' }} />
+          <i style={{ background: '#4c8f70' }} />
           <b>{pct(correct, locale)}</b>
           <span>
             <strong>{copy.correct}</strong> — {copy.correctNote}
@@ -225,11 +225,11 @@ export function CorrectnessBand({ best, copy, locale }: { best: RungSummary; cop
 
 /** Cause, not severity: two failures of the same size can need entirely different fixes. */
 const KIND_COLOUR: Record<string, string> = {
-  'rubric-dependent': 'var(--seal-dim)',
-  'false-refusal': 'var(--seal)',
-  'generation-miss': 'var(--rust)',
+  'rubric-dependent': '#b9c1de',
+  'false-refusal': 'var(--blue-2)',
+  'generation-miss': 'var(--red)',
   'retrieval-miss': '#8f3f26',
-  'citation-miss': 'var(--fg-3)',
+  'citation-miss': 'var(--ink-3)',
 }
 
 export function Failures({
@@ -249,7 +249,7 @@ export function Failures({
             key={failure.kind}
             style={{
               width: `${(failure.n / failures.reduce((sum, f) => sum + f.n, 0)) * 100}%`,
-              background: KIND_COLOUR[failure.kind] ?? 'var(--fg-3)',
+              background: KIND_COLOUR[failure.kind] ?? 'var(--ink-3)',
             }}
           />
         ))}
@@ -258,7 +258,7 @@ export function Failures({
       <ul className="taxonomy">
         {failures.map((failure) => (
           <li key={failure.kind}>
-            <i style={{ background: KIND_COLOUR[failure.kind] ?? 'var(--fg-3)' }} />
+            <i style={{ background: KIND_COLOUR[failure.kind] ?? 'var(--ink-3)' }} />
             <b>{failure.kind}</b>
             <span>{copy.kinds[failure.kind]}</span>
             <em>

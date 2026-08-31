@@ -1,58 +1,53 @@
 import type { ReactNode } from 'react'
-import { Instrument_Serif, JetBrains_Mono, Newsreader } from 'next/font/google'
+import { Archivo, JetBrains_Mono, Spectral } from 'next/font/google'
 import './globals.css'
 
 /**
- * Three faces, three jobs. Self-hosted at build time by next/font, so the display voice is
- * never a system fallback.
+ * Spectral was commissioned through a French type foundry and reads like the body of a
+ * legal text, which is exactly what it is asked to set here: headings, answers, and the
+ * articles themselves. Archivo carries the interface. The mono appears only on corpus
+ * identifiers, where a fixed width is the point.
  *
- * Instrument Serif is the only face allowed to be large; Newsreader is the only face
- * allowed to run long; JetBrains Mono is reserved for what the machine produced or
- * measured — ids, timings, percentages, stage names.
+ * Marianne, the State's own typeface, is deliberately absent: it belongs to public
+ * services, and this is not one.
  */
-const display = Instrument_Serif({
+const serif = Spectral({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
-  variable: '--font-display',
+  variable: '--font-serif',
   display: 'swap',
 })
 
-const prose = Newsreader({
+const ui = Archivo({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-prose',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ui',
   display: 'swap',
 })
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400', '500'],
   variable: '--font-mono',
   display: 'swap',
 })
 
 export const metadata = {
   metadataBase: new URL('https://syntec-rag-eval.vercel.app'),
-  title: 'syntec-rag-eval — recherche mesurée en droit du travail',
+  title: 'Le Bon Article',
   description:
-    "Un système de recherche sur le code du travail et la convention Syntec, mesuré sur 142 questions annotées : échecs de recherche et de génération comptés séparément. Démo publique.",
-  openGraph: {
-    title: 'syntec-rag-eval',
-    description: 'Recherche mesurée en droit du travail français — le rapport, et une démo à interroger.',
-    type: 'website',
-  },
+    'Posez une question de droit du travail : la réponse, l’article qui la fonde, et sa date d’entrée en vigueur. Démonstration technique FrajTech.',
 }
 
 export const viewport = {
-  themeColor: '#08080a',
-  colorScheme: 'dark' as const,
+  themeColor: '#17265e',
+  colorScheme: 'light' as const,
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr" className={`${display.variable} ${prose.variable} ${mono.variable}`}>
+    <html lang="fr" className={`${serif.variable} ${ui.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   )

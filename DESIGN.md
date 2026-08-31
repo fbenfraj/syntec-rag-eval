@@ -1,104 +1,100 @@
 # Design
 
-Visual world for the syntec-rag-eval report and live demo. Replaces the previous
-default-serif document look, which was evidence of the subject and not authority over it.
+Visual world for **Le Bon Article**, the public demonstration of this eval harness.
+
+Replaces two earlier looks: a default-serif document, then a dark "instrument". Both were
+built for a reader who already knew what retrieval is. The audience is a founder, a CTO or
+a head of engineering deciding whether FrajTech can be trusted with a build — technical
+enough to ask hard questions, not an ML researcher.
 
 ## The idea
 
-**The machine is dark. The law is paper.**
+**An official record.**
 
-The page is an instrument: near-black, hairline-ruled, mono-labelled, tabular. The corpus it
-reaches into is warm paper. Every retrieved article arrives as a physical slip — light,
-grained, with its own ink — laid on the dark instrument surface. Repealed slips are struck
-and desaturated. That single material contrast carries the project's whole argument: the
-machine's job is to fetch the right piece of paper, and the measurement is about how often
-it does.
+The subject is French law: texts published by the State that decide real employment
+contracts. The surface borrows that register — paper white, a tricolour rule across the top
+of every page, article references set like legal citations, an *En vigueur* stamp carrying a
+date. Someone weighing whether to believe an answer about the Code du travail reads an
+official document more readily than a terminal.
 
-Committed to dark. Not chosen by category: the use scene is a sceptical technical reader
-scanning one of several tabs, and the paper slips need a dark ground to read as objects
-rather than as page background.
+It borrows the register and stops there. No Marianne, no state wordmark, no *République
+Française* block: those belong to public services. The mark is a **cockade**, a civic emblem
+free for anyone to wear, and a disclaimer sits in the chrome of every page saying in plain
+French that this is a private demonstration and not legal advice. A surface that dresses as
+officialdom carries a duty not to be mistaken for it.
+
+## Structure
+
+Three pages per language, not one scroll.
+
+| Route | Job |
+|---|---|
+| `/`, `/en` | The demo. Input above the fold, answer, cited articles. Nothing else competes. |
+| `/methode`, `/en/method` | How the numbers were produced: the ablation, the accuracy range. |
+| `/limites`, `/en/limits` | What it gets wrong, and what it must not be used for. |
+
+The measurement is the point of the project but not the point of the *landing*: a visitor
+arriving from frajtech.com came to try the thing. Everything that explains or qualifies it
+is one click away and named in the masthead.
+
+## Two registers, one run
+
+The demo narrates itself in four plain steps — it searches, it drops what no longer applies,
+it keeps five, it writes from those five — each with an icon and a real duration. The eight
+actual pipeline stages, with their real names and per-stage timings, sit behind a closed
+`<details>` labelled *Voir le détail technique*.
+
+Non-technical by default, fully technical on demand. Naming `rrf fusion` on the surface buys
+nothing from a buyer and costs them the thread; hiding it entirely would insult the engineer
+they will forward the link to.
 
 ## Type
 
-Self-hosted through `next/font/google`. No system fallback carries the display voice.
+Self-hosted through `next/font/google`.
 
-- **Instrument Serif** — display only. Headline sizes, one weight, italic reserved for the
-  one emphasis per section. High contrast, editorial, legal-adjacent.
-- **Newsreader** — running prose, at 300–500. A text face, low contrast: it pairs with
-  Instrument by *difference*, not by family resemblance.
-- **JetBrains Mono** — anything the machine produced or measured: article ids, percentages,
-  timings, stage names, buttons, labels. Mono here is data, not costume.
+- **Spectral** — headings, the answer, and the article extracts. A text face with a French
+  commission behind it that sets law the way law is set.
+- **Archivo** — the interface: labels, buttons, navigation, body.
+- **JetBrains Mono** — corpus identifiers only, where fixed width is the point.
 
-Measure 62–70ch. Display tracking −0.02em and tighter as size grows; mono labels +0.08em
-uppercase at 11px only. Tabular numerals everywhere a number can change.
+Marianne, the State's own face, is deliberately absent.
 
 ## Colour
 
 ```
---ink        #08080A   page
---ink-r      #101013   raised surface
---ink-rr     #17171B   inset / field
---rule       #24242A   hairline
---rule-warm  #2E2A22   hairline under paper
---fg         #EFEBE3   primary, warm off-white
---fg-2       #A9A398   secondary
---fg-3       #746F66   tertiary (never body text)
---paper      #F2EDE3   article slip
---paper-2    #E7E0D2   slip edge
---paper-ink  #17150F   text on paper
---seal       #E0A33C   accent: cited, focus, links, the live stage
---seal-dim   #7A5A20
---verdigris  #79B195   in force, improvement
---rust       #CE6A45   repealed, regression
+--paper #ffffff   --paper-2 #f5f4f1   --paper-3 #ecebe6
+--ink   #14141a   --ink-2   #4a4a56   --ink-3   #6d6d7a
+--rule  #dedcd5   --rule-strong #c3c1b8
+--blue  #17265e   --blue-2  #2c3f8f   --blue-wash #eef0f8
+--red   #b8202e   --red-wash #fbeeef
+--green #1c6b45   --green-wash #ecf5f0
 ```
 
-Colour is never the only signal: in-force and repealed both carry a word.
+Blue carries authority and every affirmative state; red carries the repealed and the
+regressive; green is reserved for the *En vigueur* stamp. The blue is deliberately **not**
+`#000091`, the State's own.
+
+Light, and not by category habit: the use scene is a sceptical reader on a laptop in
+daylight, and the material being quoted is paper.
 
 ## Materials
 
-- **Hairlines, not cards.** Structure comes from 1px rules and space. Where a container is
-  unavoidable it is a rule box, not a shadowed card, and never nested.
-- **Paper slips** get a real shadow (offset + soft blur, warm), a 1px warm edge, and a
-  faint grain. They are the only lit objects on the page.
-- **The trace rail** — a vertical hairline down the demo's left edge that the pipeline
-  stages hang from. The active stage's node fills with `--seal`.
-- No glass, no gradient text, no glow halos, no rounded soft-shadow rectangles standing in
-  for content.
+- **The tricolour rule** — 4px, blue/white/red, across the top of every page. The one
+  signature element.
+- **Stamps** rather than badges. *En vigueur* is bordered, uppercase, and carries the date.
+- **Struck chips** for repealed candidates: red, line-through, with the date the article
+  stopped applying. The demo's one dramatic moment, and it shows a real result.
+- Hairline rules and generous space carry structure. No nested cards, no glass, no gradient
+  text, no drop shadows standing in for hierarchy.
+
+## Icons
+
+`lucide-react`, one stroke weight (1.75), sized 13–22. Icons name a step or a state; they
+never decorate a heading.
 
 ## Motion
 
-One authored moment: **the pipeline running.** Stage rows arrive one at a time as their
-events land, each on an exponential ease-out over 380ms — a small rise plus a blur release,
-from an already-visible default. The date-filter stage strikes its repealed candidates in a
-staggered 40ms cascade; that is the page's single piece of drama, and it is showing a real
-result.
-
-Everything else is still. No section entrances, no parallax, no counters ticking up.
-
-Under `prefers-reduced-motion: reduce` every stage lands in its final state instantly. The
-final state is the default state and animation only moves *toward* it — this codebase has
-already paid once for a reveal that left a page invisible when no frames were painted.
-
-## Components
-
-- `TraceRail` — stage list with node, name, detail, and a right-aligned mono duration.
-- `Slip` — a paper article extract: id, source, article number, in-force/repealed status
-  with dates, body text, cited marker.
-- `Ladder` — the ablation as a staircase of horizontal steps; a rung that regresses steps
-  visibly down and is labelled in `--rust`. The full numeric table sits underneath it,
-  scrollable, for readers who want the columns.
-- `Band` — the strict/lenient correctness range drawn as one bar with three regions:
-  wrong-under-both (solid), rubric-dependent (hatched), correct-under-both.
-- `Readout` — a mono key/value line used for colophon-style facts.
-
-## Browser surfaces
-
-Selection `--seal-dim` on paper-ink; caret `--seal`; scrollbars themed on `--ink-r` with a
-`--rule` thumb; focus ring is a 2px `--seal` outline with a 2px offset, on every interactive
-element; underline offset 0.18em with a `--rule` decoration colour that warms to `--seal` on
-hover.
-
-## Refused here
-
-No hero-metric tile grid — the headline number is set inline, at display size, inside the
-sentence that gives it meaning. No eyebrows, no section numbers, no icon-heading-text cards.
+The pipeline running is the only authored moment: steps arrive as their events land, and the
+active step's icon pulses. Every animation runs *toward* the resting state and the resting
+state is the default, so a frame that never paints still shows the finished result — this
+codebase has already paid once for a reveal that left a page invisible when nothing painted.

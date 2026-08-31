@@ -1,6 +1,9 @@
-import Surface from '@/app/components/Surface'
-import { FR } from '@/app/copy/fr'
+import type { Metadata } from 'next'
+import DemoPage from '@/app/components/DemoPage'
+import { FR_DEMO } from '@/app/copy/fr'
+
+export const metadata: Metadata = { title: FR_DEMO.title, description: FR_DEMO.metaDescription }
 
 export default function Page() {
-  return <Surface copy={FR} />
+  return <DemoPage copy={FR_DEMO} />
 }
