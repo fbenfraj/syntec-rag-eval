@@ -10,7 +10,7 @@ const chrome: ChromeCopy = {
     { key: 'method', href: '/en/method', label: 'How it is measured' },
     { key: 'limits', href: '/en/limits', label: 'What it gets wrong' },
   ],
-  otherLocale: { href: '/', label: 'Français' },
+  otherLocale: { href: '/', label: 'Français', lang: 'fr', ariaLabel: 'Passer en français' },
   footerBlurb:
     'A measured document-retrieval demonstration built by FrajTech over the French labour code and the Syntec collective agreement.',
   footerColumns: [
@@ -37,7 +37,7 @@ const chrome: ChromeCopy = {
 export const EN_DEMO: DemoPageCopy = {
   locale: 'en',
   chrome,
-  title: 'Le Bon Article — the answer, and the text it rests on',
+  title: 'Le Bon Article · The answer, and the article it rests on',
   metaDescription:
     'Ask a French labour-law question. You get an answer, the article of the labour code or the Syntec agreement it rests on, and the date from which it applies. A FrajTech demonstration.',
 
@@ -170,7 +170,7 @@ export const EN_DEMO: DemoPageCopy = {
 export const EN_METHOD: MethodPageCopy = {
   locale: 'en',
   chrome,
-  title: 'How it is measured — Le Bon Article',
+  title: 'How it is measured · Le Bon Article',
   metaDescription:
     'Six configurations compared over 142 hand-labelled French labour-law questions. Retrieval failure and generation failure counted separately.',
 
@@ -243,7 +243,7 @@ export const EN_METHOD: MethodPageCopy = {
 export const EN_LIMITS: LimitsPageCopy = {
   locale: 'en',
   chrome,
-  title: 'What it gets wrong — Le Bon Article',
+  title: 'What it gets wrong · Le Bon Article',
   metaDescription:
     'The system’s failures, sorted by cause: retrieval, generation, false refusal, citation. And what this demonstration must not be used for.',
 

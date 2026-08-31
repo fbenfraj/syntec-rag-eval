@@ -3,7 +3,7 @@
  *
  * The tricolour cockade is a civic emblem, worn since 1789 and free for anyone to use.
  * That matters here, because everything else this surface borrows from officialdom — the
- * paper, the tricolour rule, the stamps — stops short of the State's actual identity.
+ * paper, the palette, the stamps — stops short of the State's actual identity.
  * Marianne, the "République Française" block and the Marianne typeface belong to public
  * services, and a private demonstration wearing them would be claiming an authority it
  * does not have.

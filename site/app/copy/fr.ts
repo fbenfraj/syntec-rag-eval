@@ -17,7 +17,7 @@ const chrome: ChromeCopy = {
     { key: 'method', href: '/methode', label: 'Comment c’est mesuré' },
     { key: 'limits', href: '/limites', label: 'Ce qu’il rate' },
   ],
-  otherLocale: { href: '/en', label: 'English' },
+  otherLocale: { href: '/en', label: 'English', lang: 'en', ariaLabel: 'Switch to English' },
   footerBlurb:
     'Une démonstration de recherche documentaire mesurée, construite par FrajTech sur le Code du travail et la convention collective Syntec.',
   footerColumns: [
@@ -44,7 +44,7 @@ const chrome: ChromeCopy = {
 export const FR_DEMO: DemoPageCopy = {
   locale: 'fr',
   chrome,
-  title: 'Le Bon Article — la réponse, et le texte qui la fonde',
+  title: 'Le Bon Article · La réponse, et l’article qui la fonde',
   metaDescription:
     'Posez une question de droit du travail. Vous obtenez une réponse, l’article du Code du travail ou de la convention Syntec qui la fonde, et la date à laquelle il s’applique. Démonstration FrajTech.',
 
@@ -178,7 +178,7 @@ export const FR_DEMO: DemoPageCopy = {
 export const FR_METHOD: MethodPageCopy = {
   locale: 'fr',
   chrome,
-  title: 'Comment c’est mesuré — Le Bon Article',
+  title: 'Comment c’est mesuré · Le Bon Article',
   metaDescription:
     'Six configurations comparées sur 142 questions de droit du travail annotées à la main. Échecs de recherche et de rédaction comptés séparément.',
 
@@ -251,7 +251,7 @@ export const FR_METHOD: MethodPageCopy = {
 export const FR_LIMITS: LimitsPageCopy = {
   locale: 'fr',
   chrome,
-  title: 'Ce qu’il rate — Le Bon Article',
+  title: 'Ce qu’il rate · Le Bon Article',
   metaDescription:
     'Les échecs du système, classés par cause : recherche, rédaction, refus à tort, citation. Et ce à quoi cette démonstration ne doit pas servir.',
 

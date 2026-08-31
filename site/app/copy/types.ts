@@ -6,7 +6,7 @@ export interface ChromeCopy {
   home: { href: string; subtitle: string }
   navLabel: string
   nav: { key: NavKey; href: string; label: string }[]
-  otherLocale: { href: string; label: string }
+  otherLocale: { href: string; label: string; lang: string; ariaLabel: string }
   footerBlurb: string
   footerColumns: { heading: string; links: { href: string; label: string; external?: boolean }[] }[]
   disclaimer: string

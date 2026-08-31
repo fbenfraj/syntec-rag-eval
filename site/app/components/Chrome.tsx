@@ -1,4 +1,5 @@
 import { BookOpen, ExternalLink, Info, MessageSquareText, Ruler, TriangleAlert } from 'lucide-react'
+import { FR, GB } from 'country-flag-icons/react/3x2'
 import { Wordmark } from '@/app/components/Brand'
 import type { ChromeCopy } from '@/app/copy/types'
 
@@ -14,7 +15,6 @@ export type NavKey = keyof typeof NAV_ICONS
 export function Masthead({ copy, current }: { copy: ChromeCopy; current: NavKey }) {
   return (
     <header>
-      <hr className="tricolour" />
       <div className="masthead">
         <div className="shell masthead-inner">
           <a className="brand" href={copy.home.href}>
@@ -35,8 +35,25 @@ export function Masthead({ copy, current }: { copy: ChromeCopy; current: NavKey 
                 </a>
               )
             })}
-            <a className="navlink" href={copy.otherLocale.href}>
-              {copy.otherLocale.label}
+            {/*
+              Language switch. The flag shows the language it leads TO, matching `lang`
+              and the accessible name: on the French page, a British flag going to English.
+              A flag alone does not tell a screen reader which language it means, so it is
+              aria-hidden and the name comes from `ariaLabel`. Same pattern as frajtech.com,
+              so the two sites behave alike.
+            */}
+            <a
+              className="navlink navlink-flag"
+              href={copy.otherLocale.href}
+              hrefLang={copy.otherLocale.lang}
+              lang={copy.otherLocale.lang}
+              aria-label={copy.otherLocale.ariaLabel}
+            >
+              {copy.otherLocale.lang === 'en' ? (
+                <GB aria-hidden="true" className="flag" />
+              ) : (
+                <FR aria-hidden="true" className="flag" />
+              )}
             </a>
           </nav>
         </div>

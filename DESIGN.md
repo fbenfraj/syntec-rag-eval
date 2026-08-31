@@ -12,10 +12,9 @@ enough to ask hard questions, not an ML researcher.
 **An official record.**
 
 The subject is French law: texts published by the State that decide real employment
-contracts. The surface borrows that register — paper white, a tricolour rule across the top
-of every page, article references set like legal citations, an *En vigueur* stamp carrying a
-date. Someone weighing whether to believe an answer about the Code du travail reads an
-official document more readily than a terminal.
+contracts. The surface borrows that register — paper white, article references set like legal
+citations, an *En vigueur* stamp carrying a date. Someone weighing whether to believe an
+answer about the Code du travail reads an official document more readily than a terminal.
 
 It borrows the register and stops there. No Marianne, no state wordmark, no *République
 Française* block: those belong to public services. The mark is a **cockade**, a civic emblem
@@ -79,8 +78,11 @@ daylight, and the material being quoted is paper.
 
 ## Materials
 
-- **The tricolour rule** — 4px, blue/white/red, across the top of every page. The one
-  signature element.
+- **The cockade** carries the identity on its own. A tricolour rule ran across the top of
+  every page in the first version and was removed: a 4px bar pinned to the top edge is
+  exactly where browsers put loading indicators, and it read as a progress bar stuck at
+  100 %. The palette and the mark say *French* without borrowing a shape that already means
+  something else.
 - **Stamps** rather than badges. *En vigueur* is bordered, uppercase, and carries the date.
 - **Struck chips** for repealed candidates: red, line-through, with the date the article
   stopped applying. The demo's one dramatic moment, and it shows a real result.
