@@ -10,6 +10,7 @@ export interface ChromeCopy {
   footerBlurb: string
   footerColumns: { heading: string; links: { href: string; label: string; external?: boolean }[] }[]
   disclaimer: string
+  disclaimerLink: { href: string; label: string }
 }
 
 export interface OnwardItem {

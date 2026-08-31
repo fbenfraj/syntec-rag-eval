@@ -39,6 +39,7 @@ const chrome: ChromeCopy = {
   ],
   disclaimer:
     'Démonstration technique privée réalisée par FrajTech. Ce site n’est pas un service public, n’émane d’aucune administration et ne constitue pas un conseil juridique. Les textes cités proviennent des données ouvertes DILA (Licence Ouverte) ; vérifiez toujours sur Légifrance avant de vous en servir.',
+  disclaimerLink: { href: 'https://www.legifrance.gouv.fr', label: 'Ouvrir Légifrance' },
 }
 
 export const FR_DEMO: DemoPageCopy = {
@@ -61,6 +62,11 @@ export const FR_DEMO: DemoPageCopy = {
   ],
 
   demo: {
+    locale: 'fr',
+    readFull: 'Lire l’article en entier',
+    readLess: 'Replier l’article',
+    truncatedNote: 'Cet article est exceptionnellement long : la fin a été coupée. Le texte intégral est sur Légifrance.',
+    strokeMore: '+ {n} autres',
     placeholder: 'Ex. : je démissionne, quel préavis dois-je respecter comme cadre ?',
     submit: 'Chercher',
     running: 'Recherche…',
@@ -191,7 +197,7 @@ export const FR_METHOD: MethodPageCopy = {
     'Six versions du même système, chacune ajoutant exactement une capacité à la précédente. L’écart entre deux lignes est donc attribuable à cette capacité, et pas à un paquet de changements. Deux mesures par ligne : ce qu’il retrouve, et ce qu’il retrouve qui ne s’applique plus.',
   ladder: {
     recall: 'L’article qui tranche est retrouvé',
-    repealed: 'Des articles abrogés sont servis au modèle',
+    repealed: 'Des articles abrogés sont servis au modèle (moins c’est mieux)',
     adds: {
       baseline: 'découpage à taille fixe',
       article: 'découpage par article',

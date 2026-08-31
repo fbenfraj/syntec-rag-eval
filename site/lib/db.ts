@@ -18,7 +18,19 @@ export function getPool(): pg.Pool {
     ssl: connectionString.includes('sslmode=require') ? { rejectUnauthorized: false } : undefined,
     max: 3,
     idleTimeoutMillis: 10_000,
-    connectionTimeoutMillis: 8_000,
+    /*
+     * Long enough to outlast a cold start.
+     *
+     * The demo database is a free Neon instance that suspends when idle, and waking it
+     * measured 13s. At the previous 8s ceiling the pool gave up first, so the first visitor
+     * after any quiet period was told the demo was unavailable while the database was
+     * merely waking. That is the worst possible visitor to fail, and it fails silently:
+     * every later request that hour succeeds, so the fault never reproduces when checked.
+     *
+     * The route allows 30s, and a woken database answers the whole pipeline in about six,
+     * so the slow path still lands inside the budget.
+     */
+    connectionTimeoutMillis: 22_000,
   })
   return pool
 }

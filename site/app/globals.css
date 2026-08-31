@@ -175,7 +175,7 @@ section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 
 /* The flag is an image, not a glyph: it keeps its own colours and needs an edge to sit on,
    because a white band running into a white masthead loses the flag's shape. */
-.navlink-flag { padding: .4rem .55rem; }
+.navlink-flag { padding: .7rem .8rem; min-width: 44px; min-height: 44px; }
 .flag { width: 22px; height: auto; border-radius: 2px; box-shadow: 0 0 0 1px rgba(20, 20, 26, .18); display: block; }
 
 /* --- buttons ------------------------------------------------------------- */
@@ -304,6 +304,7 @@ section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
   text-decoration: line-through;
 }
 .struck li span { color: var(--ink-3); text-decoration: none; }
+.struck li.struck-more { color: var(--ink-2); background: var(--paper-3); border-color: var(--rule-strong); text-decoration: none; }
 
 /* --- technical disclosure ------------------------------------------------ */
 
@@ -345,7 +346,10 @@ section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 
 /* --- the answer ---------------------------------------------------------- */
 
-.verdict { margin-top: 1.75rem; }
+.verdict { margin-top: 1.75rem; scroll-margin-top: 1rem; }
+.verdict:focus { outline: none; }
+.verdict:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 3px; }
+.cited-heading { font-size: 1.16rem; line-height: 1.25; margin: 1.5rem 0 .4rem; }
 .verdict-head {
   display: flex;
   align-items: center;
@@ -404,6 +408,8 @@ section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 }
 .article[data-cited='true'] { border-color: var(--blue-2); background: var(--blue-wash); }
 .article[data-cited='true'] .article-text { color: var(--ink); }
+.article[data-cited='true'] .article-src,
+.article[data-cited='true'] .article-foot { color: var(--ink-2); }
 
 .article-head { display: flex; flex-wrap: wrap; gap: .4rem .7rem; align-items: baseline; margin-bottom: .55rem; }
 .article-ref { font-family: var(--font-serif), Georgia, serif; font-size: 1.02rem; font-weight: 600; color: var(--blue); }
@@ -426,7 +432,33 @@ section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 .stamp { margin-left: auto; color: var(--green); background: var(--green-wash); }
 .badge-cited { color: var(--blue); background: var(--blue-wash); border-color: #d7dcee; }
 
-.article-text { font-family: var(--font-serif), Georgia, serif; font-size: .98rem; line-height: 1.55; color: var(--ink); margin: 0; }
+.article-text { font-family: var(--font-serif), Georgia, serif; font-size: .98rem; line-height: 1.55; color: var(--ink); margin: 0; white-space: pre-line; }
+
+/* Long statutes are clamped, never cut: the full text is in the DOM and one click restores
+   its height. The fade says "there is more" without hiding that there is more. */
+.article-text[data-clamped='true'] {
+  max-height: 11.5rem;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000 8.5rem, transparent 11.5rem);
+}
+.article-more {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .6rem;
+  padding: .25rem 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: .87rem;
+  font-weight: 600;
+  color: var(--blue-2);
+  cursor: pointer;
+}
+.article-more:hover { color: var(--blue); text-decoration: underline; }
+.article-more svg { transition: transform 200ms var(--ease); }
+.article-more svg[data-open='true'] { transform: rotate(90deg); }
+.article-cut { margin: .5rem 0 0; font-size: .82rem; color: var(--ink-3); }
 .article-foot { margin: .7rem 0 0; font-size: 11.5px; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: .3rem .9rem; max-width: none; }
 
 .others { margin-top: 1rem; }

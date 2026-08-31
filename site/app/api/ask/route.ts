@@ -51,6 +51,7 @@ interface AnswerPayload {
     source: string
     cited: boolean
     excerpt: string
+    truncated: boolean
     effectiveFrom: string | null
     effectiveTo: string | null
     precedence: number
@@ -132,7 +133,17 @@ export async function POST(request: Request) {
               articleId: hit.articleId,
               source: hit.source,
               cited: result.citations.includes(hit.id),
-              excerpt: hit.content.length > 700 ? `${hit.content.slice(0, 700)}…` : hit.content,
+              // The whole article, not a slice of it.
+              //
+              // This was truncated at 700 characters so the cards would sit tidily. On the
+              // demo's own first example that cut fell at character 700 of an article whose
+              // cadre row starts at 981, so the page showed "2 mois maximum" underneath an
+              // answer saying four months, directly below a line inviting the reader to
+              // check it rather than believe us. Tidiness is not worth the one promise this
+              // page exists to keep. The cap is now far past the corpus's 99th percentile
+              // and the card clamps its height in CSS instead.
+              excerpt: hit.content.length > 12000 ? `${hit.content.slice(0, 12000)}…` : hit.content,
+              truncated: hit.content.length > 12000,
               effectiveFrom: hit.effectiveFrom,
               effectiveTo: hit.effectiveTo,
               precedence: hit.precedence,

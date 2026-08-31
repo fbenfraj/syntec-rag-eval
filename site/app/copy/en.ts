@@ -32,6 +32,7 @@ const chrome: ChromeCopy = {
   ],
   disclaimer:
     'A private technical demonstration by FrajTech. This site is not a public service, does not come from any government body, and is not legal advice. The texts quoted come from DILA open data under the Licence Ouverte; always check Légifrance before relying on them.',
+  disclaimerLink: { href: 'https://www.legifrance.gouv.fr', label: 'Open Légifrance' },
 }
 
 export const EN_DEMO: DemoPageCopy = {
@@ -53,6 +54,11 @@ export const EN_DEMO: DemoPageCopy = {
   ],
 
   demo: {
+    locale: 'en',
+    readFull: 'Read the full article',
+    readLess: 'Collapse the article',
+    truncatedNote: 'This article is exceptionally long and the end has been cut. The full text is on Légifrance.',
+    strokeMore: '+ {n} more',
     placeholder: 'Ex.: I am resigning — what notice do I owe as a cadre?',
     submit: 'Search',
     running: 'Searching…',
@@ -183,7 +189,7 @@ export const EN_METHOD: MethodPageCopy = {
     'Six versions of the same system, each adding exactly one capability to the one before it. The gap between two rows is therefore attributable to that capability rather than to a bundle of changes. Two measurements per row: what it retrieves, and what it retrieves that no longer applies.',
   ladder: {
     recall: 'The article that settles the question is retrieved',
-    repealed: 'Repealed articles are served to the model',
+    repealed: 'Repealed articles are served to the model (lower is better)',
     adds: {
       baseline: 'fixed-size chunks',
       article: 'article-sized chunks',

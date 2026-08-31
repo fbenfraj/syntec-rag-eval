@@ -106,7 +106,16 @@ export function Footer({ copy }: { copy: ChromeCopy }) {
       <div className="disclaimer">
         <div className="shell" style={{ display: 'flex', gap: '.6rem', alignItems: 'flex-start' }}>
           <Info size={15} strokeWidth={1.75} aria-hidden="true" style={{ marginTop: '.15rem', flex: 'none' }} />
-          <p>{copy.disclaimer}</p>
+          <p>
+            {copy.disclaimer}{' '}
+            {/* The sentence above sends the reader to Légifrance; until now nothing took
+                them there. Article-level deep links would have to be guessed, since the
+                corpus keeps article numbers rather than Légifrance identifiers, and a
+                guessed citation link is worse than none. */}
+            <a href={copy.disclaimerLink.href} target="_blank" rel="noopener noreferrer">
+              {copy.disclaimerLink.label}
+            </a>
+          </p>
         </div>
       </div>
     </>

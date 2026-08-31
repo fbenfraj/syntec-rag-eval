@@ -228,7 +228,7 @@ const KIND_COLOUR: Record<string, string> = {
   'rubric-dependent': '#b9c1de',
   'false-refusal': 'var(--blue-2)',
   'generation-miss': 'var(--red)',
-  'retrieval-miss': '#8f3f26',
+  'retrieval-miss': '#7a4a12',
   'citation-miss': 'var(--ink-3)',
 }
 

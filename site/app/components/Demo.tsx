@@ -40,6 +40,7 @@ interface Source {
   source: string
   cited: boolean
   excerpt: string
+  truncated: boolean
   effectiveFrom: string | null
   effectiveTo: string | null
   precedence: number
@@ -75,6 +76,8 @@ export type RawStage =
  * serialisable, so substitution happens here on `{name}` tokens.
  */
 export interface DemoCopy {
+  /** French writes 0,0040 € and 6,2 s; English uses the point. */
+  locale: 'fr' | 'en'
   placeholder: string
   submit: string
   running: string
@@ -106,6 +109,10 @@ export interface DemoCopy {
   articleWord: string
   precedenceNote: string
 
+  readFull: string
+  readLess: string
+  truncatedNote: string
+  strokeMore: string
   receipt: { cost: string; latency: string; model: string }
   whyHardHeading: string
   whyHard: string
@@ -115,7 +122,12 @@ export interface DemoCopy {
 
 /** A synchronous stage really does take under a millisecond; "0.0 s" reads as a missing
  *  measurement rather than a fast one. */
-const formatMs = (ms: number): string => (ms < 1000 ? `${ms} ms` : `${(ms / 1000).toFixed(1)} s`)
+const formatMs = (ms: number, locale: 'fr' | 'en'): string =>
+  ms < 1000 ? `${ms} ms` : `${decimal((ms / 1000).toFixed(1), locale)} s`
+
+/** A French official document does not write 0.0040 €. */
+const decimal = (value: string, locale: 'fr' | 'en'): string =>
+  locale === 'fr' ? value.replace('.', ',') : value
 
 const fill = (template: string, values: Record<string, string | number>): string =>
   template.replace(/\{(\w+)\}/g, (match, key: string) => String(values[key] ?? match))
@@ -152,8 +164,25 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
   const [result, setResult] = useState<AnswerPayload | null>(null)
   const [error, setError] = useState<string | null>(null)
   const abort = useRef<AbortController | null>(null)
+  const verdict = useRef<HTMLDivElement>(null)
 
   useEffect(() => () => abort.current?.abort(), [])
+
+  /*
+   * Bring the answer to the reader.
+   *
+   * The steps carry aria-live while the pipeline runs, but the result itself was never
+   * announced, focused or scrolled to: on a narrow viewport the four steps push the verdict
+   * entirely below the fold, so the visitor watched the machine finish and then had to go
+   * looking for the payoff.
+   */
+  useEffect(() => {
+    if (result === null) return
+    const node = verdict.current
+    if (node === null) return
+    node.focus({ preventScroll: true })
+    node.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }, [result])
 
   const ask = async (asked: string) => {
     const trimmed = asked.trim()
@@ -247,8 +276,12 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
       }),
       ms: fuse === undefined ? null : searchMs,
       struck: undefined as DroppedHit[] | undefined,
+      strokeMore: 0,
       note: undefined as string | undefined,
-      shown: events.length > 0,
+      // Shown only once fusion has landed. The detail interpolates the candidate count, and
+      // rendering it earlier made every run open by announcing "0 articles ressortent" —
+      // the first thing a new visitor read about the system was a false zero.
+      shown: fuse !== undefined,
     },
     {
       key: 'filter',
@@ -267,6 +300,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
               }),
       ms: filter?.ms ?? null,
       struck: filter?.dropped,
+      strokeMore: filter === undefined ? 0 : Math.max(0, filter.droppedCount - filter.dropped.length),
       note: filter !== undefined && filter.droppedCount > 0 ? copy.steps.filter.note : undefined,
       shown: filter !== undefined,
     },
@@ -278,6 +312,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
       detail: fill(copy.steps.select.detail, { from: rerank?.from ?? 0, kept: rerank?.kept ?? 5 }),
       ms: rerank === undefined ? null : selectMs,
       struck: undefined as DroppedHit[] | undefined,
+      strokeMore: 0,
       note: undefined as string | undefined,
       shown: rerank !== undefined,
     },
@@ -289,6 +324,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
       detail: copy.steps.write.detail,
       ms: result?.generationMs ?? null,
       struck: undefined as DroppedHit[] | undefined,
+      strokeMore: 0,
       note: undefined as string | undefined,
       shown: generating,
     },
@@ -374,7 +410,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
                     <Icon size={17} strokeWidth={1.75} aria-hidden="true" />
                   </span>
                   <span className="step-title">{step.title}</span>
-                  <span className="step-ms">{step.ms === null ? '…' : formatMs(step.ms)}</span>
+                  <span className="step-ms">{step.ms === null ? '…' : formatMs(step.ms, copy.locale)}</span>
                   <div className="step-detail">
                     {step.detail}
                     {step.struck !== undefined && step.struck.length > 0 && (
@@ -386,6 +422,11 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
                               {hit.effectiveTo !== null && <span> · {hit.effectiveTo}</span>}
                             </li>
                           ))}
+                          {/* The sentence above counts every removal; only the highest-ranked
+                              few are listed, so the remainder is stated rather than dropped. */}
+                          {step.strokeMore > 0 && (
+                            <li className="struck-more">{fill(copy.strokeMore, { n: step.strokeMore })}</li>
+                          )}
                         </ul>
                         {step.note !== undefined && (
                           <p className="label" style={{ marginTop: '.45rem' }}>
@@ -442,7 +483,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
       )}
 
       {result !== null && (
-        <div className="verdict" data-refused={result.refused}>
+        <div className="verdict" data-refused={result.refused} ref={verdict} tabIndex={-1} role="status" aria-atomic="false">
           <div className="verdict-head">
             {result.refused ? (
               <CircleSlash size={16} strokeWidth={2} aria-hidden="true" />
@@ -461,7 +502,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
               <>
                 <p className="answer-text">{result.answer}</p>
 
-                <h3 style={{ marginTop: '1.5rem' }}>{copy.citedHeading}</h3>
+                <h2 className="cited-heading">{copy.citedHeading}</h2>
                 <p className="small muted">
                   {copy.citedNote}
                 </p>
@@ -474,7 +515,7 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
             )}
 
             {otherSources.length > 0 && (
-              <details className="others">
+              <details className="others" open={result.refused}>
                 <summary>
                   <ChevronRight className="chev" size={15} strokeWidth={2} aria-hidden="true" />
                   {fill(copy.othersHeading, { n: otherSources.length })}
@@ -489,10 +530,10 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
 
             <p className="receipt">
               <span>
-                {copy.receipt.cost} <b>{result.costEur.toFixed(4)} €</b>
+                {copy.receipt.cost} <b>{decimal(result.costEur.toFixed(4), copy.locale)} €</b>
               </span>
               <span>
-                {copy.receipt.latency} <b>{(result.latencyMs / 1000).toFixed(1)} s</b>
+                {copy.receipt.latency} <b>{decimal((result.latencyMs / 1000).toFixed(1), copy.locale)} s</b>
               </span>
               <span>
                 {copy.receipt.model} <b>{result.model}</b>
@@ -519,6 +560,15 @@ export default function Demo({ copy, examples }: { copy: DemoCopy; examples: str
 
 /** One retrieved article, set the way a legal extract is set: reference, stamp, then text. */
 function ArticleCard({ source, copy, index }: { source: Source; copy: DemoCopy; index: number }) {
+  const [open, setOpen] = useState(false)
+  /*
+   * Long articles are clamped, never cut.
+   *
+   * The text sent to the browser is the whole article; only its rendered height is limited,
+   * and one click restores it. Slicing the string instead is what put "2 mois maximum" on
+   * screen under an answer saying four months.
+   */
+  const long = source.excerpt.length > 620
   return (
     <li className="article" data-cited={source.cited} style={{ '--i': index } as React.CSSProperties}>
       <div className="article-head">
@@ -540,7 +590,16 @@ function ArticleCard({ source, copy, index }: { source: Source; copy: DemoCopy; 
           {copy.inForce}
         </span>
       </div>
-      <p className="article-text">{source.excerpt}</p>
+      <p className="article-text" data-clamped={long && !open}>
+        {source.excerpt}
+      </p>
+      {long && (
+        <button type="button" className="article-more" onClick={() => setOpen((was) => !was)}>
+          <ChevronRight className="chev" size={14} strokeWidth={2} aria-hidden="true" data-open={open} />
+          {open ? copy.readLess : copy.readFull}
+        </button>
+      )}
+      {source.truncated && <p className="article-cut">{copy.truncatedNote}</p>}
       <p className="article-foot">
         {source.effectiveFrom !== null && (
           <span>
