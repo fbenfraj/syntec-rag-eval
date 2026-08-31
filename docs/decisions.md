@@ -166,6 +166,54 @@ place, retrieval of repealed articles drops from **63.3% to 0.0%**.
 
 ---
 
+## D-011 — The demo runs the measured source, not a reimplementation
+
+- **Tag:** Decision
+- **Date:** 2026-08-31
+- **Status:** active
+- **Level:** L2
+
+**Decision.** `site/sync-results.mjs` copies `src/answer`, `src/corpus`, `src/llm` and
+`src/retrieval` into `site/lib/core`, and CI fails if that copy differs from `src/`. The
+demo's API route calls `retrieveWithCost` and `answer` directly, on the `filtered` config.
+
+**Why.** The page publishes numbers about a pipeline and invites a visitor to try it. If the
+two were separate implementations they would drift, and the invitation would become a lie
+that nobody could detect from the outside. Copying rather than importing is forced by the
+deployment: the host uploads `site/` alone, so anything outside it does not exist at build
+time. The staleness check is what makes the copy safe.
+
+**Considered and rejected.** Importing across the package boundary needed either a monorepo
+build root or a published package, both more machinery than a staleness check. Writing a
+small standalone pipeline for the demo would have been quicker and is exactly the drift this
+decision exists to prevent.
+
+---
+
+## D-012 — Demo spend is capped in Postgres, not on disk
+
+- **Tag:** Decision
+- **Date:** 2026-08-31
+- **Status:** active
+- **Level:** L2
+
+**Decision.** The public demo counts spend and requests in a `demo_usage` table: €0.50 per
+day across all visitors, twelve questions per IP per hour. IPs are hashed with a
+server-side salt.
+
+**Why.** The CLI's budget guard writes to a file, which on a serverless host is per-instance
+and discarded between requests — it would reset whenever the platform recycled a container,
+which is not a ceiling but the appearance of one. The limits are checked before each call,
+so the overshoot is bounded by a single question, and the API returns a plain "budget
+reached, resets at midnight UTC" rather than quietly spending more. Hashing the IP is enough
+to tell visitors apart for rate limiting, which is all rate limiting needs.
+
+**Known expiry.** The demo database is a free Neon instance. It does not expire on a timer,
+but it is a free tier and it holds nothing that cannot be rebuilt: `pnpm demo:seed` restores
+the whole corpus from the local eval database in about a minute.
+
+---
+
 ## D-001 — Source the corpus from DILA open data, not the Légifrance API
 
 - **Tag:** Decision

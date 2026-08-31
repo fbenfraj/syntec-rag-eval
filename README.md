@@ -1,5 +1,8 @@
 # syntec-rag-eval
 
+**Live: [syntec-rag-eval.vercel.app](https://syntec-rag-eval.vercel.app)** — the report, and a
+demo you can ask questions of. [English](https://syntec-rag-eval.vercel.app/en).
+
 Measured retrieval over French labour law: the **Code du travail** and the **Syntec
 convention collective**.
 
@@ -122,14 +125,29 @@ The ablation also caught two real bugs in the system it measures — a precedenc
 was ten times the score range, and a date filter that was a no-op on 84 % of the set. Both
 are written up in [`docs/decisions.md`](docs/decisions.md) with what they cost.
 
-## Report site
+## Report site and live demo
 
-`site/` renders the committed results as a static page, in French with an English version.
+`site/` renders the committed results and hosts the demo, in French with an English version.
 
 ```bash
-pnpm site:data          # freeze results/summary.json
-cd site && pnpm install && pnpm build
+pnpm site:data                     # freeze results/summary.json
+pnpm demo:seed                     # copy corpus + embeddings into DEMO_DATABASE_URL
+cd site && pnpm install && pnpm sync && pnpm build
 ```
+
+The demo runs the **same source** as the eval: `pnpm sync` copies `src/` into the app and CI
+fails if the copy is stale. A demo that drifted from the harness would be reporting numbers
+about a system nobody can try.
+
+Spend and rate limits live in Postgres rather than on disk — a file-based cap is
+per-instance on a serverless host and resets whenever the platform recycles, which is not a
+cap. Defaults: **€0.50 per day** across all visitors, twelve questions per IP per hour,
+checked before each call so the overshoot is bounded by one question. When the ceiling is
+reached the API says so plainly instead of billing.
+
+The demo database is a free Neon instance holding only public legal text and usage counters.
+If it goes away, the report pages still render; only the demo section reports itself
+unavailable.
 
 ## Status
 
