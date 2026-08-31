@@ -68,10 +68,12 @@ jobs:
           cd site
           pnpm install --no-frozen-lockfile
           pnpm sync
-          # The site renders a committed copy of the results. If syncing changes it, the
-          # published page is showing numbers the repository no longer holds.
-          git diff --exit-code -- data/ || {
-            echo '::error::site/data is stale. Run `pnpm sync` in site/ and commit.'
+          # The app ships committed copies of the results and of the pipeline source, so it
+          # deploys without reaching outside its own directory. If syncing changes either,
+          # the published page and the live demo are running something the repository no
+          # longer holds.
+          git diff --exit-code -- data/ lib/core/ || {
+            echo '::error::site/data or site/lib/core is stale. Run `pnpm sync` in site/ and commit.'
             exit 1
           }
           pnpm build
