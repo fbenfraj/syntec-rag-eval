@@ -17,8 +17,8 @@ export const EN: SurfaceCopy = {
     { label: 'labelled set', value: '{gold} questions, ~15 % unanswerable' },
     { label: 'generation', value: '{model}' },
     { label: 'judge', value: '{judge} · unvalidated' },
-    { label: 'cost', value: '{cost} € per question' },
-    { label: 'p95 latency', value: '{p95} ms' },
+    { label: 'cost', value: '{cost} € per question, on average' },
+    { label: 'p95 latency', value: '{p95} ms · on the eval bench' },
   ],
 
   demoHeading: 'Ask it something',

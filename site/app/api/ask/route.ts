@@ -132,7 +132,7 @@ export async function POST(request: Request) {
               articleId: hit.articleId,
               source: hit.source,
               cited: result.citations.includes(hit.id),
-              excerpt: hit.content.length > 900 ? `${hit.content.slice(0, 900)}…` : hit.content,
+              excerpt: hit.content.length > 700 ? `${hit.content.slice(0, 700)}…` : hit.content,
               effectiveFrom: hit.effectiveFrom,
               effectiveTo: hit.effectiveTo,
               precedence: hit.precedence,

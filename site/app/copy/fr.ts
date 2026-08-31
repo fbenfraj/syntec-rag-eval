@@ -21,8 +21,8 @@ export const FR: SurfaceCopy = {
     { label: 'jeu annoté', value: '{gold} questions, ~15 % sans réponse' },
     { label: 'génération', value: '{model}' },
     { label: 'juge', value: '{judge} · non validé' },
-    { label: 'coût', value: '{cost} € par question' },
-    { label: 'latence p95', value: '{p95} ms' },
+    { label: 'coût', value: '{cost} € par question, en moyenne' },
+    { label: 'latence p95', value: '{p95} ms · sur le banc d’évaluation' },
   ],
 
   demoHeading: 'Posez-lui une question',
