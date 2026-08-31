@@ -15,7 +15,8 @@ import type { RunResult } from '../src/eval/run.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const resultsDir = join(root, 'results')
-const files = (await readdir(resultsDir)).filter((name) => name.endsWith('.json'))
+// summary.json is generated from the runs, not one of them.
+const files = (await readdir(resultsDir)).filter((name) => name.endsWith('.json') && name !== 'summary.json')
 
 for (const name of files) {
   const path = join(resultsDir, name)
