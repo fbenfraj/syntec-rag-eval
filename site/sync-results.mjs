@@ -18,12 +18,22 @@ for (const name of ['summary.json', 'LEADERBOARD.md', 'FAILURES.md']) {
 }
 console.log('synced results')
 
+/**
+ * Only what the demo's pipeline actually imports. The eval, gold-set and metrics modules
+ * are not part of serving an answer, and copying them would drag their dependencies into
+ * the deployment for no reason.
+ */
+const NEEDED = ['answer', 'corpus', 'llm', 'retrieval']
 const core = join(here, 'lib', 'core')
 rmSync(core, { recursive: true, force: true })
-cpSync(join(here, '..', 'src'), core, {
-  recursive: true,
-  filter: (source) => !source.endsWith('.test.ts') && !source.includes('fixtures') && !source.includes('testSetup'),
-})
+mkdirSync(core, { recursive: true })
+for (const directory of NEEDED) {
+  cpSync(join(here, '..', 'src', directory), join(core, directory), {
+    recursive: true,
+    filter: (source) => !source.endsWith('.test.ts') && !source.includes('fixtures'),
+  })
+}
+copyFileSync(join(here, '..', 'src', 'env.ts'), join(core, 'env.ts'))
 /**
  * The core is written for NodeNext, so its relative imports carry a `.js` extension that
  * resolves to a `.ts` file. The bundler here resolves extensionless paths instead, so the
