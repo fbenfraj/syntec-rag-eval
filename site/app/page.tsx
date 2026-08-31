@@ -1,4 +1,33 @@
+import Demo from '@/app/components/Demo'
 import { delta, loadSummary, pct, range } from '@/lib/results'
+
+const DEMO_COPY = {
+  heading: 'Essayez-le',
+  intro:
+    "Posez une question de droit du travail français. Le système ne répond qu'à partir des articles qu'il a retrouvés, et vous voyez lesquels : ceux qu'il a cités et ceux qu'il a écartés. S'il ne trouve pas de quoi répondre, il refuse au lieu d'inventer.",
+  placeholder: "Ex. : je démissionne, quel préavis dois-je respecter comme cadre ?",
+  submit: 'Poser la question',
+  running: 'Recherche…',
+  examples: 'Ou essayez :',
+  refused: "Le système a refusé de répondre : les articles retrouvés ne permettent pas de trancher. C'est le comportement attendu, pas une panne.",
+  sourcesShown: 'Articles retrouvés et donnés au modèle :',
+  cited: 'cité dans la réponse',
+  notCited: 'non cité',
+  metaTemplate: '{cost} € · {seconds} s · pipeline « filtered », le même que dans le tableau ci-dessous',
+  errors: {
+    'daily-cap': "Le budget quotidien de la démo est atteint. Il se réinitialise à minuit UTC — c'est un plafond volontaire, pas une panne.",
+    'rate-limit': 'Trop de questions depuis cette adresse. Réessayez dans une heure.',
+    'question-too-short': 'La question est trop courte.',
+    'question-too-long': 'La question est trop longue (300 caractères maximum).',
+    'demo-unavailable': 'La démo est momentanément indisponible. Les résultats ci-dessus restent consultables.',
+  },
+}
+
+const DEMO_EXAMPLES = [
+  "durée de la période d'essai d'un cadre ?",
+  'combien de jours pour un forfait-jours ?',
+  'quel est le taux de TVA applicable ?',
+]
 
 const REPO = 'https://github.com/fbenfraj/syntec-rag-eval'
 
@@ -45,6 +74,8 @@ export default function Page() {
         juge <code>{summary.judgeModel}</code> · coût {best.costEurPerQuery.toFixed(4)} € par question ·
         p95 {best.latencyP95Ms} ms
       </p>
+
+      <Demo copy={DEMO_COPY} examples={DEMO_EXAMPLES} />
 
       <h2>L’échelle d’ablation</h2>
 

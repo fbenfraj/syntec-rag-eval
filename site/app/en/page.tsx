@@ -1,4 +1,34 @@
+import Demo from '@/app/components/Demo'
 import { delta, loadSummary, pct, range } from '@/lib/results'
+
+const DEMO_COPY = {
+  heading: 'Try it',
+  intro:
+    'Ask a French labour-law question. The system answers only from the articles it retrieved, and you can see which ones — the ones it cited and the ones it set aside. If nothing it found settles the question, it refuses rather than inventing.',
+  placeholder: 'e.g. I am resigning — what notice period applies to me as a cadre?',
+  submit: 'Ask',
+  running: 'Searching…',
+  examples: 'Or try:',
+  refused:
+    'The system refused: the retrieved articles do not settle the question. That is the intended behaviour, not a failure.',
+  sourcesShown: 'Articles retrieved and shown to the model:',
+  cited: 'cited in the answer',
+  notCited: 'not cited',
+  metaTemplate: '€{cost} · {seconds} s · the "filtered" pipeline, the same one measured below',
+  errors: {
+    'daily-cap': 'The demo has reached its daily budget. It resets at midnight UTC — a deliberate ceiling, not an outage.',
+    'rate-limit': 'Too many questions from this address. Try again in an hour.',
+    'question-too-short': 'That question is too short.',
+    'question-too-long': 'That question is too long (300 characters maximum).',
+    'demo-unavailable': 'The demo is temporarily unavailable. The results above are still readable.',
+  },
+}
+
+const DEMO_EXAMPLES = [
+  'how long can a trial period last for a cadre?',
+  'can a forfait-jours exceed 218 days?',
+  'what is the applicable VAT rate?',
+]
 
 const REPO = 'https://github.com/fbenfraj/syntec-rag-eval'
 
@@ -49,6 +79,8 @@ export default function Page() {
         <code>{summary.judgeModel}</code> · €{best.costEurPerQuery.toFixed(4)} per question · p95{' '}
         {best.latencyP95Ms} ms
       </p>
+
+      <Demo copy={DEMO_COPY} examples={DEMO_EXAMPLES} />
 
       <h2>The ablation ladder</h2>
 
