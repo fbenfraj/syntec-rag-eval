@@ -48,8 +48,10 @@ read linearly; they will try the demo, then scan for whether the numbers hold up
 
 ## Capabilities and Constraints
 
-- Live demo: one question → retrieval over 2,108 in-force articles → grounded answer or an
-  explicit refusal, with every retrieved extract shown, cited or not.
+- Live demo: one question → retrieval over 3,030 indexed articles → grounded answer or an
+  explicit refusal, with every retrieved extract shown, cited or not. The index deliberately
+  holds repealed articles; keeping them out is the date filter's job, and the demo shows it
+  doing that work.
 - The shipped pipeline is the `filtered` rung: query rewrite → dense + lexical retrieval →
   RRF fusion → date filter and precedence → rerank → generation.
 - **Spend is capped in code**: €0.50 per day across all visitors, 12 questions per IP per

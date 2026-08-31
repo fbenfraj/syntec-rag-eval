@@ -13,7 +13,7 @@ export const EN: SurfaceCopy = {
   ledeAfter: ' of the time — and serves no text that no longer applies, against two thirds before the date filter.',
 
   colophon: [
-    { label: 'corpus', value: '2,108 in-force articles · labour code + Syntec' },
+    { label: 'corpus', value: '3,030 indexed articles · labour code + Syntec' },
     { label: 'labelled set', value: '{gold} questions, ~15 % unanswerable' },
     { label: 'generation', value: '{model}' },
     { label: 'judge', value: '{judge} · unvalidated' },

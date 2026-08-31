@@ -40,16 +40,20 @@ Built from the two DILA open-data dumps (Licence Ouverte, no API key):
 
 | Source | Dump | What is kept |
 |---|---|---|
-| Code du travail | LEGI (`LEGITEXT000006072050`) | in-force articles in the four themes — 1,019 |
-| Syntec, IDCC 1486 | KALI (`KALICONT000005635173`) | every in-force article — 1,089 |
+| Code du travail | LEGI (`LEGITEXT000006072050`) | every version of every article in the four themes — 1,941 |
+| Syntec, IDCC 1486 | KALI (`KALICONT000005635173`) | every article — 1,089 |
 
 ```bash
 pnpm corpus:fetch   # download and unpack the dumps into data/raw (gitignored)
 pnpm corpus:build   # write data/corpus/articles.jsonl (committed)
 ```
 
+Repealed versions are kept on purpose: excluding them at build time would hide the error
+the date filter exists to catch, and two thirds of queries retrieved repealed law before it
+was added. 2,107 of the 3,030 are in force today.
+
 The dumps are pinned to the `20250713-140000` snapshot, so a rebuild reproduces the same
-2,108 articles and any corpus change shows up as a diff. Convention articles are
+3,030 articles and any corpus change shows up as a diff. Convention articles are
 identified by their Légifrance id rather than their article number, because numbers
 collide — see `docs/decisions.md`.
 
@@ -138,6 +142,14 @@ cd site && pnpm install && pnpm sync && pnpm build
 The demo runs the **same source** as the eval: `pnpm sync` copies `src/` into the app and CI
 fails if the copy is stale. A demo that drifted from the harness would be reporting numbers
 about a system nobody can try.
+
+The answer is the least interesting half of what it does, so the API streams the pipeline
+stage by stage — the queries it writes for itself, what each retriever finds, and which
+candidates it drops as repealed — and the page draws them as they land. `retrieveWithCost`
+takes an optional trace sink that can neither read nor change a result, so the traced run is
+the run that was measured. The answer text is not token-streamed: completions are memoised
+whole, and faking a token stream out of a finished string would be a lie told in the one
+place this project exists to avoid telling them.
 
 Spend and rate limits live in Postgres rather than on disk — a file-based cap is
 per-instance on a serverless host and resets whenever the platform recycles, which is not a

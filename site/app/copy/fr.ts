@@ -17,7 +17,7 @@ export const FR: SurfaceCopy = {
     " du temps — et ne sert aucun texte qui ne s'applique plus, contre deux tiers avant le filtre de date.",
 
   colophon: [
-    { label: 'corpus', value: '2 108 articles en vigueur · code du travail + Syntec' },
+    { label: 'corpus', value: '3 030 articles indexés · code du travail + Syntec' },
     { label: 'jeu annoté', value: '{gold} questions, ~15 % sans réponse' },
     { label: 'génération', value: '{model}' },
     { label: 'juge', value: '{judge} · non validé' },
