@@ -1,8 +1,12 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-/** Read at build time from the committed results, so the page cannot drift from the data. */
-const resultsDir = join(process.cwd(), '..', 'results')
+/**
+ * Read at build time from a copy inside the app, so the page cannot drift from the data and
+ * the site stays deployable on its own. `pnpm sync` refreshes it from `../results`; the
+ * copy is committed so a deployment never depends on files outside this directory.
+ */
+const resultsDir = join(process.cwd(), 'data')
 
 export interface RungSummary {
   name: string

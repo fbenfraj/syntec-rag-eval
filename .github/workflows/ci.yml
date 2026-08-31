@@ -63,8 +63,15 @@ jobs:
             exit 1
           }
 
-      - name: Report site builds
+      - name: Report site builds, and its copy of the results is current
         run: |
           cd site
           pnpm install --no-frozen-lockfile
+          pnpm sync
+          # The site renders a committed copy of the results. If syncing changes it, the
+          # published page is showing numbers the repository no longer holds.
+          git diff --exit-code -- data/ || {
+            echo '::error::site/data is stale. Run `pnpm sync` in site/ and commit.'
+            exit 1
+          }
           pnpm build

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "sync": "node sync-results.mjs",
+    "dev": "node sync-results.mjs && next dev",
     "build": "next build",
     "start": "next start"
   },
