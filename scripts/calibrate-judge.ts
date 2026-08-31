@@ -14,6 +14,8 @@ import { existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { MINIMUM_KAPPA, cohensKappa } from '../src/metrics/kappa.js'
+import type { RunResult } from '../src/eval/run.js'
+import { stratifiedKappa } from '../src/metrics/calibration.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const runId = process.argv[2]
@@ -36,9 +38,7 @@ const samplePath = join(root, 'data', 'calibration', `${runId}.jsonl`)
 if (!scoring) {
   const resultsPath = join(root, 'results', `${runId}.json`)
   if (!existsSync(resultsPath)) throw new Error(`no results at ${resultsPath} — run pnpm eval first`)
-  const results = JSON.parse(await readFile(resultsPath, 'utf8')) as {
-    rows: { questionId: string; question: string; expected: string; actual: string; judgeCorrect: boolean; category: string }[]
-  }
+  const results = JSON.parse(await readFile(resultsPath, 'utf8')) as RunResult
 
   // Answerable rows only: a refusal is scored by the refusal metrics, not by the judge.
   const judged = results.rows.filter((row) => row.category !== 'unanswerable')
@@ -46,14 +46,18 @@ if (!scoring) {
   const step = Math.max(1, Math.floor(judged.length / SAMPLE))
   const sample = judged.filter((_, index) => index % step === 0).slice(0, SAMPLE)
 
-  const rows: Row[] = sample.map((row) => ({
+  const rows: Row[] = sample.map((row) => {
+    if (typeof row.answerCorrect !== 'boolean') {
+      throw new Error(`${row.questionId}: the run has no judge verdict — the results file is from an older format`)
+    }
+    return ({
     questionId: row.questionId,
     question: row.question,
     expected: row.expected,
     actual: row.actual,
-    judgeVerdict: row.judgeCorrect,
+    judgeVerdict: row.answerCorrect,
     humanVerdict: null,
-  }))
+  })})
 
   await mkdir(dirname(samplePath), { recursive: true })
   await writeFile(samplePath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8')
@@ -102,20 +106,52 @@ if (!scoring) {
     .filter((line) => line.trim().length > 0)
     .map((line) => JSON.parse(line) as Row)
 
+  // With a two-phase split, most rows are deliberately unread; without one, every row must
+  // be read or the sample is not the sample that was designed.
+  const twoPhase = existsSync(`${samplePath.replace(/\.jsonl$/, '')}-strata.json`)
   const unfilled = rows.filter((row) => typeof row.humanVerdict !== 'boolean')
-  if (unfilled.length > 0) {
+  if (!twoPhase && unfilled.length > 0) {
     throw new Error(`${unfilled.length} of ${rows.length} rows still have humanVerdict null: ${unfilled.slice(0, 5).map((r) => r.questionId).join(', ')}`)
   }
 
-  const judge = rows.map((row) => row.judgeVerdict)
-  const human = rows.map((row) => row.humanVerdict as boolean)
-  const kappa = cohensKappa(judge, human)
-  const agreement = judge.filter((verdict, index) => verdict === human[index]).length / rows.length
+  const labelled = rows.filter((row) => typeof row.humanVerdict === 'boolean')
+  const judge = labelled.map((row) => row.judgeVerdict)
+  const human = labelled.map((row) => row.humanVerdict as boolean)
 
-  const disagreements = rows.filter((row) => row.judgeVerdict !== row.humanVerdict)
-  console.log(`${rows.length} rows`)
-  console.log(`  judge says correct : ${judge.filter(Boolean).length}`)
-  console.log(`  human says correct : ${human.filter(Boolean).length}`)
+  // Two-phase sampling if a screening split exists: a human read every disagreement and a
+  // sample of the agreements, and each group is weighted to its true size. Otherwise every
+  // row was read and plain Cohen's kappa is the same thing.
+  const strataPath = `${samplePath.replace(/\.jsonl$/, '')}-strata.json`
+  let kappa: number
+  let agreement: number
+  let note = `all ${labelled.length} rows read by a human`
+
+  if (existsSync(strataPath)) {
+    const split = JSON.parse(await readFile(strataPath, 'utf8')) as { disagree: string[]; agree: string[] }
+    const pick = (ids: string[]) =>
+      labelled
+        .filter((row) => ids.includes(row.questionId))
+        .map((row) => ({ judge: row.judgeVerdict, human: row.humanVerdict as boolean }))
+    const estimate = stratifiedKappa([
+      { size: split.disagree.length, labelled: pick(split.disagree) },
+      { size: split.agree.length, labelled: pick(split.agree) },
+    ])
+    kappa = estimate.kappa
+    agreement = estimate.agreement
+    note =
+      `two-phase: ${estimate.labelled} rows read of ${estimate.population}; ` +
+      `${split.disagree.length} screened as disagreements (all read), ` +
+      `${split.agree.length} as agreements (${pick(split.agree).length} sampled). ` +
+      `Kappa on read rows alone: ${estimate.kappaOnLabelled.toFixed(3)}`
+  } else {
+    kappa = cohensKappa(judge, human)
+    agreement = judge.filter((verdict, index) => verdict === human[index]).length / labelled.length
+  }
+
+  const disagreements = labelled.filter((row) => row.judgeVerdict !== row.humanVerdict)
+  console.log(note)
+  console.log(`  judge says correct : ${judge.filter(Boolean).length} of ${labelled.length} read`)
+  console.log(`  human says correct : ${human.filter(Boolean).length} of ${labelled.length} read`)
   console.log(`  raw agreement      : ${(agreement * 100).toFixed(1)}%`)
   console.log(`  Cohen's kappa      : ${kappa.toFixed(3)}`)
   if (disagreements.length > 0) {

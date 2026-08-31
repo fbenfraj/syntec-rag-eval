@@ -8,5 +8,8 @@ site/.next
 site/out
 site/node_modules
 
-# Calibration is per-machine working state until it is scored.
+# Calibration is per-machine working state until it is scored. The filled-in JSONL is the
+# record worth keeping; the sheets and the screening pack are scratch.
 data/calibration/*.md
+data/calibration/*-strata.json
+data/calibration/*-prescreen/
