@@ -10,7 +10,7 @@
       "adds": "fixed chunks",
       "recallAt5": 0.8416666666666667,
       "mrr": 0.5722222222222225,
-      "answerCorrectness": 0.7666666666666667,
+      "answerCorrectness": 0.45,
       "citationCorrectness": 0.5874999999999999,
       "refusalAccuracy": 0.7727272727272727,
       "falseRefusalRate": 0.15,
@@ -23,7 +23,7 @@
       "adds": "article chunks",
       "recallAt5": 0.8583333333333333,
       "mrr": 0.6004166666666667,
-      "answerCorrectness": 0.8083333333333333,
+      "answerCorrectness": 0.4666666666666667,
       "citationCorrectness": 0.5788888888888887,
       "refusalAccuracy": 1,
       "falseRefusalRate": 0.10833333333333334,
@@ -36,7 +36,7 @@
       "adds": "article chunks + lexical",
       "recallAt5": 0.7833333333333333,
       "mrr": 0.5522222222222222,
-      "answerCorrectness": 0.7416666666666667,
+      "answerCorrectness": 0.4583333333333333,
       "citationCorrectness": 0.5819444444444444,
       "refusalAccuracy": 1,
       "falseRefusalRate": 0.16666666666666666,
@@ -49,7 +49,7 @@
       "adds": "article chunks + lexical + rerank",
       "recallAt5": 0.875,
       "mrr": 0.7051388888888889,
-      "answerCorrectness": 0.8166666666666667,
+      "answerCorrectness": 0.49166666666666664,
       "citationCorrectness": 0.5991666666666666,
       "refusalAccuracy": 1,
       "falseRefusalRate": 0.058333333333333334,
@@ -62,7 +62,7 @@
       "adds": "article chunks + lexical + rerank + rewrite",
       "recallAt5": 0.8833333333333333,
       "mrr": 0.7026388888888888,
-      "answerCorrectness": 0.8166666666666667,
+      "answerCorrectness": 0.5,
       "citationCorrectness": 0.5824999999999998,
       "refusalAccuracy": 1,
       "falseRefusalRate": 0.08333333333333333,
@@ -75,7 +75,7 @@
       "adds": "article chunks + lexical + rerank + rewrite + date filter + precedence",
       "recallAt5": 0.9083333333333333,
       "mrr": 0.8231944444444445,
-      "answerCorrectness": 0.8,
+      "answerCorrectness": 0.44166666666666665,
       "citationCorrectness": 0.6969444444444444,
       "refusalAccuracy": 1,
       "falseRefusalRate": 0.08333333333333333,
@@ -89,7 +89,7 @@
     "adds": "article chunks + lexical + rerank + rewrite + date filter + precedence",
     "recallAt5": 0.9083333333333333,
     "mrr": 0.8231944444444445,
-    "answerCorrectness": 0.8,
+    "answerCorrectness": 0.44166666666666665,
     "citationCorrectness": 0.6969444444444444,
     "refusalAccuracy": 1,
     "falseRefusalRate": 0.08333333333333333,
@@ -102,7 +102,7 @@
     "adds": "fixed chunks",
     "recallAt5": 0.8416666666666667,
     "mrr": 0.5722222222222225,
-    "answerCorrectness": 0.7666666666666667,
+    "answerCorrectness": 0.45,
     "citationCorrectness": 0.5874999999999999,
     "refusalAccuracy": 0.7727272727272727,
     "falseRefusalRate": 0.15,
@@ -112,25 +112,25 @@
   },
   "failures": [
     {
+      "kind": "generation-miss",
+      "n": 52,
+      "share": 0.36619718309859156
+    },
+    {
       "kind": "false-refusal",
       "n": 10,
       "share": 0.07042253521126761
     },
     {
-      "kind": "generation-miss",
-      "n": 10,
-      "share": 0.07042253521126761
+      "kind": "retrieval-miss",
+      "n": 5,
+      "share": 0.035211267605633804
     },
     {
       "kind": "citation-miss",
-      "n": 7,
-      "share": 0.04929577464788732
-    },
-    {
-      "kind": "retrieval-miss",
-      "n": 4,
-      "share": 0.028169014084507043
+      "n": 1,
+      "share": 0.007042253521126761
     }
   ],
-  "totalFailures": 31
+  "totalFailures": 68
 }

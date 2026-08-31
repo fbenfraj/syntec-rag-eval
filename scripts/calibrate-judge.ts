@@ -10,7 +10,7 @@
  * the statistic here is kappa rather than raw agreement.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { MINIMUM_KAPPA, cohensKappa } from '../src/metrics/kappa.js'
@@ -41,7 +41,25 @@ if (!scoring) {
   const results = JSON.parse(await readFile(resultsPath, 'utf8')) as RunResult
 
   // Answerable rows only: a refusal is scored by the refusal metrics, not by the judge.
-  const judged = results.rows.filter((row) => row.category !== 'unanswerable')
+  let judged = results.rows.filter((row) => row.category !== 'unanswerable')
+
+  // A rubric revised from an earlier calibration must be measured on rows it was not fitted
+  // to. Otherwise kappa reports how well the rubric memorised its own training sample.
+  const archive = join(root, 'data', 'calibration', 'round-1')
+  if (existsSync(archive)) {
+    const used = new Set<string>()
+    for (const name of readdirSync(archive)) {
+      if (!name.endsWith('.jsonl')) continue
+      for (const line of readFileSync(join(archive, name), 'utf8').split('\n')) {
+        if (line.trim().length === 0) continue
+        const row = JSON.parse(line) as { questionId: string; humanVerdict: boolean | null }
+        if (typeof row.humanVerdict === 'boolean') used.add(row.questionId)
+      }
+    }
+    const before = judged.length
+    judged = judged.filter((row) => !used.has(row.questionId))
+    console.log(`excluding ${before - judged.length} row(s) a human already labelled in an earlier round`)
+  }
   // Every nth row rather than the first n, so the sample spans the whole set.
   const step = Math.max(1, Math.floor(judged.length / SAMPLE))
   const sample = judged.filter((_, index) => index % step === 0).slice(0, SAMPLE)

@@ -25,12 +25,12 @@ lower is better.
 
 | rung | answer correctness | citation F1 | refusal accuracy | false-refusal rate |
 |---|---|---|---|---|
-| `baseline` | 76.7% | 58.7% | 77.3% | 15.0% |
-| `article` | 80.8% (+4.2) | 57.9% (−0.9) | 100.0% | 10.8% (−4.2) |
-| `hybrid` | 74.2% (−6.7) | 58.2% (+0.3) | 100.0% | 16.7% (+5.8) |
-| `rerank` | 81.7% (+7.5) | 59.9% (+1.7) | 100.0% | 5.8% (−10.8) |
-| `rewrite` | 81.7% (=) | 58.2% (−1.7) | 100.0% | 8.3% (+2.5) |
-| `filtered` | 80.0% (−1.7) | 69.7% (+11.4) | 100.0% | 8.3% (=) |
+| `baseline` | 45.0% | 58.7% | 77.3% | 15.0% |
+| `article` | 46.7% (+1.7) | 57.9% (−0.9) | 100.0% | 10.8% (−4.2) |
+| `hybrid` | 45.8% (−0.8) | 58.2% (+0.3) | 100.0% | 16.7% (+5.8) |
+| `rerank` | 49.2% (+3.3) | 59.9% (+1.7) | 100.0% | 5.8% (−10.8) |
+| `rewrite` | 50.0% (+0.8) | 58.2% (−1.7) | 100.0% | 8.3% (+2.5) |
+| `filtered` | 44.2% (−5.8) | 69.7% (+11.4) | 100.0% | 8.3% (=) |
 
 Refusal accuracy and false-refusal rate are always shown together. Either alone is easy to
 optimise and meaningless: a system that refuses every question scores 100% on the first and

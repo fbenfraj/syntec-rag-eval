@@ -26,7 +26,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement les mêmes éléments que la référence : obligation de traduction sur demande du salarié, double valeur juridique des textes, et primauté du texte dans la langue du salarié en cas de divergence.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence avec une simple reformulation (\"en fait la demande\" au lieu de \"le demande\", \"discordance\" au lieu de \"désaccord\"), sans omettre d'élément central ni ajouter de condition supplémentaire.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -60,8 +60,8 @@
       "actual": "Son contrat de travail est suspendu jusqu'à la date du début du congé de maternité et éventuellement durant la période complémentaire qui suit la fin de ce congé. Pendant cette suspension, elle bénéficie d'une garantie de rémunération composée de l'allocation journalière de la sécurité sociale et d'une indemnité complémentaire à la charge de l'employeur, calculée selon les modalités de l'article L. 1226-1, sauf pour l'ancienneté.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme les mêmes éléments essentiels que la référence (suspension du contrat jusqu'au congé de maternité, garantie de rémunération composée de l'allocation journalière et de l'indemnité complémentaire de l'employeur), avec des précisions supplémentaires exactes sur la période complémentaire post-congé et le calcul de l'indemnité.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une période de suspension (\"éventuellement durant la période complémentaire qui suit la fin de ce congé\") que la référence ne mentionne pas, engageant ainsi le lecteur sur une durée supplémentaire non prévue par la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -95,7 +95,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai d'un mois avant le terme initialement prévu que la référence, avec des détails supplémentaires exacts sur les types de modifications possibles et la référence légale.",
+      "judgeReason": "La candidate affirme le même délai d'un mois avant le terme initialement prévu que la référence, avec des précisions contextuelles qui n'ajoutent pas de conditions supplémentaires mais clarifient simplement les cas d'application.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -129,8 +129,8 @@
       "actual": "Dans une petite entreprise sans institutions représentatives du personnel, le salarié peut se faire assister lors de l'entretien préalable au licenciement soit par une personne de son choix appartenant au personnel de l'entreprise, soit par un conseiller du salarié inscrit sur une liste dressée par l'autorité administrative.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement qu'un conseiller du salarié inscrit sur une liste dressée par l'autorité administrative peut assister le salarié, ce qui correspond au fond de la référence, et ajoute une information supplémentaire exacte sur la possibilité d'être assisté par une personne du personnel.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une option d'assistance (\"une personne de son choix appartenant au personnel de l'entreprise\") que la référence ne mentionne pas, engageant ainsi le lecteur sur un droit supplémentaire non établi par la référence.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -161,8 +161,8 @@
       "actual": "Un employé ayant 18 mois d'ancienneté (entre 6 mois et moins de 2 ans) a droit à un préavis d'un mois selon le code du travail. Toutefois, si une convention collective applicable prévoit une durée plus favorable, celle-ci s'applique.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement qu'un employé avec 18 mois d'ancienneté a droit à un préavis d'un mois, ce qui correspond exactement à la référence, la mention de la convention collective étant une précision exacte et non une contradiction.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition sur la convention collective que la référence ne mentionne pas, ce qui engage le lecteur dans une démarche supplémentaire non requise par la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -193,8 +193,8 @@
       "actual": "L'employeur doit communiquer au juge tous les éléments qu'il a fournis aux représentants du personnel en application du chapitre III, ou à défaut de représentants du personnel, tous les éléments fournis à l'autorité administrative selon ce même chapitre. Les modalités précises d'application sont déterminées par un décret en Conseil d'État.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même obligation que la référence (communication des éléments fournis aux représentants du personnel ou à l'autorité administrative), avec simplement des précisions supplémentaires exactes sur le cadre juridique (chapitre III, décret en Conseil d'État) qui ne contredisent pas le fond.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des précisions que la référence ne mentionne pas (\"en application du chapitre III\", \"selon ce même chapitre\", \"Les modalités précises d'application sont déterminées par un décret en Conseil d'État\"), ce qui constitue un ajout d'informations procédurales non présentes dans la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -229,7 +229,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate affirme qu'une convention collective peut prévoir un pourcentage inférieur à 10%, alors que la référence établit clairement que le taux est de 10% sans mentionner de possibilité de dérogation conventionnelle.",
+      "judgeReason": "La candidate ajoute une condition sur les conventions collectives que la référence ne mentionne pas, ce qui engage le lecteur vers une règle différente alors que la référence affirme simplement \"10 % de la rémunération totale brute\".",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -264,7 +264,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que le travail dominical est possible pour des travaux urgents de réparation suite à un accident aux installations, et mentionne bien l'obligation de repos compensateur d'une durée égale, conformément à la référence.",
+      "judgeReason": "La candidate affirme la même règle que la référence (possibilité de travailler le dimanche pour travaux urgents de réparation d'accidents aux installations, avec repos compensateur égal) en l'appliquant au cas concret de la fuite d'eau, sans ajouter de condition supplémentaire ni omettre d'élément central.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -299,7 +299,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement les 36 heures de repos minimum et la prolongation jusqu'à 18 heures le second jour, ce qui correspond exactement aux éléments essentiels de la référence, même si elle ajoute une précision sur l'article applicable.",
+      "judgeReason": "La candidate affirme la même durée de repos (36 heures) et la même modalité (prolongation jusqu'à 18 heures le second jour) que la référence, avec une simple reformulation et l'ajout d'une précision contextuelle non contradictoire.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -333,7 +333,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de répondre en invoquant l'absence d'information spécifique à l'Alsace-Moselle, alors que la référence fournit une réponse précise sur les pouvoirs de l'inspecteur du travail (saisine du juge en référé, fermeture possible, astreinte).",
+      "judgeReason": "La candidate refuse de répondre en invoquant l'absence d'information spécifique à l'Alsace-Moselle, alors que la référence fournit une réponse précise sur les pouvoirs de l'inspecteur du travail (saisine du juge en référé, fermeture possible, astreinte), ce qui constitue une omission complète de l'élément central.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -363,7 +363,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement tous les éléments obligatoires mentionnés dans la référence (taux du SMIC, nombre d'heures de la durée légale, déductions obligatoires, montants du salaire et allocations) avec une formulation équivalente sur le fond.",
+      "judgeReason": "La candidate reformule fidèlement tous les éléments de la référence (SMIC/salaire minimum de croissance, durée légale, déductions obligatoires, montants du salaire et allocations) sans rien omettre, ajouter ou contredire.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -398,7 +398,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de quinze jours et le même point de départ (réception de la notification du syndicat par lettre recommandée) que la référence, avec simplement une formulation légèrement différente et une précision supplémentaire exacte sur l'avis de réception.",
+      "judgeReason": "La candidate affirme le même délai de quinze jours et le même point de départ (réception de la lettre recommandée du syndicat) que la référence, la précision supplémentaire sur l'avis de réception étant une simple clarification technique qui n'ajoute pas de condition substantielle modifiant la règle.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -430,8 +430,8 @@
       "actual": "L'indemnité horaire pour un conseiller du salarié rémunéré uniquement à la commission est égale à 1/1900 des revenus professionnels déclarés à l'administration fiscale l'année précédente, pour chaque heure passée entre 8 heures et 18 heures dans l'exercice de ses fonctions. Le conseiller doit produire une copie de sa déclaration d'impôts et une attestation de revenus de son ou ses employeurs.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement la formule de calcul (1/1900 des revenus déclarés l'année précédente) et la plage horaire (8h-18h) de la référence, avec des détails administratifs supplémentaires exacts qui ne contredisent pas le fond.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition procédurale (production de documents : copie de déclaration d'impôts et attestation de revenus) que la référence ne mentionne pas.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -463,7 +463,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence : 8 semaines de congé prénatal avec possibilité d'augmentation de 2 semaines maximum pour atteindre 10 semaines au total.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence (8 semaines de base, possibilité d'augmentation de 2 semaines maximum pour atteindre 10 semaines), avec simplement une précision supplémentaire non engageante sur la compensation en période post-accouchement qui ne contredit ni n'ajoute de condition à la règle énoncée.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -499,7 +499,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même fond que la référence en mentionnant les deux possibilités d'assistance (personne de l'entreprise ou conseiller sur liste administrative), avec des formulations équivalentes et des précisions supplémentaires exactes sur la rupture conventionnelle.",
+      "judgeReason": "La candidate reformule fidèlement la référence en précisant les mêmes deux options d'assistance (personne de l'entreprise ou conseiller sur liste administrative) avec la même condition (absence de représentants du personnel pour la seconde option), sans ajouter de condition supplémentaire ni contredire la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -531,7 +531,7 @@
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai (huit jours), la même modalité (par écrit), le même point de départ (envoi des lettres de licenciement) et désigne la même autorité sous une formulation équivalente (autorité administrative vs directeur régional).",
+      "judgeReason": "La candidate affirme la même obligation (information écrite dans les huit jours de l'envoi des lettres) avec une reformulation acceptable (\"autorité administrative\" pour \"directeur régional\", \"salariés concernés\" pour \"salariés\").",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -568,7 +568,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence (dernier jour ouvrable précédant l'embauche), avec simplement des précisions supplémentaires exactes sur le mode d'envoi.",
+      "judgeReason": "La candidate affirme la même règle que la référence (dernier jour ouvrable précédant l'embauche) et précise simplement le type de courrier recommandé (avec avis de réception) sans ajouter de condition supplémentaire qui engagerait le lecteur différemment.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -604,8 +604,8 @@
       "actual": "L'employeur dispose d'un délai de deux mois pour contester une décision de validation ou d'homologation, ce délai courant à compter de la notification de la décision par l'autorité administrative. Le recours doit être présenté auprès du tribunal administratif, qui statue dans un délai de trois mois.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de deux mois à compter de la notification que la référence, les informations supplémentaires sur la juridiction compétente et le délai de jugement étant exactes et ne contredisant pas l'élément central.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des informations procédurales (tribunal administratif, délai de jugement de trois mois) que la référence ne mentionne pas, engageant ainsi le lecteur sur des éléments non couverts par la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -640,7 +640,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement le seuil de dix salariés ou plus sur trente jours déclenchant l'avis écrit, ce qui correspond exactement à la référence sur le fond, même si elle ajoute une précision sur l'absence d'information concernant le délai d'envoi.",
+      "judgeReason": "La candidate affirme correctement la condition déclenchant l'avis (dix salariés ou plus sur trente jours) et précise honnêtement que le délai d'envoi n'est pas mentionné dans l'extrait, sans ajouter d'information engageante non présente dans la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -675,7 +675,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement le même délai de deux mois à compter de la saisine que la référence, avec simplement l'ajout de la source légale qui ne contredit pas l'information.",
+      "judgeReason": "La candidate affirme exactement le même délai de deux mois à compter de la saisine que la référence, avec simplement l'ajout d'une citation de source qui n'engage pas le lecteur différemment.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -710,7 +710,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de 21 jours à compter de la notification du projet de licenciement que la référence, avec des précisions supplémentaires exactes sur le contexte (petite entreprise, moins de 100 licenciements).",
+      "judgeReason": "La candidate affirme le même délai de 21 jours à compter de la notification du projet de licenciement que la référence, avec une précision contextuelle (petite entreprise, moins de 100 licenciements) cohérente avec la question et qui n'ajoute pas de condition engageante supplémentaire.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -747,8 +747,8 @@
       "actual": "Selon les extraits fournis, la responsabilité dépend du contexte : un accord collectif d'entreprise ou d'établissement, ou à défaut une convention ou un accord de branche, peut définir les modalités d'aménagement du temps de travail et la répartition de la durée du travail. À défaut d'accord collectif, un décret définit ces modalités et organisation.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que des accords collectifs peuvent fixer ces règles et qu'à défaut un décret les définit, ce qui correspond au fond de la référence mentionnant les décrets en Conseil d'État pour déterminer les modalités d'application et de répartition des horaires.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des conditions et procédures (accord d'entreprise, accord de branche, subsidiarité) que la référence ne mentionne pas, alors que celle-ci désigne uniquement les décrets en Conseil d'État après consultation des partenaires sociaux.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -784,7 +784,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même limite de huit avenants par an et par salarié, avec les mêmes conditions (convention/accord de branche, augmentation temporaire, hors remplacement) que la référence.",
+      "judgeReason": "La candidate affirme la même limite de huit avenants par an et par salarié, en dehors des remplacements, que la référence, avec une simple reformulation équivalente.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -821,8 +821,8 @@
       "actual": "Un salarié à temps partiel est celui dont la durée du travail est inférieure à la durée légale du travail ou, si elle est inférieure, à la durée fixée conventionnellement pour la branche ou l'entreprise, évaluée sur une base hebdomadaire, mensuelle ou annuelle (1 607 heures par an).",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même définition fondamentale qu'un salarié à temps partiel travaille moins que la durée légale ou conventionnelle, avec des précisions supplémentaires exactes sur les bases de calcul qui ne contredisent pas la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des précisions sur les bases d'évaluation (hebdomadaire, mensuelle, annuelle) et un chiffre spécifique (1 607 heures par an) que la référence ne mentionne pas, engageant ainsi le lecteur sur des éléments supplémentaires.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -859,7 +859,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que la période de référence ne peut excéder un an, sauf si un accord de branche l'autorise à aller jusqu'à trois ans, ce qui correspond exactement au fond de la référence.",
+      "judgeReason": "La candidate affirme la même règle que la référence (période maximale d'un an, extensible à trois ans si accord de branche), et l'ajout d'informations sur les salariés à temps partiel constitue un complément factuel qui n'altère pas la réponse principale ni n'ajoute de condition à la règle énoncée.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -894,8 +894,8 @@
       "actual": "Si votre temps de déplacement professionnel dépasse le temps normal de trajet entre votre domicile et votre lieu habituel de travail, votre employeur doit vous proposer une contrepartie soit sous forme de repos, soit sous forme financière. Cette contrepartie doit être déterminée par convention ou accord collectif de travail, ou à défaut par décision unilatérale de l'employeur prise après consultation du comité d'entreprise ou des délégués du personnel.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme bien que l'employeur doit proposer une contrepartie sous forme de repos ou financière, ce qui correspond exactement à la référence, les détails supplémentaires sur les modalités de détermination étant complémentaires et exacts.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des conditions de procédure (détermination par convention collective, accord, ou décision unilatérale après consultation) que la référence ne mentionne pas, engageant ainsi le lecteur sur des étapes supplémentaires non présentes dans la référence.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -928,8 +928,8 @@
       "actual": "Non, un salarié ayant au moins trois mois d'ancienneté dans l'entreprise ne perd pas de salaire lors d'un jour férié, sauf s'il appartient aux catégories exclues (travail à domicile, saisonniers sans ancienneté cumulée de trois mois, intermittents ou temporaires). Les heures perdues ne donnent pas lieu à récupération.",
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même principe fondamental que la référence (pas de perte de salaire avec 3 mois d'ancienneté) et ajoute des précisions exactes sur les exceptions légales sans contredire l'information centrale.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des conditions d'exclusion (travail à domicile, saisonniers, intermittents, temporaires) et une précision sur la non-récupération que la référence ne mentionne pas, engageant ainsi le lecteur sur des éléments absents de la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -966,7 +966,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement tous les cas mentionnés dans la référence (remplacement d'absent, contrat suspendu, emplois saisonniers/usage, remplacement de personnes spécifiques) avec simplement plus de précision en distinguant les deux premiers cas et en citant l'article applicable.",
+      "judgeReason": "La candidate reprend fidèlement tous les cas mentionnés dans la référence (remplacement d'absent, contrat suspendu, emplois saisonniers/usage, remplacement de personnes spécifiques) en les détaillant simplement de manière plus structurée avec une numérotation et une référence légale, sans ajouter de condition supplémentaire ni contredire la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1003,7 +1003,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence sur le fond (consultation des organisations d'employeurs et de salariés représentatives du secteur, en tenant compte des conditions économiques et de l'emploi), avec simplement des précisions supplémentaires exactes (référence à l'article R3121-13 et mention du plan national).",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence (consultation des organisations d'employeurs et de salariés représentatives du secteur, en tenant compte des conditions économiques et de l'emploi), avec simplement des précisions contextuelles supplémentaires (référence à l'article, mention du plan national) qui n'ajoutent pas de conditions procédurales contraignantes.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1038,7 +1038,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate énonce les conditions procédurales (accord collectif, autorisation) et les plafonds (12h), mais omet complètement les trois cas de fond mentionnés dans la référence (éloignement domicile-travail, garde/surveillance, continuité service/production) qui justifient matériellement le dépassement.",
+      "judgeReason": "La candidate répond sur les mécanismes juridiques permettant le dépassement (convention collective, autorisation) alors que la référence demande les cas matériels justifiant ce dépassement (éloignement domicile-travail, garde/surveillance, continuité service/production).",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1076,7 +1076,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence, à savoir que le salarié peut accomplir les périodes de travail du congé de mobilité aussi bien au sein de l'entreprise actuelle qu'en dehors, avec une formulation légèrement différente mais un fond identique.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence (possibilité de travailler au sein ou en dehors de l'entreprise), simplement reformulée avec des mots différents et un ordre légèrement modifié.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1112,8 +1112,8 @@
       "actual": "À défaut de stipulation dans une convention ou accord de branche, un contrat de travail à durée déterminée est renouvelable deux fois maximum, la durée totale du contrat initial et des deux renouvellements ne pouvant excéder dix-huit mois (ou neuf mois dans certains cas spécifiques).",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que le CDD peut être renouvelé deux fois maximum, ce qui correspond à la référence, et ajoute des précisions exactes sur les durées maximales légales (18 mois ou 9 mois) qui s'appliquent effectivement à défaut de convention collective.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des durées maximales précises (dix-huit mois, neuf mois) que la référence ne mentionne pas, engageant ainsi le lecteur sur des chiffres qui ne sont pas dans la réponse de référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1149,7 +1149,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement le délai minimum de quinze jours entre les deux réunions du CSE, avec des précisions supplémentaires exactes (référence légale et seuil d'effectif) qui ne contredisent pas la référence.",
+      "judgeReason": "La candidate affirme correctement le délai minimum de quinze jours entre les deux réunions, et les précisions sur le nombre de réunions et le seuil d'effectif sont des éléments contextuels qui n'ajoutent pas de condition à la règle du délai lui-même.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1184,8 +1184,8 @@
       "actual": "Le comité social et économique (ou à défaut, le comité d'entreprise ou les délégués du personnel selon les versions du code) doit être consulté régulièrement et de manière détaillée pour suivre la mise en œuvre effective des mesures de reclassement. L'autorité administrative est également associée à ce suivi.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate identifie correctement le comité social et économique comme instance à consulter régulièrement pour le suivi des mesures de reclassement, mentionne le caractère détaillé de cette consultation et évoque l'autorité administrative, ce qui correspond au fond de la référence malgré des précisions supplémentaires sur les anciennes instances.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute que \"l'autorité administrative est également associée à ce suivi\" alors que la référence indique seulement que l'avis du CSE doit être transmis à l'autorité administrative, ce qui n'est pas la même chose qu'une association au suivi.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1221,8 +1221,8 @@
       "actual": "L'employeur doit : (1) informer les repreneurs potentiels de son intention de céder l'établissement ; (2) réaliser sans délai un document de présentation de l'établissement ; (3) donner accès aux informations nécessaires aux candidats à la reprise ; (4) examiner les offres reçues ; et (5) apporter une réponse motivée à chacune des offres dans les délais prévus.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement les cinq obligations principales mentionnées dans la référence (information des repreneurs, document de présentation, accès aux informations, examen des offres, réponse motivée), même si elle omet le bilan environnemental qui est présenté comme conditionnel (\"le cas échéant\") dans la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute \"dans les délais prévus\" pour la réponse motivée aux offres, condition que la référence ne mentionne pas, et omet l'obligation d'engager le cas échéant la réalisation d'un bilan environnemental.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1257,8 +1257,8 @@
       "actual": "À défaut d'accord collectif, le contrat de travail doit prévoir soit d'accorder des contreparties aux temps d'habillage et de déshabillage (sous forme de repos ou financière), soit d'assimiler ces temps à du temps de travail effectif. Les contreparties sont déterminées par l'employeur après consultation du comité social et économique.",
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même fond que la référence (obligation contractuelle de prévoir des contreparties ou d'assimiler à du temps de travail effectif), avec des précisions supplémentaires exactes sur les modalités qui n'altèrent pas le message principal.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition procédurale (\"après consultation du comité social et économique\") que la référence ne mentionne pas, ce qui constitue un ajout d'étape non présente dans la réponse de référence.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1293,8 +1293,8 @@
       "actual": "Dans une petite entreprise sans représentants du personnel soumise à l'obligation d'établir un plan de sauvegarde de l'emploi, ce plan doit être communiqué à l'autorité administrative (directeur régional des entreprises, de la concurrence, de la consommation, du travail et de l'emploi) en même temps que la notification du projet de licenciement. Le plan doit également être porté à la connaissance des salariés par voie d'affichage sur les lieux de travail.",
       "recallAtK": 0,
       "mrr": 0,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que le plan doit être communiqué à l'autorité administrative en même temps que la notification du projet de licenciement, ce qui correspond exactement à la référence, les précisions supplémentaires sur l'identité de l'autorité et l'affichage étant des compléments exacts qui n'altèrent pas le fond.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une obligation (affichage aux salariés) que la référence ne mentionne pas, engageant ainsi le lecteur sur une exigence supplémentaire non présente dans la réponse de référence.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1332,8 +1332,8 @@
       "actual": "On déduit du nombre initial de salariés licenciés le nombre de salariés dont le reclassement dans l'entreprise ou dans le groupe auquel elle appartient est acquis sur le ou les bassins d'emploi affectés par le licenciement collectif, à l'issue de la procédure de consultation des représentants du personnel. On déduit également, en cas de rupture conventionnelle collective, le nombre d'emplois pourvus sur le même poste de travail en remplacement des salariés dont le contrat a été rompu.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend intégralement l'élément central de la référence (déduction des salariés reclassés dans l'entreprise ou le groupe sur les bassins d'emploi concernés) et ajoute une information complémentaire sur la rupture conventionnelle collective qui ne contredit pas la référence mais l'enrichit.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute un élément substantiel que la référence ne mentionne pas (la déduction des emplois pourvus en remplacement lors d'une rupture conventionnelle collective), ce qui engage le lecteur sur une règle supplémentaire non présente dans la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1368,7 +1368,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement les deux possibilités de signature mentionnées dans la référence (organisations syndicales avec le seuil de 50% des suffrages et conseil d'entreprise), avec simplement l'ajout d'une précision légale (article L. 2321-9) qui ne contredit pas le fond.",
+      "judgeReason": "La candidate reprend fidèlement les deux signataires possibles (organisations syndicales avec le seuil de 50% des suffrages ou conseil d'entreprise) sans ajouter de condition substantielle qui engagerait le lecteur différemment de la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1404,7 +1404,7 @@
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement les mêmes droits que la référence (priorité pour un emploi dans la catégorie professionnelle ou équivalent, information par l'employeur des postes disponibles), avec une formulation légèrement différente mais équivalente sur le fond.",
+      "judgeReason": "La candidate reformule la référence avec un vocabulaire équivalent (\"ressortissant à\" pour \"dans\", \"porter à la connaissance\" pour \"informer\") sans modifier le fond ni ajouter de conditions supplémentaires.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1441,7 +1441,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de trente jours à compter de la réception de la demande, avec une formulation équivalente sur le fond malgré des détails supplémentaires exacts concernant l'objet de l'autorisation.",
+      "judgeReason": "La candidate affirme le même délai de trente jours à compter de la réception de la demande, avec une simple reformulation et une précision contextuelle (\"autorisation d'affectation de travailleurs à des postes de nuit\") qui reste cohérente avec l'objet de la demande mentionné dans la question.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1478,7 +1478,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement tous les éléments de la référence (justifications utiles, avis du CSE, PV de consultation des délégués syndicaux, et document d'information préalable en l'absence d'instances) avec une formulation équivalente.",
+      "judgeReason": "La candidate reprend fidèlement tous les éléments de la référence (justifications utiles, avis du CSE, PV des délégués syndicaux, document d'information des salariés en l'absence d'instances) dans le même ordre et avec les mêmes conditions, seule la ponctuation diffère.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1514,7 +1514,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement le même délai (six mois) et le même point de départ (décision de validation) que la référence.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence avec les mêmes éléments (délai de six mois, point de départ à la décision de validation), seule la formulation diffère légèrement.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1548,8 +1548,8 @@
       "actual": "L'autorité administrative notifie à l'employeur la décision de validation dans un délai de quinze jours à compter de la réception de l'accord collectif. Le silence gardé par l'administration à l'issue de ce délai vaut acceptation de la validation.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de quinze jours à compter de la réception que la référence, et ajoute une précision exacte sur le silence valant acceptation sans contredire l'élément central.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition sur les conséquences du silence de l'administration (\"vaut acceptation de la validation\") que la référence ne mentionne pas.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1586,7 +1586,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence : droit au bilan de compétences pendant le congé parental ou temps partiel, mais absence de rémunération pendant cette période.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence avec une simple reformulation : droit au bilan de compétences pendant congé parental ou temps partiel, mais sans rémunération.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1621,7 +1621,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence : la cassation de la condamnation pour licenciement sans cause réelle et sérieuse entraîne automatiquement la cassation de l'ordre de remboursement des allocations chômage, avec simplement une formulation plus développée et une précision sur la conséquence (disparition de l'obligation).",
+      "judgeReason": "La candidate affirme la même règle que la référence (cassation automatique de l'ordre de remboursement des allocations chômage suite à la cassation de la condamnation pour licenciement sans cause réelle et sérieuse), avec une reformulation et une explicitation de la conséquence logique qui n'ajoute aucune condition ou procédure supplémentaire.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1656,8 +1656,8 @@
       "actual": "Vous devez informer votre employeur au moins quinze jours avant le début du congé de présence parentale. De plus, chaque fois que vous souhaitez prendre un ou plusieurs jours de congé, vous devez en informer votre employeur au moins quarante-huit heures à l'avance.",
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement le délai de quinze jours avant le début du congé, identique à la référence, et ajoute une information supplémentaire exacte sur le délai de quarante-huit heures pour chaque prise de jours qui ne contredit pas la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition supplémentaire (délai de quarante-huit heures pour chaque prise de jours) que la référence ne mentionne pas, ce qui engage le lecteur au-delà de ce qu'affirme la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1693,8 +1693,8 @@
       "actual": "Selon le code du travail, l'enfant décédé doit être âgé de moins de vingt-cinq ans pour que le mécanisme de cession de jours de repos s'applique. Le salarié bénéficiaire conserve sa rémunération pendant cette période d'absence, qui est assimilée à une période de travail effectif.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que l'enfant doit être âgé de moins de vingt-cinq ans, ce qui correspond exactement à la référence, les détails supplémentaires sur la rémunération et l'assimilation étant des compléments exacts qui n'altèrent pas le fond.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des informations sur la rémunération et l'assimilation à du travail effectif que la référence ne mentionne pas, engageant ainsi le lecteur sur des éléments non demandés.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1729,7 +1729,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement les éléments essentiels de la référence : le délai de trois mois, l'obligation de remboursement au Trésor, la part à la charge de l'employeur, et la demande du préfet.",
+      "judgeReason": "La candidate reprend fidèlement tous les éléments essentiels de la référence (délai de trois mois, remboursement au Trésor, part à la charge de l'employeur, demande du préfet) dans une simple reformulation sans ajout ni omission.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1764,8 +1764,8 @@
       "actual": "Un conseiller du salarié peut s'absenter au maximum deux semaines par période de trois ans pour suivre une formation, sur demande à son employeur.",
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement la durée maximale d'absence (deux semaines) et la période de référence (trois ans), ce qui correspond exactement à la référence sur le fond, même si elle ajoute la mention de la demande à l'employeur.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition procédurale (\"sur demande à son employeur\") que la référence ne mentionne pas, ce qui constitue un ajout d'étape non prévue par le texte de référence.",
       "citationCorrectness": 0.5,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1802,8 +1802,8 @@
       "actual": "Le salarié doit d'abord mettre en demeure son employeur de lui communiquer les documents requis ou de les compléter, et attendre 7 jours calendaires après la réception de cette mise en demeure sans réponse avant de pouvoir saisir la juridiction prud'homale.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même obligation centrale que la référence (mise en demeure préalable) et ajoute un détail procédural exact (délai de 7 jours) qui complète l'information sans la contredire sur le fond.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition de délai de 7 jours calendaires que la référence ne mentionne pas, ce qui constitue une étape de procédure supplémentaire non présente dans la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1838,7 +1838,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate indique le même délai de deux ans précédant la notification de la décision que la référence, avec des détails supplémentaires exacts sur les conditions d'application.",
+      "judgeReason": "La candidate affirme le même délai de deux ans précédant la notification de la décision que la référence, et les précisions supplémentaires sur le document-cadre et l'article D. 1233-38 sont des éléments contextuels qui n'ajoutent pas de condition contradictoire à l'élément central demandé (le délai).",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1872,7 +1872,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence (sept jours avant l'arrivée au foyer) avec une formulation légèrement différente mais équivalente.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence avec une simple reformulation (\"débuter\" au lieu de \"commencer\", \"foyer\" au lieu de \"maison\").",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1907,8 +1907,8 @@
       "actual": "Oui, un enquêteur ayant signé un contrat avec rémunération annuelle garantie (chargé d'enquête intermittent à garantie annuelle) peut refuser une enquête proposée, mais il doit notifier son refus avant la date d'exécution des tâches prévues, faute de quoi il est présumé avoir accepté. Toutefois, si l'enquête ne permet pas le respect du délai de prévenance de trois jours ouvrables, le refus ne constitue pas un refus de travail et n'a aucune conséquence sur la relation contractuelle.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que l'enquêteur peut refuser une enquête proposée, ce qui correspond au fond de la référence, et ajoute des détails procéduraux exacts sur les modalités de refus sans contredire le principe établi par la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des conditions et délais de notification (notification avant la date d'exécution, présomption d'acceptation, délai de prévenance de trois jours) que la référence ne mentionne pas, alors que celle-ci énonce simplement la faculté de refuser sous réserve des articles 5 et 25.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1941,7 +1941,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même préavis de 2 mois pour la même raison (au moins 2 ans d'ancienneté) que la référence, avec des détails supplémentaires exacts sur le départ volontaire à la retraite.",
+      "judgeReason": "La candidate affirme la même durée de préavis (2 mois) et la même condition d'ancienneté (au moins 2 ans) que la référence, avec une simple reformulation et des précisions contextuelles qui n'ajoutent pas de conditions supplémentaires engageantes.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -1972,8 +1972,8 @@
       "actual": "L'enquêteur vacataire doit avertir son employeur du motif et de la durée probable de son indisponibilité dès que possible, et au plus tard dans les 24 heures. Cet avis doit être confirmé par un certificat médical dans un délai maximal de 48 heures à compter du premier jour de l'indisponibilité.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement l'obligation principale de la référence (avertir dès que possible et au plus tard dans les 24 heures du motif et de la durée probable), et ajoute simplement un détail supplémentaire exact concernant le certificat médical sans contredire l'information de base.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une obligation de certificat médical dans un délai de 48 heures que la référence ne mentionne pas, ce qui constitue une condition supplémentaire engageant le lecteur au-delà de ce qu'affirme la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2005,7 +2005,7 @@
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement les deux éléments centraux de la référence (vieillissement du système et absence de prise en compte de certaines fonctions, nouveau cadre souple avec critères communs), avec des détails supplémentaires qui ne contredisent pas le fond.",
+      "judgeReason": "La candidate reprend fidèlement les deux éléments de la référence (vieillissement et non-prise en compte de certaines fonctions, nouveau système souple avec critères communs) et ajoute des précisions techniques (\"prédéterminés dans leur formulation, nombre et gradation\") qui enrichissent sans contredire ni ajouter de conditions engageantes.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2037,7 +2037,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même principe que la référence (remplacement possible du paiement par un repos équivalent) et mentionne les mêmes conditions de mise en œuvre (accord collectif ou consultation des représentants/accord des salariés), même si la formulation diffère légèrement.",
+      "judgeReason": "La candidate affirme la même règle que la référence (remplacement possible du paiement par du repos équivalent) avec les mêmes conditions essentielles (accord collectif ou consultation/accord selon la situation), en utilisant simplement une formulation différente sans ajouter de conditions supplémentaires ni omettre d'éléments centraux.",
       "citationCorrectness": 0.5,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2075,7 +2075,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate donne trois fréquences différentes selon différents accords au lieu de répondre précisément \"une fois par an\" comme indiqué dans la référence, ce qui dilue et contredit la réponse attendue.",
+      "judgeReason": "La candidate refuse de répondre à la question posée en listant plusieurs fréquences différentes issues d'accords distincts, alors que la référence donne une réponse claire et précise (une fois par an) pour l'accord concerné par la question.",
       "citationCorrectness": 0.5,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2109,7 +2109,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de répondre en invoquant un manque d'information, alors que la référence fournit une réponse claire indiquant que les dispositions s'appliquent à partir de la publication de l'arrêté.",
+      "judgeReason": "La candidate refuse de répondre en invoquant une insuffisance d'information, alors que la référence donne une réponse claire : l'application commence à partir de la publication de l'arrêté.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2139,7 +2139,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La candidate refuse de répondre en invoquant l'insuffisance des informations, alors que la référence fournit une réponse claire indiquant que l'application se fait à partir de la publication de l'arrêté.",
+      "judgeReason": "La candidate refuse de répondre en invoquant l'insuffisance des informations, alors que la référence donne une réponse claire : à partir de la publication de l'arrêté.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2169,7 +2169,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de répondre en invoquant un manque de précision, alors que la référence fournit une réponse claire sur la date d'applicabilité de l'avenant concerné.",
+      "judgeReason": "La candidate refuse de répondre alors que la référence donne une règle claire d'entrée en vigueur applicable à l'avenant concerné par la question.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2199,7 +2199,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de répondre en invoquant une information manquante, alors que la référence fournit une réponse complète incluant la date butoir du 1er janvier 2009, élément central omis par la candidate.",
+      "judgeReason": "La candidate refuse de répondre en invoquant une information manquante alors que la référence fournit une réponse complète incluant une date butoir (1er janvier 2009), ce qui constitue un refus de s'engager face à une référence qui répond clairement.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2228,8 +2228,8 @@
       "actual": "En cas de décès du salarié, la rente éducation versée est de 12 % du salaire de référence pour l'enfant de 16 ans (jusqu'au 18e anniversaire) et de 15 % du salaire de référence pour l'enfant de 20 ans (entre 18 ans et le 26e anniversaire), à condition que ce dernier poursuive ses études, un apprentissage, ou soit inscrit comme demandeur d'emploi.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate indique les mêmes pourcentages (12% pour l'enfant de 16 ans jusqu'à 18 ans, 15% pour celui de 20 ans jusqu'à 26 ans) que la référence, avec des précisions supplémentaires sur les conditions d'attribution qui ne contredisent pas l'information de base demandée.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des conditions (poursuite d'études, apprentissage, ou inscription comme demandeur d'emploi) pour l'enfant de 20 ans que la référence ne mentionne pas.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2263,7 +2263,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate affirme que l'accord cessera au 31 décembre 2025, ce qui contredit directement la référence qui indique une durée indéterminée (donc sans date de fin).",
+      "judgeReason": "La candidate ajoute une date de fin (31 décembre 2025) alors que la référence affirme une durée indéterminée sans limitation temporelle, ce qui constitue une contradiction substantielle.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2296,7 +2296,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même chose que la référence (absence d'accord en mars 2010 et constat de désaccord), avec des détails supplémentaires exacts sur la date et le contexte.",
+      "judgeReason": "La candidate affirme la même chose que la référence (absence d'accord et constat de désaccord en mars 2010) avec des détails factuels supplémentaires (date précise, mention de la commission paritaire) qui précisent sans contredire ni ajouter de conditions engageantes.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2329,7 +2329,7 @@
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate indique une valeur du point de 20,21 € alors que la référence établit clairement qu'elle est de 19,81 €, soit une différence de 0,40 € qui constitue une contradiction factuelle sur un chiffre précis.",
+      "judgeReason": "La candidate indique 20,21 € alors que la référence précise 19,81 €, soit un montant différent.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2361,7 +2361,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme les mêmes éléments essentiels que la référence (transfert automatique de toutes les entreprises adhérentes vers le nouvel assureur, sans frais pour les entreprises et bénéficiaires), avec simplement des détails supplémentaires exacts sur l'organisation du transfert par les anciens assureurs.",
+      "judgeReason": "La candidate affirme les mêmes éléments que la référence (transfert automatique de toutes les entreprises adhérentes vers le nouvel assureur, sans frais) et ajoute un détail procédural sur l'organisation du transfert par les anciens assureurs qui ne contredit ni n'ajoute de condition engageante pour le lecteur.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2394,7 +2394,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate identifie correctement les deux niveaux d'action (accord de branche et actions paritaires complémentaires) et détaille fidèlement les trois éléments des actions paritaires mentionnés dans la référence, malgré des formulations légèrement différentes qui n'altèrent pas le fond.",
+      "judgeReason": "La candidate reprend fidèlement les deux niveaux d'action (accord de branche et actions paritaires complémentaires) avec leurs composantes principales, utilisant simplement des reformulations acceptables (\"au regard des\" pour \"adapté aux\", \"relatif aux\" pour \"sur les\", \"RPS\" pour \"risques psychosociaux\").",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2425,8 +2425,8 @@
       "actual": "Avant de mettre en place du chômage partiel, l'employeur doit consulter les institutions représentatives du personnel (comité d'entreprise, délégation unique du personnel ou délégués du personnel s'ils existent), et en l'absence de représentants, informer directement les salariés du projet. Il doit également consulter le CHSCT si des mesures affectent les conditions de travail.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement les deux obligations principales de la référence (consultation des représentants du personnel avec information détaillée, ou information directe des salariés en leur absence), et ajoute une précision complémentaire exacte sur le CHSCT sans contredire le fond de la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition non mentionnée dans la référence (consultation du CHSCT si des mesures affectent les conditions de travail), ce qui constitue un ajout d'étape procédurale que la référence ne mentionne pas.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2459,7 +2459,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de répondre en invoquant un manque de précision, alors que la référence fournit une réponse claire sur la date d'application de l'accord concerné.",
+      "judgeReason": "La candidate refuse de répondre alors que la référence donne une réponse claire sur la date d'application de l'accord.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2489,7 +2489,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même fréquence (tous les 5 ans) et le même contexte (négociations sur les classifications) que la référence, avec des détails supplémentaires exacts sur l'objet de l'analyse (coefficients et postes de travail).",
+      "judgeReason": "La candidate affirme la même fréquence (tous les 5 ans), le même contexte (négociations sur les classifications) et la même obligation (analyser, identifier et corriger les critères discriminatoires), avec simplement une précision supplémentaire non contradictoire sur les \"coefficients et postes de travail\".",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2521,7 +2521,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate identifie exactement les quatre mêmes domaines que la référence (embauche, rémunération, promotion et formation professionnelle), les détails supplémentaires sur leur caractère prioritaire n'altérant pas la justesse de la réponse.",
+      "judgeReason": "La candidate énonce les quatre mêmes domaines que la référence (embauche, rémunération, promotion, formation professionnelle) et ajoute seulement du contexte explicatif sans modifier le contenu factuel ni ajouter de conditions ou obligations supplémentaires.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2554,7 +2554,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que le FAFIEC organise la gestion en 8 sections principales et énumère les mêmes sections que la référence, avec une formulation légèrement différente mais équivalente sur le fond.",
+      "judgeReason": "La candidate affirme correctement les 8 sections principales et les énumère toutes, avec une reformulation mineure acceptable (\"FCP conventionnelle\" au lieu de \"FCP\") et sans mentionner le détail des sous-sections qui n'affecte pas le décompte principal.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2587,7 +2587,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate commence par \"Non\" alors que la référence indique clairement \"Oui\", créant une contradiction frontale sur la possibilité de refus, même si elle mentionne ensuite correctement les conditions de dispense.",
+      "judgeReason": "La candidate commence par affirmer \"Non, un salarié ne peut pas refuser\" alors que la référence répond clairement \"Oui\" avec une condition. Cette contradiction initiale induit le lecteur en erreur, même si la suite rétablit partiellement l'information correcte.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2619,7 +2619,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate indique une date précise (1er avril 2025) alors que la référence stipule que l'avenant prend effet à compter de sa signature sous réserve du droit d'opposition, sans mentionner cette date spécifique.",
+      "judgeReason": "La candidate donne une date précise (1er avril 2025) alors que la référence indique que l'avenant prend effet à compter de la date de sa signature, sous réserve du droit d'opposition, sans mentionner cette date spécifique.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2651,7 +2651,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate indique une date d'entrée en vigueur du 1er avril 2025, alors que la référence précise que c'est le 1er janvier 2020, soit une contradiction factuelle sur la date.",
+      "judgeReason": "La candidate indique une date d'entrée en vigueur différente (1er avril 2025) de celle mentionnée dans la référence (1er janvier 2020).",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2682,8 +2682,8 @@
       "actual": "Selon la convention, les entreprises sont encouragées à mettre en place des modalités d'apprentissage rapides et souples comme la formation en situation de travail et la formation à distance, ainsi que des parcours innovants combinant des séquences collectives en présentiel, des séquences en distanciel (E-learning, MOOC, SPOC), des séquences d'accompagnement individualisé (mentoring, compagnonnage) et des séquences en situation de travail. Le plan de développement des compétences peut également inclure des bilans de compétences, des actions de validation des acquis de l'expérience et des formations par alternance.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement tous les éléments principaux de la référence (modalités rapides et souples, formation en situation de travail, formation à distance, parcours innovants avec leurs différentes séquences) et ajoute des informations complémentaires exactes sans contredire le fond de la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des éléments non mentionnés dans la référence (bilans de compétences, actions de validation des acquis de l'expérience, formations par alternance) qui engagent le lecteur au-delà de ce que la référence affirme.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2716,7 +2716,7 @@
       "recallAtK": 1,
       "mrr": 0.2,
       "answerCorrect": false,
-      "judgeReason": "La candidate refuse de répondre en invoquant une ambiguïté, alors que la référence donne une réponse claire (durée indéterminée), ce qui constitue une omission de l'élément central demandé.",
+      "judgeReason": "La candidate refuse de répondre en invoquant une ambiguïté alors que la référence donne une réponse claire et directe (\"Pour une durée indéterminée\"), ce qui constitue un cas où elle reste trop vague et n'engage rien alors que la référence répond.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2746,7 +2746,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate énonce exactement les trois mêmes domaines prioritaires que la référence (qualité du sommeil, alimentation, sensibilisation aux addictions) avec une formulation légèrement différente mais équivalente sur le fond.",
+      "judgeReason": "La candidate énumère exactement les trois mêmes domaines prioritaires que la référence, simplement reformulés dans une phrase complète sans modification du contenu.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2778,8 +2778,8 @@
       "actual": "Selon les extraits fournis, la signature doit être électronique et doit répondre aux exigences du règlement européen n° 910-2014 du 23 juillet 2014 et de l'article 1367 du code civil. Un dispositif de signature électronique conforme à ces normes doit être mis en place par la partie la plus diligente.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement les mêmes éléments que la référence (signature électronique, règlement européen n° 910-2014 du 23 juillet 2014, article 1367 du code civil), avec simplement un détail supplémentaire exact sur la mise en place du dispositif.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition procédurale (\"Un dispositif de signature électronique conforme à ces normes doit être mis en place par la partie la plus diligente\") que la référence ne mentionne pas.",
       "citationCorrectness": 0.4,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2814,7 +2814,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement les mêmes bases légales que la référence (article L. 912-1 du code de la sécurité sociale avec ses décrets d'application et article 1.2 de l'accord de branche du 7 octobre 2015 modifié), avec une formulation légèrement différente mais un contenu identique sur le fond.",
+      "judgeReason": "La candidate reprend exactement les mêmes bases légales que la référence (article L. 912-1 du code de la sécurité sociale et ses décrets d'application, article 1.2 de l'accord de branche du 7 octobre 2015 modifié), simplement reformulée dans une phrase complète qui répond directement à la question.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2845,8 +2845,8 @@
       "actual": "Les entreprises relevant de la convention collective nationale des bureaux d'études techniques, cabinets d'ingénieurs-conseils, sociétés de conseil doivent verser une contribution annuelle égale à 0,2 ‰ (deux dixièmes de millième) de la masse salariale brute au 31 décembre de l'exercice de l'année précédente déclarée dans la DSN au cours de l'année considérée.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate indique le même taux de contribution (0,2 ‰ de la masse salariale brute) que la référence, avec des précisions supplémentaires exactes sur les modalités de calcul qui ne contredisent pas l'information principale.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition temporelle et procédurale (\"au 31 décembre de l'exercice de l'année précédente déclarée dans la DSN au cours de l'année considérée\") que la référence ne mentionne pas, engageant ainsi le lecteur sur des modalités de calcul non présentes dans la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2879,7 +2879,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement le taux de 0,2 ‰ de la masse salariale mentionné dans la référence, avec une précision supplémentaire correcte de la conversion en pourcentage (0,02%).",
+      "judgeReason": "La candidate reprend exactement le taux de 0,2 ‰ de la référence et ajoute simplement la conversion en pourcentage (0,02 %) qui est mathématiquement équivalente, sans modifier le fond ni ajouter de condition ou obligation supplémentaire.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2912,7 +2912,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate identifie correctement l'opérateur de compétences \"Atlas, Soutenir les compétences\" et ajoute des informations complémentaires exactes (secteurs couverts et date d'agrément) sans contredire la référence.",
+      "judgeReason": "La candidate donne le nom exact \"Atlas, Soutenir les compétences\" mentionné dans la référence, et ajoute des précisions factuelles (secteurs couverts, date d'agrément) qui n'engagent pas le lecteur différemment ni ne contredisent la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -2945,7 +2945,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de donner le délai de 3 mois indiqué dans la référence, alors que la question porte sur un accord spécifique (\"cet accord\") pour lequel la référence fournit une réponse précise.",
+      "judgeReason": "La candidate refuse de répondre en invoquant plusieurs accords possibles, alors que la référence donne une réponse précise de 3 mois, ce qui constitue un refus de répondre face à une référence qui répond clairement.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -2975,7 +2975,7 @@
       "recallAtK": 0,
       "mrr": 0,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de répondre en invoquant un manque de précision, alors que la référence fournit une réponse claire et précise sur la date d'effet de l'accord concerné.",
+      "judgeReason": "La candidate refuse de répondre en invoquant l'insuffisance des informations alors que la référence donne une réponse précise et claire sur la date d'effet de l'accord.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -3004,8 +3004,8 @@
       "actual": "Le délai minimum à respecter est de **3 mois** de préavis. Ce préavis doit être donné à toutes les organisations signataires par lettre recommandée avec accusé de réception, sous peine de nullité.",
       "recallAtK": 0,
       "mrr": 0,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de 3 mois et les mêmes modalités (préavis à toutes les organisations signataires par lettre recommandée avec accusé de réception) que la référence, avec un détail supplémentaire exact sur la sanction en cas de non-respect.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition \"sous peine de nullité\" que la référence ne mentionne pas, ce qui engage le lecteur sur une conséquence juridique non établie par la référence.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3039,7 +3039,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement les mêmes droits que la référence (2 jours de congés payés supplémentaires et remboursement des frais sur justificatifs), avec une formulation équivalente.",
+      "judgeReason": "La candidate affirme exactement les mêmes droits que la référence (2 jours de congés supplémentaires et remboursement des frais sur justificatifs), avec une simple reformulation (\"congés payés\" au lieu de \"vacances\").",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3074,7 +3074,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement les mêmes éléments que la référence (deux jours d'absence exceptionnelle, non déductibles des congés, sans réduction de salaire) avec simplement des détails supplémentaires exacts sur les conditions d'application.",
+      "judgeReason": "La candidate affirme les mêmes éléments que la référence (deux jours, absence exceptionnelle, non déductibles des congés, sans réduction de salaire) et ajoute seulement une précision procédurale sur la possibilité d'accoler un arrêt maladie qui n'engage pas le lecteur sur une obligation ou condition supplémentaire.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3109,7 +3109,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement les deux éléments exigibles (attestation sur l'honneur pour la conformité électrique et attestation d'assurance couvrant l'activité professionnelle) avec une formulation équivalente sur le fond.",
+      "judgeReason": "La candidate reprend fidèlement les deux éléments exigibles (attestation sur l'honneur pour la conformité électrique et attestation d'assurance), avec une simple reformulation (\"de son lieu de télétravail\" au lieu de \"du lieu\") qui n'altère pas le sens.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3142,8 +3142,8 @@
       "actual": "L'employeur doit recevoir le salarié dans les 8 jours suivant l'émission de son alerte écrite concernant des difficultés d'organisation ou de charge de travail. À l'issue de cette entrevue, l'employeur doit formuler par écrit les mesures qui seront mises en place pour traiter la situation.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de 8 jours que la référence et précise correctement l'objet de l'alerte, avec des informations supplémentaires exactes sur la suite de la procédure qui ne contredisent pas la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une obligation (\"À l'issue de cette entrevue, l'employeur doit formuler par écrit les mesures qui seront mises en place\") que la référence ne mentionne pas.",
       "citationCorrectness": 0.5,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3176,8 +3176,8 @@
       "actual": "La période d'essai pour un ingénieur au coefficient 150 est de 4 mois maximum, et elle peut être renouvelée pour une durée de 4 mois maximum, soit une durée totale maximale de 8 mois, à condition que le renouvellement fasse l'objet d'un accord écrit du salarié et de l'employeur.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme les mêmes durées que la référence (4 mois + 4 mois = 8 mois maximum) et ajoute simplement une précision procédurale exacte sur l'accord écrit nécessaire au renouvellement, sans contredire le fond de la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition procédurale (\"à condition que le renouvellement fasse l'objet d'un accord écrit du salarié et de l'employeur\") que la référence ne mentionne pas.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3210,7 +3210,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence : l'employé doit être classé dans la catégorie la plus élevée, soit agent de maîtrise, avec en plus le principe général applicable qui justifie cette conclusion.",
+      "judgeReason": "La candidate affirme la même règle (classement dans la catégorie la plus élevée) et applique correctement le principe au cas concret (agent de maîtrise), sans ajouter de condition ou d'élément qui engagerait le lecteur au-delà de la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3242,7 +3242,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même distinction que la référence entre enquêteurs vacataires (qui peuvent refuser) et chargés d'enquête en CDI (qui doivent effectuer toutes les enquêtes), avec des détails supplémentaires exacts sur la subordination.",
+      "judgeReason": "La candidate affirme la même distinction que la référence (vacataires peuvent refuser, CDI doivent effectuer toutes les enquêtes) et ajoute seulement des précisions factuelles (\"sans avoir à en justifier le motif\", \"placé sous subordination exclusive\") qui n'ajoutent pas de conditions ou d'étapes procédurales contraignantes.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3275,7 +3275,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même durée exacte (vingt-quatre heures) que la référence, avec un ajout d'information contextuelle qui ne contredit pas l'élément central.",
+      "judgeReason": "La candidate affirme la même durée (vingt-quatre heures) que la référence, et la mention des conditions légales n'ajoute pas de condition restrictive qui engagerait le lecteur différemment.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3309,7 +3309,7 @@
       "recallAtK": 1,
       "mrr": 0.25,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate indique une date d'application au 1er avril 2025, alors que la référence précise que les nouvelles cotisations s'appliquent à effet du 1er juillet 2024, soit une différence de 9 mois.",
+      "judgeReason": "La candidate indique une date d'application du 1er avril 2025 alors que la référence précise le 1er juillet 2024, ce qui constitue une contradiction factuelle sur un élément central.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3342,7 +3342,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence : 8 semaines de congé prénatal avec possibilité d'augmentation de 2 semaines maximum pour atteindre 10 semaines au total.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence (8 semaines de base, possibilité d'augmentation de 2 semaines maximum pour atteindre 10 semaines), avec simplement une précision supplémentaire non engageante sur la compensation en période post-accouchement qui ne contredit ni n'ajoute de condition à la règle énoncée.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3378,7 +3378,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même droit fondamental que la référence (dommages et intérêts au moins égaux aux salaires jusqu'au terme du contrat, plus l'indemnité de fin de contrat), avec des détails supplémentaires exacts sur les motifs valables de rupture.",
+      "judgeReason": "La candidate affirme exactement les mêmes droits que la référence (dommages-intérêts égaux aux salaires jusqu'à la fin du contrat plus indemnité de fin de contrat), avec une simple reformulation (\"rémunérations\" au lieu de \"salaires\", \"sans préjudice de\" au lieu de \"plus\") et ajoute un rappel du contexte juridique qui n'engage pas le lecteur à une action supplémentaire.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3415,7 +3415,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": false,
-      "judgeReason": "La référence indique clairement qu'il faut transmettre une copie du jugement au directeur régional en cas de procédure collective, tandis que la réponse candidate refuse de répondre en prétextant un manque d'information, alors que cette information existe.",
+      "judgeReason": "La candidate refuse de répondre alors que la référence indique clairement qu'une copie du jugement doit être transmise au directeur régional en cas de procédure de sauvegarde, de redressement ou de liquidation judiciaire.",
       "citationCorrectness": 0,
       "refusalOutcome": "false-refusal",
       "retrievedIds": [
@@ -3448,8 +3448,8 @@
       "actual": "Selon le code du travail, si un salarié notifie par écrit à son employeur qu'il ne souhaite plus travailler le dimanche, son refus prend effet trois mois après cette notification écrite. Ce délai s'applique à défaut d'accord collectif qui pourrait prévoir des modalités différentes.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme le même délai de trois mois après notification écrite que la référence, avec des précisions supplémentaires exactes sur les modalités.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition (\"à défaut d'accord collectif qui pourrait prévoir des modalités différentes\") que la référence ne mentionne pas, ce qui engage le lecteur sur une réserve absente de la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3485,7 +3485,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement tous les critères mentionnés dans la référence (rapport population permanente/saisonnière, types d'hébergements touristiques, nombre de lits, capacité de stationnement) avec une formulation équivalente sur le fond.",
+      "judgeReason": "La candidate reprend fidèlement tous les critères mentionnés dans la référence avec une simple reformulation (population permanente/saisonnière au lieu d'habitants permanents/visiteurs saisonniers, logements meublés touristiques au lieu de pour touristes, stationnement automobile au lieu de capacité de stationnement) sans ajouter de conditions supplémentaires ni omettre d'éléments centraux.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3520,7 +3520,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que la durée minimale de chaque période non travaillée est d'une semaine, ce qui correspond exactement à l'information de la référence.",
+      "judgeReason": "La candidate affirme la même durée minimale (une semaine) et le même motif (raisons personnelles/besoins de vie personnelle) que la référence, avec une simple reformulation sans ajout de conditions supplémentaires.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3555,8 +3555,8 @@
       "actual": "Si votre temps de déplacement professionnel dépasse le temps normal de trajet entre votre domicile et votre lieu habituel de travail, votre employeur doit vous proposer une contrepartie soit sous forme de repos, soit sous forme financière. Cette contrepartie doit être déterminée par convention ou accord collectif de travail, ou à défaut par décision unilatérale de l'employeur prise après consultation du comité d'entreprise ou des délégués du personnel.",
       "recallAtK": 1,
       "mrr": 0.5,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme bien que l'employeur doit proposer une contrepartie sous forme de repos ou financière, ce qui correspond exactement à la référence, les détails supplémentaires sur les modalités de détermination étant complémentaires et exacts.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des conditions de procédure (détermination par convention collective, accord, ou décision unilatérale après consultation) que la référence ne mentionne pas, engageant ainsi le lecteur sur des étapes supplémentaires non présentes dans la référence.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3589,8 +3589,8 @@
       "actual": "L'employeur ne peut opposer aucune clause d'exclusivité pendant une durée d'un an au salarié qui crée ou reprend une entreprise, même en présence de stipulation contractuelle ou conventionnelle contraire. Ce délai d'un an court à compter soit de l'inscription au registre du commerce et des sociétés ou au répertoire des métiers, soit de la déclaration de début d'activité professionnelle agricole ou indépendante.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même durée d'un an et le même principe d'impossibilité d'opposer la clause d'exclusivité que la référence, avec des précisions supplémentaires exactes sur le point de départ du délai qui ne contredisent pas la référence.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une précision sur le point de départ du délai d'un an (\"court à compter soit de l'inscription...\") que la référence ne mentionne pas, engageant ainsi le lecteur sur une condition temporelle supplémentaire non présente dans la référence.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3625,7 +3625,7 @@
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate indique 1,5 mois de salaire alors que la référence établit clairement 7 mois de salaire (3 mois de base + 4 mois supplémentaires pour 5 ans d'ancienneté), ce qui constitue une différence majeure sur le montant dû.",
+      "judgeReason": "La candidate indique 1,5 mois de salaire alors que la référence établit clairement 7 mois de salaire pour 5 ans d'ancienneté, et elle confond l'accord de conciliation avec la rupture conventionnelle qui ont des barèmes différents.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3662,7 +3662,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement le délai minimum de quinze jours entre les deux réunions du CSE, avec des précisions supplémentaires exactes (référence légale et seuil d'effectif) qui ne contredisent pas la référence.",
+      "judgeReason": "La candidate affirme correctement le délai minimum de quinze jours entre les deux réunions, et les précisions sur le nombre de réunions et le seuil d'effectif sont des éléments contextuels qui n'ajoutent pas de condition à la règle du délai lui-même.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3698,7 +3698,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend fidèlement les deux modes de calcul (moyenne des 12 derniers mois ou tiers des 3 derniers mois), la règle d'ancienneté inférieure à un an, et le principe du choix de la formule la plus avantageuse, ce qui correspond exactement au fond de la référence.",
+      "judgeReason": "La candidate reprend fidèlement les deux modes de calcul (moyenne des 12 derniers mois ou tiers des 3 derniers mois), la règle d'ancienneté inférieure à un an, et le principe du choix de la formule la plus avantageuse, sans ajout de condition ni contradiction.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3735,8 +3735,8 @@
       "actual": "L'employeur doit informer l'administration à partir de 10 licenciements pour motif économique dans une même période de trente jours. Pour les licenciements de moins de 10 salariés, l'information est également obligatoire mais dans les huit jours suivant l'envoi des lettres de licenciement.",
       "recallAtK": 1,
       "mrr": 0.2,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement le seuil de 10 licenciements économiques sur 30 jours, identique à la référence, et ajoute des informations complémentaires exactes sans contredire l'élément central.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une obligation d'information pour les licenciements de moins de 10 salariés que la référence ne mentionne pas, alors que la question porte sur le seuil déclenchant l'obligation d'informer l'administration.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3772,7 +3772,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme la même limite de 60 heures par semaine maximum en cas de circonstances exceptionnelles que la référence, avec des détails supplémentaires exacts sur l'autorisation administrative.",
+      "judgeReason": "La candidate affirme la même limite de 60 heures par semaine en cas de circonstances exceptionnelles que la référence, sans ajouter de conditions engageantes ni contredire l'information principale.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3807,8 +3807,8 @@
       "actual": "Oui, l'autorité administrative peut intervenir pendant la procédure de licenciement collectif. Elle peut relever des irrégularités de procédure et formuler des observations sur les mesures sociales prévues, auxquelles l'employeur doit répondre.",
       "recallAtK": 0,
       "mrr": 0,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que l'administration peut intervenir pendant la procédure pour formuler des observations, notamment sur les mesures sociales et les aspects procéduraux, ce qui correspond au fond de la référence même si elle utilise des termes légèrement différents (\"relever des irrégularités\" au lieu de \"observations ou propositions sur le déroulement\").",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une obligation (\"auxquelles l'employeur doit répondre\") que la référence ne mentionne pas, et omet que l'administration envoie copie de ses observations au CSE et aux organisations syndicales.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3845,7 +3845,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement l'obligation légale énoncée dans la référence concernant la mise à disposition d'un moyen de transport pris en charge par l'employeur pour le retour au domicile.",
+      "judgeReason": "La candidate reprend exactement les mêmes éléments que la référence sans ajout, omission ou contradiction.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3880,8 +3880,8 @@
       "actual": "La demande de validation de l'accord ou d'homologation du document doit être adressée au directeur régional des entreprises, de la concurrence, de la consommation, du travail et de l'emploi par voie dématérialisée. En cas de procédure de sauvegarde, de redressement ou de liquidation judiciaire, cette demande doit être envoyée par voie dématérialisée au plus tard le lendemain de la dernière réunion du comité social et économique.",
       "recallAtK": 1,
       "mrr": 1,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme correctement que la demande doit être adressée par voie dématérialisée au directeur régional des entreprises, de la concurrence, de la consommation, du travail et de l'emploi, ce qui correspond exactement à la référence, les détails supplémentaires sur les procédures judiciaires étant des informations complémentaires exactes qui n'altèrent pas le fond.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute une condition de délai (\"au plus tard le lendemain de la dernière réunion du comité social et économique\") dans un cas spécifique de procédure collective que la référence ne mentionne pas.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3916,7 +3916,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate affirme qu'un avis du CSE est requis et que l'autorité administrative accorde l'autorisation, alors que la référence indique clairement que c'est le directeur régional qui donne son accord sur la base d'un rapport de l'inspecteur du travail, sans mentionner d'avis du CSE comme condition.",
+      "judgeReason": "La candidate affirme qu'un avis du CSE est requis et que l'autorité administrative accorde l'autorisation, alors que la référence indique clairement que c'est le directeur régional qui donne son accord sur la base d'un rapport de l'inspecteur du travail, sans mentionner d'avis du CSE comme condition préalable.",
       "citationCorrectness": 0,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3953,7 +3953,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence sur le fond : consultation régulière et détaillée du CSE, avec transmission des avis à l'autorité administrative, la précision \"sur la mise en œuvre de l'accord\" étant cohérente avec \"la façon dont se déroule\" la rupture conventionnelle collective.",
+      "judgeReason": "La candidate affirme la même chose que la référence avec une reformulation équivalente (\"mise en œuvre de l'accord portant rupture conventionnelle collective\" = \"façon dont se déroule une rupture conventionnelle collective\"), mentionne tous les éléments essentiels (CSE, consultation régulière et détaillée, transmission des avis à l'autorité administrative) sans ajouter de condition supplémentaire ni contredire la référence.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -3987,7 +3987,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement le même pourcentage (80%) et les mêmes éléments financés (coût pédagogique, frais de transport, repas et hébergement) que la référence, avec simplement l'ajout d'une source légale qui ne contredit pas l'information.",
+      "judgeReason": "La candidate affirme exactement la même chose que la référence (80% du coût pédagogique plus les frais annexes), avec simplement l'ajout d'une citation de source qui n'engage pas le lecteur différemment.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -4023,7 +4023,7 @@
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence concernant les deux destinataires (organisme de recouvrement des cotisations du régime général de sécurité sociale du ressort territorial de l'établissement et service de santé au travail), avec simplement une précision supplémentaire exacte sur la référence légale.",
+      "judgeReason": "La candidate affirme la même chose que la référence avec une simple reformulation et précise la source réglementaire sans ajouter de condition ou d'obligation supplémentaire qui engagerait le lecteur différemment.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -4058,8 +4058,8 @@
       "actual": "La durée maximale du congé de reclassement est de douze mois, pouvant être portée à vingt-quatre mois en cas de formation de reconversion professionnelle. Ce congé permet au salarié de bénéficier d'actions de formation et d'accompagnement pour sa recherche d'emploi, financées par l'employeur.",
       "recallAtK": 1,
       "mrr": 0.3333333333333333,
-      "answerCorrect": true,
-      "judgeReason": "La réponse candidate reprend exactement les durées de la référence (12 mois maximum, portés à 24 mois avec formation de reconversion) et ajoute des précisions complémentaires exactes sur le contenu du congé sans contredire l'information centrale.",
+      "answerCorrect": false,
+      "judgeReason": "La candidate ajoute des éléments non mentionnés dans la référence (actions d'accompagnement, financement par l'employeur) qui engagent le lecteur au-delà de ce que la référence affirme.",
       "citationCorrectness": 1,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -4096,7 +4096,7 @@
       "recallAtK": 1,
       "mrr": 1,
       "answerCorrect": false,
-      "judgeReason": "La réponse candidate refuse de donner le nombre de jours (25 ou 32) alors que la référence fournit une réponse claire et précise, ce qui constitue une omission de l'élément central demandé.",
+      "judgeReason": "La candidate refuse de répondre en invoquant des versions contradictoires, alors que la référence donne une réponse claire de vingt-cinq jours supplémentaires (ou trente-deux en cas d'adoptions multiples).",
       "citationCorrectness": 0.5,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -4133,7 +4133,7 @@
       "recallAtK": 1,
       "mrr": 0.5,
       "answerCorrect": true,
-      "judgeReason": "La réponse candidate affirme exactement la même chose que la référence sur le fond : émission d'un titre de perception par le ministre chargé de l'emploi, versement au Trésor public et recouvrement comme créances étrangères à l'impôt et au domaine, avec simplement une formulation légèrement différente (\"convention-cadre nationale\" au lieu d'\"accord-cadre national\").",
+      "judgeReason": "La candidate reformule fidèlement la référence en précisant le contexte (absence de convention-cadre dans les délais) et en ajoutant \"de revitalisation\" pour clarifier de quelle contribution il s'agit, sans contredire ni ajouter d'obligations supplémentaires.",
       "citationCorrectness": 0.6666666666666666,
       "refusalOutcome": "answered",
       "retrievedIds": [
@@ -4789,7 +4789,7 @@
     "recallAt5": 0.8833333333333333,
     "fullRecallAt5": 0.8833333333333333,
     "mrr": 0.7026388888888888,
-    "answerCorrectness": 0.8166666666666667,
+    "answerCorrectness": 0.5,
     "citationCorrectness": 0.5824999999999998,
     "refusalAccuracy": 1,
     "falseRefusalRate": 0.08333333333333333,
