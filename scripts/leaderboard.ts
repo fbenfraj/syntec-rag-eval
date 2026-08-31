@@ -89,15 +89,24 @@ lines.push(
   '',
   '## Answer quality',
   '',
-  '| rung | answer correctness | citation F1 | refusal accuracy | false-refusal rate |',
-  '|---|---|---|---|---|',
+  'Answer correctness is a **range**, not a number: the same answers graded by a strict and a',
+  'lenient rubric. The two disagree on about a third of answers, and no qualified annotator has',
+  'adjudicated between them, so the spread is the honest uncertainty. `wrong under both` is the',
+  'part that does not depend on the rubric — answers that are wrong on any reading.',
+  '',
+  '| rung | answer correctness | wrong under both | rubric-dependent | citation F1 | refusal accuracy | false-refusal rate |',
+  '|---|---|---|---|---|---|---|',
 )
 
 ordered.forEach((run, index) => {
   const previous = index === 0 ? null : ordered[index - 1]!.aggregates
   const a = run.aggregates
+  const range =
+    a.answerCorrectnessLenient === null
+      ? pct(a.answerCorrectness)
+      : `${pct(a.answerCorrectness)} – ${pct(a.answerCorrectnessLenient)}`
   lines.push(
-    `| \`${run.config}\` | ${pct(a.answerCorrectness)}${delta(a.answerCorrectness, previous?.answerCorrectness ?? null)} | ` +
+    `| \`${run.config}\` | ${range} | ${pct(a.answerWrongUnderBoth)} | ${pct(a.answerRubricDependent)} | ` +
       `${pct(a.citationCorrectness)}${delta(a.citationCorrectness, previous?.citationCorrectness ?? null)} | ${pct(a.refusalAccuracy)} | ${pct(a.falseRefusalRate)}${delta(a.falseRefusalRate, previous?.falseRefusalRate ?? null)} |`,
   )
 })
@@ -107,6 +116,21 @@ lines.push(
   'Refusal accuracy and false-refusal rate are always shown together. Either alone is easy to',
   'optimise and meaningless: a system that refuses every question scores 100% on the first and',
   '100% on the second.',
+  '',
+  '### Why correctness is a range and the other columns are not',
+  '',
+  'Every other number here is checkable without knowing French labour law. Gold citations are',
+  'correct by construction — each question was written from the article it cites — so recall,',
+  'MRR and citation F1 rest on nothing anyone had to remember. The unanswerable questions were',
+  'verified mechanically against the corpus, so the refusal columns stand on the same footing.',
+  '',
+  'Answer correctness is the exception: deciding whether an answer matches the reference needs',
+  'someone who knows the domain, and no such annotator worked on this. A first calibration',
+  'attempt scored Cohen\'s kappa 0.489 against a non-expert reader, which is not a usable',
+  'agreement, so the judge was left unvalidated rather than certified on a bad sample.',
+  '',
+  'What it would take to close this: about two hours from someone who works with the Syntec',
+  'agreement, grading 60 sampled answers. Until then the range stands.',
   '',
   '## Cost and latency',
   '',

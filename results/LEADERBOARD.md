@@ -23,18 +23,38 @@ lower is better.
 
 ## Answer quality
 
-| rung | answer correctness | citation F1 | refusal accuracy | false-refusal rate |
-|---|---|---|---|---|
-| `baseline` | 45.0% | 58.7% | 77.3% | 15.0% |
-| `article` | 46.7% (+1.7) | 57.9% (−0.9) | 100.0% | 10.8% (−4.2) |
-| `hybrid` | 45.8% (−0.8) | 58.2% (+0.3) | 100.0% | 16.7% (+5.8) |
-| `rerank` | 49.2% (+3.3) | 59.9% (+1.7) | 100.0% | 5.8% (−10.8) |
-| `rewrite` | 50.0% (+0.8) | 58.2% (−1.7) | 100.0% | 8.3% (+2.5) |
-| `filtered` | 44.2% (−5.8) | 69.7% (+11.4) | 100.0% | 8.3% (=) |
+Answer correctness is a **range**, not a number: the same answers graded by a strict and a
+lenient rubric. The two disagree on about a third of answers, and no qualified annotator has
+adjudicated between them, so the spread is the honest uncertainty. `wrong under both` is the
+part that does not depend on the rubric — answers that are wrong on any reading.
+
+| rung | answer correctness | wrong under both | rubric-dependent | citation F1 | refusal accuracy | false-refusal rate |
+|---|---|---|---|---|---|---|
+| `baseline` | 45.0% – 76.7% | 23.3% | 31.7% | 58.7% | 77.3% | 15.0% |
+| `article` | 46.7% – 80.8% | 19.2% | 34.2% | 57.9% (−0.9) | 100.0% | 10.8% (−4.2) |
+| `hybrid` | 45.8% – 74.2% | 25.8% | 28.3% | 58.2% (+0.3) | 100.0% | 16.7% (+5.8) |
+| `rerank` | 49.2% – 81.7% | 18.3% | 32.5% | 59.9% (+1.7) | 100.0% | 5.8% (−10.8) |
+| `rewrite` | 50.0% – 81.7% | 18.3% | 31.7% | 58.2% (−1.7) | 100.0% | 8.3% (+2.5) |
+| `filtered` | 44.2% – 80.0% | 20.0% | 35.8% | 69.7% (+11.4) | 100.0% | 8.3% (=) |
 
 Refusal accuracy and false-refusal rate are always shown together. Either alone is easy to
 optimise and meaningless: a system that refuses every question scores 100% on the first and
 100% on the second.
+
+### Why correctness is a range and the other columns are not
+
+Every other number here is checkable without knowing French labour law. Gold citations are
+correct by construction — each question was written from the article it cites — so recall,
+MRR and citation F1 rest on nothing anyone had to remember. The unanswerable questions were
+verified mechanically against the corpus, so the refusal columns stand on the same footing.
+
+Answer correctness is the exception: deciding whether an answer matches the reference needs
+someone who knows the domain, and no such annotator worked on this. A first calibration
+attempt scored Cohen's kappa 0.489 against a non-expert reader, which is not a usable
+agreement, so the judge was left unvalidated rather than certified on a bad sample.
+
+What it would take to close this: about two hours from someone who works with the Syntec
+agreement, grading 60 sampled answers. Until then the range stands.
 
 ## Cost and latency
 

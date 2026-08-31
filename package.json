@@ -29,7 +29,8 @@
     "site:data": "tsx scripts/site-data.ts",
     "judge:apply-calibration": "tsx scripts/apply-calibration.ts",
     "judge:prescreen": "tsx scripts/prescreen-calibration.ts",
-    "rejudge": "tsx scripts/rejudge.ts"
+    "rejudge": "tsx scripts/rejudge.ts",
+    "merge-rubrics": "tsx scripts/merge-rubrics.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",

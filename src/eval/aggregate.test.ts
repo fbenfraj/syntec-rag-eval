@@ -76,3 +76,29 @@ describe('percentile', () => {
     expect(percentile([], 0.5)).toBe(0)
   })
 })
+
+describe('answer correctness as a range', () => {
+  it('reports both rubrics and the spread between them', () => {
+    const rows = [
+      row({ answerCorrect: true, answerCorrectLenient: true }),
+      row({ answerCorrect: false, answerCorrectLenient: true }),
+      row({ answerCorrect: false, answerCorrectLenient: false }),
+      row({ answerCorrect: true, answerCorrectLenient: true }),
+    ]
+    const a = aggregate(rows)
+    expect(a.answerCorrectness).toBe(0.5)
+    expect(a.answerCorrectnessLenient).toBe(0.75)
+    expect(a.answerWrongUnderBoth).toBe(0.25)
+    expect(a.answerRubricDependent).toBe(0.25)
+  })
+
+  it('reports no lenient figure when only one rubric ran', () => {
+    expect(aggregate([row()]).answerCorrectnessLenient).toBeNull()
+  })
+
+  it('counts an answer wrong under both as wrong on any reading', () => {
+    const a = aggregate([row({ answerCorrect: false, answerCorrectLenient: false })])
+    expect(a.answerWrongUnderBoth).toBe(1)
+    expect(a.answerRubricDependent).toBe(0)
+  })
+})

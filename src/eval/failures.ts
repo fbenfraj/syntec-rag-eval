@@ -3,6 +3,7 @@ import type { EvalRow } from './run.js'
 export type FailureKind =
   | 'retrieval-miss'
   | 'generation-miss'
+  | 'rubric-dependent'
   | 'partial-retrieval-miss'
   | 'citation-miss'
   | 'stale-law'
@@ -28,6 +29,12 @@ export function classifyFailure(row: EvalRow): FailureKind | null {
   if (row.refusalOutcome === 'false-refusal') return 'false-refusal'
   if (row.refusalOutcome === 'missed-refusal') return 'missed-refusal'
 
+  // Where two reasonable rubrics disagree about an answer, and no qualified annotator has
+  // adjudicated, calling it a generation failure asserts more than is known. It gets its
+  // own bucket instead of being counted as wrong or quietly dropped.
+  const lenient = row.answerCorrectLenient
+  if (typeof lenient === 'boolean' && lenient !== row.answerCorrect) return 'rubric-dependent'
+
   if (!row.answerCorrect) {
     if (row.recallAtK === 0) return 'retrieval-miss'
     if (row.recallAtK < 1) return 'partial-retrieval-miss'
@@ -44,7 +51,8 @@ export function classifyFailure(row: EvalRow): FailureKind | null {
 export const FAILURE_DESCRIPTIONS: Record<FailureKind, string> = {
   'retrieval-miss': 'the governing article never reached the model — an indexing problem, not a model problem',
   'partial-retrieval-miss': 'some of the governing articles were retrieved, not all',
-  'generation-miss': 'the governing article was in context and the answer was still wrong',
+  'generation-miss': 'the governing article was in context and the answer was still wrong under either rubric',
+  'rubric-dependent': 'the two judge rubrics disagree — correctness here depends on what counts as correct, and no qualified annotator has decided',
   'citation-miss': 'the answer was right but cited the wrong articles',
   'stale-law': 'the answer was right but rested on an article that had already been repealed',
   'false-refusal': 'refused a question the corpus answers',

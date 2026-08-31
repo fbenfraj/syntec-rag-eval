@@ -1,4 +1,4 @@
-import { delta, loadSummary, pct } from '@/lib/results'
+import { delta, loadSummary, pct, range } from '@/lib/results'
 
 const REPO = 'https://github.com/fbenfraj/syntec-rag-eval'
 
@@ -27,8 +27,8 @@ export default function Page() {
           <span className="k">recall@5 · l’article qui tranche est retrouvé</span>
         </div>
         <div>
-          <span className="n">{pct(best.answerCorrectness)}</span>
-          <span className="k">réponses jugées correctes</span>
+          <span className="n">{pct(best.answerWrongUnderBoth)}</span>
+          <span className="k">réponses fausses quelle que soit la grille de correction</span>
         </div>
         <div>
           <span className="n">{pct(best.supersededRate)}</span>
@@ -60,7 +60,7 @@ export default function Page() {
               <th>palier</th>
               <th>ajoute</th>
               <th>recall@5</th>
-              <th>réponses</th>
+              <th>réponses correctes</th>
               <th>citations</th>
               <th>abrogés</th>
               <th>€ / question</th>
@@ -80,7 +80,7 @@ export default function Page() {
                       <span className={change.startsWith('+') ? 'up' : 'down'}>({change})</span>
                     )}
                   </td>
-                  <td className="num">{pct(rung.answerCorrectness)}</td>
+                  <td className="num">{range(rung.answerCorrectness, rung.answerCorrectnessLenient)}</td>
                   <td className="num">{pct(rung.citationCorrectness)}</td>
                   <td className="num">{pct(rung.supersededRate)}</td>
                   <td className="num">{rung.costEurPerQuery.toFixed(4)}</td>
@@ -96,6 +96,32 @@ export default function Page() {
         {delta(rungs[2]!.recallAt5, rungs[1]!.recallAt5)} points. Le résultat est publié tel quel :
         un tableau où chaque ligne améliore la précédente est un tableau qu’on n’a pas vraiment
         mesuré.
+      </p>
+
+      <h2>Pourquoi l’exactitude des réponses est une fourchette</h2>
+
+      <p>
+        Tous les autres chiffres de cette page sont vérifiables sans connaître le droit du travail.
+        Les citations attendues sont justes par construction — chaque question a été écrite à partir
+        de l’article qu’elle cite — donc le recall et le F1 de citation ne reposent sur la mémoire de
+        personne. Les questions sans réponse ont été vérifiées mécaniquement contre le corpus.
+      </p>
+
+      <p>
+        L’exactitude des réponses est la seule exception : décider si une réponse dit la même chose
+        que la référence demande quelqu’un qui connaît le domaine, et personne de qualifié n’a
+        annoté ce jeu. Une première tentative de calibration a donné un kappa de Cohen de 0,489
+        face à un lecteur non spécialiste — un accord trop faible pour valider quoi que ce soit.
+        Le juge est donc resté non validé plutôt que certifié sur un mauvais échantillon.
+      </p>
+
+      <p>
+        La fourchette publiée est l’écart entre une grille stricte et une grille indulgente
+        appliquées aux mêmes réponses. Les deux divergent sur environ un tiers des cas
+        ({pct(best.answerRubricDependent)} ici). Ce qui ne dépend pas de la grille :{' '}
+        <strong>{pct(best.answerWrongUnderBoth)}</strong> des réponses sont fausses dans les deux
+        lectures. Ce qu’il faudrait pour trancher : environ deux heures d’une personne qui pratique
+        la convention Syntec, sur 60 réponses tirées au sort.
       </p>
 
       <h2>Ce que le filtre de date change</h2>

@@ -10,6 +10,9 @@ export interface RungSummary {
   recallAt5: number
   mrr: number
   answerCorrectness: number
+  answerCorrectnessLenient: number | null
+  answerWrongUnderBoth: number
+  answerRubricDependent: number
   citationCorrectness: number
   refusalAccuracy: number | null
   falseRefusalRate: number | null
@@ -36,6 +39,11 @@ export function loadSummary(): Summary {
 }
 
 export const pct = (value: number | null): string => (value === null ? 'n/a' : `${(value * 100).toFixed(1)} %`)
+
+/** Correctness is a range because two rubrics disagree and nobody qualified has adjudicated. */
+export function range(strict: number, lenient: number | null): string {
+  return lenient === null ? pct(strict) : `${pct(strict)} – ${pct(lenient)}`
+}
 
 export function delta(current: number, previous: number): string {
   const difference = (current - previous) * 100

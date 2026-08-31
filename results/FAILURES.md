@@ -7,8 +7,9 @@ Generator `claude-haiku-4-5-20251001`, judge `claude-sonnet-4-5-20250929`.
 
 | failure | n | share | what it means |
 |---|---|---|---|
-| `retrieval-miss` | 5 | 3.5% | the governing article never reached the model — an indexing problem, not a model problem |
-| `generation-miss` | 52 | 36.6% | the governing article was in context and the answer was still wrong |
+| `retrieval-miss` | 4 | 2.8% | the governing article never reached the model — an indexing problem, not a model problem |
+| `generation-miss` | 10 | 7.0% | the governing article was in context and the answer was still wrong under either rubric |
+| `rubric-dependent` | 43 | 30.3% | the two judge rubrics disagree — correctness here depends on what counts as correct, and no qualified annotator has decided |
 | `false-refusal` | 10 | 7.0% | refused a question the corpus answers |
 | `citation-miss` | 1 | 0.7% | the answer was right but cited the wrong articles |
 
@@ -17,7 +18,7 @@ means the governing article never reached the model, and no amount of prompting 
 The second means it was there and the answer was still wrong. A single accuracy number
 merges the two and points at neither.
 
-## `retrieval-miss` — 5
+## `retrieval-miss` — 4
 
 _the governing article never reached the model — an indexing problem, not a model problem_
 
@@ -109,31 +110,233 @@ _the governing article never reached the model — an indexing problem, not a mo
 
 ---
 
-### q096 · override · tier 1
+## `generation-miss` — 10
 
-**Question.** Si une organisation syndicale veut arrêter d'appliquer cet accord, quel délai minimum doit-elle respecter avant de le faire ?
+_the governing article was in context and the answer was still wrong under either rubric_
 
-**Expected.** Un préavis minimal de 3 mois doit être donné à toutes les organisations signataires par lettre recommandée avec accusé de réception.
+### q038 · general · tier 1
 
-**Produced.** Le délai minimum à respecter est de **3 mois** de préavis. Ce préavis doit être donné à toutes les organisations signataires par lettre recommandée avec accusé de réception, sous peine de nullité.
+**Question.** Combien de temps minimum doit s'écouler entre deux réunions du comité social et économique lors d'une procédure de licenciement collectif ?
 
-**Required.** convention:47006884 (convention 7)
+**Expected.** Au moins quinze jours doivent séparer les deux réunions du comité social et économique.
 
-**Retrieved.** convention:47652071 (convention KALIARTI000047652071), convention:42668889 (convention 11), convention:47348436 (convention 4), convention:28465410 (convention 9.2), convention:47348355 (convention 25)
+**Produced.** Le délai minimum entre deux réunions du comité social et économique dépend de la taille de l'entreprise : quinze jours pour les entreprises d'au moins cinquante salariés, et quatorze jours pour celles employant moins de cinquante salariés.
 
-**Cited.** convention:47652071, convention:47348436, convention:47348355
+**Required.** code:L1233-30 (code L1233-30)
 
-**recall@5** 0.00 · **citation F1** 0.00
+**Retrieved.** code:L1233-30 (code L1233-30), code:L1233-8 (code L1233-8), code:L1233-29 (code L1233-29), code:L1235-7 (code L1235-7), code:L1233-28 (code L1233-28)
 
-**Judge.** La candidate ajoute une condition "sous peine de nullité" que la référence ne mentionne pas, ce qui engage le lecteur sur une conséquence juridique non établie par la référence.
+**Cited.** code:L1233-30, code:L1233-29
+
+**recall@5** 1.00 · **citation F1** 0.67
+
+**Judge.** La candidate ajoute une distinction selon la taille de l'entreprise (cinquante salariés) et mentionne un délai de quatorze jours que la référence ne contient pas, alors que celle-ci affirme simplement "au moins quinze jours" sans condition.
 
 **Analyse:**
 
 ---
 
-## `generation-miss` — 52
+### q044 · general · tier 1
 
-_the governing article was in context and the answer was still wrong_
+**Question.** Quand on calcule combien d'emplois ont vraiment disparu lors d'un licenciement collectif, qu'est-ce qu'on déduit du nombre initial de salariés licenciés ?
+
+**Expected.** On déduit le nombre de salariés dont le reclassement dans l'entreprise ou dans le groupe auquel elle appartient est acquis sur les bassins d'emploi affectés par le licenciement collectif, à l'issue de la procédure de consultation des représentants du personnel.
+
+**Produced.** On déduit du nombre initial de salariés licenciés le nombre de salariés dont le reclassement dans l'entreprise ou dans le groupe est acquis, ainsi que le nombre d'emplois pourvus en remplacement sur le même poste de travail. Le nombre d'emplois supprimés est donc égal au nombre de licenciements envisagés moins ces deux catégories de salariés.
+
+**Required.** code:D1233-43 (code D1233-43)
+
+**Retrieved.** code:D1233-43 (code D1233-43), code:D1233-48-2 (code D1233-48-2), code:L1233-87 (code L1233-87), code:D1233-45 (code D1233-45), code:L1233-84 (code L1233-84)
+
+**Cited.** code:D1233-43, code:D1233-48-2
+
+**recall@5** 1.00 · **citation F1** 0.67
+
+**Judge.** La candidate ajoute une condition non mentionnée dans la référence ("le nombre d'emplois pourvus en remplacement sur le même poste de travail") qui constitue une deuxième catégorie de déduction que la référence ne prévoit pas.
+
+**Analyse:**
+
+---
+
+### q066 · override · tier 1
+
+**Question.** À quelle fréquence la commission paritaire de suivi se réunit-elle pour faire le point sur l'application de l'accord ?
+
+**Expected.** La commission se réunit une fois par an afin d'établir un bilan de l'application de l'accord.
+
+**Produced.** La fréquence de réunion varie selon les accords : une commission se réunit une fois par an [convention:5851692], une autre six mois puis douze mois après l'entrée en vigueur, puis au terme de l'accord [convention:48150743], et une troisième au moins une fois par trimestre [convention:49300403].
+
+**Required.** convention:5851692 (convention KALIARTI000005851692)
+
+**Retrieved.** convention:5851692 (convention KALIARTI000005851692), convention:44185981 (convention KALIARTI000044185981), convention:48150743 (convention 7), convention:49300403 (convention 4.6), convention:20137458 (convention 6)
+
+**Cited.** convention:5851692, convention:48150743, convention:49300403
+
+**recall@5** 1.00 · **citation F1** 0.50
+
+**Judge.** La candidate refuse de répondre à la question posée en listant plusieurs fréquences différentes issues d'accords distincts, alors que la référence donne une réponse claire et précise (une fois par an) pour l'accord concerné par la question.
+
+**Analyse:**
+
+---
+
+### q075 · override · tier 1
+
+**Question.** Quel est le montant de la valeur du point pour un ingénieur classé en position 2.2 selon la nouvelle grille de rémunération ?
+
+**Expected.** La valeur du point est fixée à 19,81 € bruts pour les ingénieurs et cadres classés en position 2.2.
+
+**Produced.** Selon la nouvelle grille de rémunération la plus récente, la valeur du point pour un ingénieur classé en position 2.2 est de 20,21 € bruts, ce qui correspond à un salaire minimal brut de 2 627,30 €.
+
+**Required.** convention:25167921 (convention 1er)
+
+**Retrieved.** convention:23105065#table-1 (convention 1er), convention:19861271#table-1 (convention 1), convention:25167921 (convention 1er), convention:27757150 (convention 1er), convention:27757150#table-1 (convention 1er)
+
+**Cited.** convention:27757150#table-1
+
+**recall@5** 1.00 · **citation F1** 0.00
+
+**Judge.** La candidate indique 20,21 € alors que la référence précise 19,81 €, soit un montant différent.
+
+**Analyse:**
+
+---
+
+### q083 · override · tier 2
+
+**Question.** Un salarié en CDI peut-il refuser de s'inscrire à la complémentaire santé de l'entreprise s'il a déjà une assurance individuelle personnelle ?
+
+**Expected.** Oui, si l'acte mettant en place les garanties le prévoit. Un salarié couvert par une assurance individuelle de frais de santé au moment de la mise en place des garanties ou de son embauche peut être dispensé d'adhésion, mais cette dispense ne joue que jusqu'à l'échéance de son contrat individuel.
+
+**Produced.** Non, un salarié en CDI ne peut pas refuser de s'inscrire à la complémentaire santé obligatoire de l'entreprise simplement parce qu'il dispose d'une assurance individuelle personnelle. Cependant, selon l'extrait [convention:31964509], une dispense est possible si le salarié justifie d'une assurance individuelle de frais de santé au moment de la mise en place des garanties ou de l'embauche, mais cette dispense ne joue que jusqu'à l'échéance du contrat individuel.
+
+**Required.** convention:31964509 (convention 1.1.2)
+
+**Retrieved.** convention:31964509 (convention 1.1.2), convention:32730106 (convention 3.3), convention:44040191 (convention 3.3), convention:31964541 (convention 4), convention:32730102 (convention 3.1)
+
+**Cited.** convention:31964509
+
+**recall@5** 1.00 · **citation F1** 1.00
+
+**Judge.** La candidate commence par affirmer "Non, un salarié ne peut pas refuser" alors que la référence répond clairement "Oui" avec une condition. Cette contradiction initiale induit le lecteur en erreur, même si la suite rétablit partiellement l'information correcte.
+
+**Analyse:**
+
+---
+
+### q105 · override · tier 1
+
+**Question.** À partir de quand les nouvelles cotisations de complémentaire santé s'appliqueront-elles dans cette branche ?
+
+**Expected.** Les nouvelles cotisations s'appliqueront à effet du 1er juillet 2024.
+
+**Produced.** Les nouvelles cotisations de complémentaire santé s'appliqueront à compter du 1er avril 2025 dans la branche des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils (IDCC 1486).
+
+**Required.** convention:49300385 (convention KALIARTI000049300385)
+
+**Retrieved.** convention:51447102 (convention KALIARTI000051447102), convention:47551148 (convention KALIARTI000047551148), convention:51537726 (convention KALIARTI000051537726), convention:49300385 (convention KALIARTI000049300385), convention:43145712 (convention 3)
+
+**Cited.** convention:51537726, convention:51447102
+
+**recall@5** 1.00 · **citation F1** 0.00
+
+**Judge.** La candidate indique une date d'application du 1er avril 2025 alors que la référence précise le 1er juillet 2024, ce qui constitue une contradiction factuelle sur un élément central.
+
+**Analyse:**
+
+---
+
+### q114 · dated · tier 2
+
+**Question.** Un salarié qui travaille depuis 5 ans dans l'entreprise conclut un accord de conciliation avec son employeur. Combien de mois de salaire lui sont dus au minimum selon le barème légal ?
+
+**Expected.** 7 mois de salaire : 3 mois de base pour une ancienneté d'au moins un an, plus 4 mois supplémentaires (un mois par année au-delà de la première année, jusqu'à 8 ans d'ancienneté).
+
+**Produced.** Selon le barème légal défini à l'article D1235-21, un salarié ayant 5 ans d'ancienneté révolus reçoit un minimum de 1,5 mois de salaire en cas d'accord de conciliation. Ce montant correspond à la table de l'article L1235-3 qui s'applique aux accords de conciliation.
+
+**Required.** code:D1235-21 (code D1235-21)
+
+**Retrieved.** code:D1235-21 (code D1235-21), code:L1235-3#table-2 (code L1235-3), code:L1235-3#table-1 (code L1235-3), code:L1235-1 (code L1235-1), convention:5851325 (convention 27)
+
+**Cited.** code:L1235-3#table-2
+
+**recall@5** 1.00 · **citation F1** 0.00
+
+**Judge.** La candidate indique 1,5 mois de salaire alors que la référence établit clairement 7 mois de salaire pour 5 ans d'ancienneté (3 mois de base + 4 mois supplémentaires).
+
+**Analyse:**
+
+---
+
+### q115 · dated · tier 1
+
+**Question.** Combien de temps minimum doit s'écouler entre deux réunions du comité social et économique lors d'une procédure de licenciement collectif ?
+
+**Expected.** Au moins quinze jours doivent séparer les deux réunions du comité social et économique.
+
+**Produced.** Le délai minimum entre deux réunions du comité social et économique dépend de la taille de l'entreprise : quinze jours pour les entreprises d'au moins cinquante salariés, et quatorze jours pour celles employant moins de cinquante salariés.
+
+**Required.** code:L1233-30 (code L1233-30)
+
+**Retrieved.** code:L1233-30 (code L1233-30), code:L1233-8 (code L1233-8), code:L1233-29 (code L1233-29), code:L1235-7 (code L1235-7), code:L1233-28 (code L1233-28)
+
+**Cited.** code:L1233-30, code:L1233-29
+
+**recall@5** 1.00 · **citation F1** 0.67
+
+**Judge.** La candidate ajoute une distinction selon la taille de l'entreprise (cinquante salariés) et mentionne un délai de quatorze jours que la référence ne contient pas, alors que celle-ci affirme simplement "au moins quinze jours" sans condition.
+
+**Analyse:**
+
+---
+
+### q117 · dated · tier 1
+
+**Question.** À partir de combien de licenciements économiques dans le même mois l'employeur doit-il informer l'administration ?
+
+**Expected.** À partir de dix salariés licenciés pour motif économique dans une même période de trente jours.
+
+**Produced.** L'employeur doit informer l'administration à partir de **moins de dix salariés** licenciés pour motif économique dans une même période de trente jours (information dans les huit jours). Pour **au moins dix salariés** dans la même période, il doit notifier un projet de licenciement avant la première réunion avec les représentants du personnel.
+
+**Required.** code:L1233-46 (code L1233-46)
+
+**Retrieved.** code:L1233-19 (code L1233-19), code:D1233-3 (code D1233-3), code:L1233-46 (code L1233-46), code:R1238-2 (code R1238-2), code:L1233-60 (code L1233-60)
+
+**Cited.** code:L1233-19, code:D1233-3, code:L1233-46
+
+**recall@5** 1.00 · **citation F1** 0.50
+
+**Judge.** La candidate affirme que l'obligation d'informer l'administration commence à "moins de dix salariés", alors que la référence indique clairement "à partir de dix salariés", ce qui contredit directement le seuil établi par la référence.
+
+**Analyse:**
+
+---
+
+### q120 · dated · tier 1
+
+**Question.** Si mon entreprise veut faire travailler des salariés entre 21h et minuit, qu'est-ce que l'employeur doit obligatoirement prévoir pour les ramener chez eux ?
+
+**Expected.** L'employeur doit mettre à disposition un moyen de transport pris en charge par lui qui permet au salarié de regagner son lieu de résidence.
+
+**Produced.** L'employeur doit mettre à disposition un moyen de transport pris en charge par lui qui permet au salarié de regagner son lieu de résidence. Cependant, cette obligation ne s'applique que si un accord collectif d'entreprise, d'établissement, de branche ou territorial le prévoit.
+
+**Required.** code:L3122-19 (code L3122-19)
+
+**Retrieved.** code:L3122-19 (code L3122-19), code:L3122-4 (code L3122-4), code:L3122-20 (code L3122-20), convention:27661888 (convention 3.1), code:L3122-1 (code L3122-1)
+
+**Cited.** code:L3122-19
+
+**recall@5** 1.00 · **citation F1** 1.00
+
+**Judge.** La candidate ajoute une condition (existence d'un accord collectif) que la référence ne mentionne pas, ce qui transforme une obligation apparemment générale en une obligation conditionnelle.
+
+**Analyse:**
+
+---
+
+## `rubric-dependent` — 43
+
+_the two judge rubrics disagree — correctness here depends on what counts as correct, and no qualified annotator has decided_
 
 ### q001 · general · tier 2
 
@@ -465,28 +668,6 @@ _the governing article was in context and the answer was still wrong_
 
 ---
 
-### q038 · general · tier 1
-
-**Question.** Combien de temps minimum doit s'écouler entre deux réunions du comité social et économique lors d'une procédure de licenciement collectif ?
-
-**Expected.** Au moins quinze jours doivent séparer les deux réunions du comité social et économique.
-
-**Produced.** Le délai minimum entre deux réunions du comité social et économique dépend de la taille de l'entreprise : quinze jours pour les entreprises d'au moins cinquante salariés, et quatorze jours pour celles employant moins de cinquante salariés.
-
-**Required.** code:L1233-30 (code L1233-30)
-
-**Retrieved.** code:L1233-30 (code L1233-30), code:L1233-8 (code L1233-8), code:L1233-29 (code L1233-29), code:L1235-7 (code L1235-7), code:L1233-28 (code L1233-28)
-
-**Cited.** code:L1233-30, code:L1233-29
-
-**recall@5** 1.00 · **citation F1** 0.67
-
-**Judge.** La candidate ajoute une distinction selon la taille de l'entreprise (cinquante salariés) et mentionne un délai de quatorze jours que la référence ne contient pas, alors que celle-ci affirme simplement "au moins quinze jours" sans condition.
-
-**Analyse:**
-
----
-
 ### q041 · general · tier 2
 
 **Question.** Quand un établissement va fermer, quelles sont les principales obligations de l'employeur pour trouver quelqu'un qui pourrait le reprendre ?
@@ -548,28 +729,6 @@ _the governing article was in context and the answer was still wrong_
 **recall@5** 1.00 · **citation F1** 0.50
 
 **Judge.** La candidate ajoute une obligation (porter à la connaissance des salariés par affichage) que la référence ne mentionne pas, engageant ainsi le lecteur sur une exigence supplémentaire non présente dans la réponse de référence.
-
-**Analyse:**
-
----
-
-### q044 · general · tier 1
-
-**Question.** Quand on calcule combien d'emplois ont vraiment disparu lors d'un licenciement collectif, qu'est-ce qu'on déduit du nombre initial de salariés licenciés ?
-
-**Expected.** On déduit le nombre de salariés dont le reclassement dans l'entreprise ou dans le groupe auquel elle appartient est acquis sur les bassins d'emploi affectés par le licenciement collectif, à l'issue de la procédure de consultation des représentants du personnel.
-
-**Produced.** On déduit du nombre initial de salariés licenciés le nombre de salariés dont le reclassement dans l'entreprise ou dans le groupe est acquis, ainsi que le nombre d'emplois pourvus en remplacement sur le même poste de travail. Le nombre d'emplois supprimés est donc égal au nombre de licenciements envisagés moins ces deux catégories de salariés.
-
-**Required.** code:D1233-43 (code D1233-43)
-
-**Retrieved.** code:D1233-43 (code D1233-43), code:D1233-48-2 (code D1233-48-2), code:L1233-87 (code L1233-87), code:D1233-45 (code D1233-45), code:L1233-84 (code L1233-84)
-
-**Cited.** code:D1233-43, code:D1233-48-2
-
-**recall@5** 1.00 · **citation F1** 0.67
-
-**Judge.** La candidate ajoute une condition non mentionnée dans la référence ("le nombre d'emplois pourvus en remplacement sur le même poste de travail") qui constitue une deuxième catégorie de déduction que la référence ne prévoit pas.
 
 **Analyse:**
 
@@ -729,28 +888,6 @@ _the governing article was in context and the answer was still wrong_
 
 ---
 
-### q066 · override · tier 1
-
-**Question.** À quelle fréquence la commission paritaire de suivi se réunit-elle pour faire le point sur l'application de l'accord ?
-
-**Expected.** La commission se réunit une fois par an afin d'établir un bilan de l'application de l'accord.
-
-**Produced.** La fréquence de réunion varie selon les accords : une commission se réunit une fois par an [convention:5851692], une autre six mois puis douze mois après l'entrée en vigueur, puis au terme de l'accord [convention:48150743], et une troisième au moins une fois par trimestre [convention:49300403].
-
-**Required.** convention:5851692 (convention KALIARTI000005851692)
-
-**Retrieved.** convention:5851692 (convention KALIARTI000005851692), convention:44185981 (convention KALIARTI000044185981), convention:48150743 (convention 7), convention:49300403 (convention 4.6), convention:20137458 (convention 6)
-
-**Cited.** convention:5851692, convention:48150743, convention:49300403
-
-**recall@5** 1.00 · **citation F1** 0.50
-
-**Judge.** La candidate refuse de répondre à la question posée en listant plusieurs fréquences différentes issues d'accords distincts, alors que la référence donne une réponse claire et précise (une fois par an) pour l'accord concerné par la question.
-
-**Analyse:**
-
----
-
 ### q072 · override · tier 1
 
 **Question.** Si un salarié décède et laisse deux enfants à charge, l'un ayant 16 ans et l'autre 20 ans, quel pourcentage du salaire de référence sera versé pour chacun d'eux ?
@@ -773,28 +910,6 @@ _the governing article was in context and the answer was still wrong_
 
 ---
 
-### q075 · override · tier 1
-
-**Question.** Quel est le montant de la valeur du point pour un ingénieur classé en position 2.2 selon la nouvelle grille de rémunération ?
-
-**Expected.** La valeur du point est fixée à 19,81 € bruts pour les ingénieurs et cadres classés en position 2.2.
-
-**Produced.** Selon la nouvelle grille de rémunération la plus récente, la valeur du point pour un ingénieur classé en position 2.2 est de 20,21 € bruts, ce qui correspond à un salaire minimal brut de 2 627,30 €.
-
-**Required.** convention:25167921 (convention 1er)
-
-**Retrieved.** convention:23105065#table-1 (convention 1er), convention:19861271#table-1 (convention 1), convention:25167921 (convention 1er), convention:27757150 (convention 1er), convention:27757150#table-1 (convention 1er)
-
-**Cited.** convention:27757150#table-1
-
-**recall@5** 1.00 · **citation F1** 0.00
-
-**Judge.** La candidate indique 20,21 € alors que la référence précise 19,81 €, soit un montant différent.
-
-**Analyse:**
-
----
-
 ### q078 · override · tier 2
 
 **Question.** Que doit faire l'employeur avant de mettre en place du chômage partiel pour ses salariés ?
@@ -812,28 +927,6 @@ _the governing article was in context and the answer was still wrong_
 **recall@5** 1.00 · **citation F1** 0.67
 
 **Judge.** La candidate ajoute une condition non mentionnée dans la référence (consultation du CHSCT si des mesures affectent les conditions de travail), ce qui constitue un ajout d'étape procédurale que la référence ne mentionne pas.
-
-**Analyse:**
-
----
-
-### q083 · override · tier 2
-
-**Question.** Un salarié en CDI peut-il refuser de s'inscrire à la complémentaire santé de l'entreprise s'il a déjà une assurance individuelle personnelle ?
-
-**Expected.** Oui, si l'acte mettant en place les garanties le prévoit. Un salarié couvert par une assurance individuelle de frais de santé au moment de la mise en place des garanties ou de son embauche peut être dispensé d'adhésion, mais cette dispense ne joue que jusqu'à l'échéance de son contrat individuel.
-
-**Produced.** Non, un salarié en CDI ne peut pas refuser de s'inscrire à la complémentaire santé obligatoire de l'entreprise simplement parce qu'il dispose d'une assurance individuelle personnelle. Cependant, selon l'extrait [convention:31964509], une dispense est possible si le salarié justifie d'une assurance individuelle de frais de santé au moment de la mise en place des garanties ou de l'embauche, mais cette dispense ne joue que jusqu'à l'échéance du contrat individuel.
-
-**Required.** convention:31964509 (convention 1.1.2)
-
-**Retrieved.** convention:31964509 (convention 1.1.2), convention:32730106 (convention 3.3), convention:44040191 (convention 3.3), convention:31964541 (convention 4), convention:32730102 (convention 3.1)
-
-**Cited.** convention:31964509
-
-**recall@5** 1.00 · **citation F1** 1.00
-
-**Judge.** La candidate commence par affirmer "Non, un salarié ne peut pas refuser" alors que la référence répond clairement "Oui" avec une condition. Cette contradiction initiale induit le lecteur en erreur, même si la suite rétablit partiellement l'information correcte.
 
 **Analyse:**
 
@@ -905,6 +998,28 @@ _the governing article was in context and the answer was still wrong_
 
 ---
 
+### q096 · override · tier 1
+
+**Question.** Si une organisation syndicale veut arrêter d'appliquer cet accord, quel délai minimum doit-elle respecter avant de le faire ?
+
+**Expected.** Un préavis minimal de 3 mois doit être donné à toutes les organisations signataires par lettre recommandée avec accusé de réception.
+
+**Produced.** Le délai minimum à respecter est de **3 mois** de préavis. Ce préavis doit être donné à toutes les organisations signataires par lettre recommandée avec accusé de réception, sous peine de nullité.
+
+**Required.** convention:47006884 (convention 7)
+
+**Retrieved.** convention:47652071 (convention KALIARTI000047652071), convention:42668889 (convention 11), convention:47348436 (convention 4), convention:28465410 (convention 9.2), convention:47348355 (convention 25)
+
+**Cited.** convention:47652071, convention:47348436, convention:47348355
+
+**recall@5** 0.00 · **citation F1** 0.00
+
+**Judge.** La candidate ajoute une condition "sous peine de nullité" que la référence ne mentionne pas, ce qui engage le lecteur sur une conséquence juridique non établie par la référence.
+
+**Analyse:**
+
+---
+
 ### q100 · override · tier 1
 
 **Question.** Quel délai l'employeur a-t-il pour recevoir un salarié qui a signalé par écrit des difficultés concernant son organisation du travail ou sa charge de travail ?
@@ -966,28 +1081,6 @@ _the governing article was in context and the answer was still wrong_
 **recall@5** 1.00 · **citation F1** 1.00
 
 **Judge.** La candidate ajoute une condition "dans les conditions de l'article L. 6313-4 du code du travail" que la référence ne mentionne pas, ce qui engage le lecteur vers des conditions supplémentaires non présentes dans la référence.
-
-**Analyse:**
-
----
-
-### q105 · override · tier 1
-
-**Question.** À partir de quand les nouvelles cotisations de complémentaire santé s'appliqueront-elles dans cette branche ?
-
-**Expected.** Les nouvelles cotisations s'appliqueront à effet du 1er juillet 2024.
-
-**Produced.** Les nouvelles cotisations de complémentaire santé s'appliqueront à compter du 1er avril 2025 dans la branche des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils (IDCC 1486).
-
-**Required.** convention:49300385 (convention KALIARTI000049300385)
-
-**Retrieved.** convention:51447102 (convention KALIARTI000051447102), convention:47551148 (convention KALIARTI000047551148), convention:51537726 (convention KALIARTI000051537726), convention:49300385 (convention KALIARTI000049300385), convention:43145712 (convention 3)
-
-**Cited.** convention:51537726, convention:51447102
-
-**recall@5** 1.00 · **citation F1** 0.00
-
-**Judge.** La candidate indique une date d'application du 1er avril 2025 alors que la référence précise le 1er juillet 2024, ce qui constitue une contradiction factuelle sur un élément central.
 
 **Analyse:**
 
@@ -1059,50 +1152,6 @@ _the governing article was in context and the answer was still wrong_
 
 ---
 
-### q114 · dated · tier 2
-
-**Question.** Un salarié qui travaille depuis 5 ans dans l'entreprise conclut un accord de conciliation avec son employeur. Combien de mois de salaire lui sont dus au minimum selon le barème légal ?
-
-**Expected.** 7 mois de salaire : 3 mois de base pour une ancienneté d'au moins un an, plus 4 mois supplémentaires (un mois par année au-delà de la première année, jusqu'à 8 ans d'ancienneté).
-
-**Produced.** Selon le barème légal défini à l'article D1235-21, un salarié ayant 5 ans d'ancienneté révolus reçoit un minimum de 1,5 mois de salaire en cas d'accord de conciliation. Ce montant correspond à la table de l'article L1235-3 qui s'applique aux accords de conciliation.
-
-**Required.** code:D1235-21 (code D1235-21)
-
-**Retrieved.** code:D1235-21 (code D1235-21), code:L1235-3#table-2 (code L1235-3), code:L1235-3#table-1 (code L1235-3), code:L1235-1 (code L1235-1), convention:5851325 (convention 27)
-
-**Cited.** code:L1235-3#table-2
-
-**recall@5** 1.00 · **citation F1** 0.00
-
-**Judge.** La candidate indique 1,5 mois de salaire alors que la référence établit clairement 7 mois de salaire pour 5 ans d'ancienneté (3 mois de base + 4 mois supplémentaires).
-
-**Analyse:**
-
----
-
-### q115 · dated · tier 1
-
-**Question.** Combien de temps minimum doit s'écouler entre deux réunions du comité social et économique lors d'une procédure de licenciement collectif ?
-
-**Expected.** Au moins quinze jours doivent séparer les deux réunions du comité social et économique.
-
-**Produced.** Le délai minimum entre deux réunions du comité social et économique dépend de la taille de l'entreprise : quinze jours pour les entreprises d'au moins cinquante salariés, et quatorze jours pour celles employant moins de cinquante salariés.
-
-**Required.** code:L1233-30 (code L1233-30)
-
-**Retrieved.** code:L1233-30 (code L1233-30), code:L1233-8 (code L1233-8), code:L1233-29 (code L1233-29), code:L1235-7 (code L1235-7), code:L1233-28 (code L1233-28)
-
-**Cited.** code:L1233-30, code:L1233-29
-
-**recall@5** 1.00 · **citation F1** 0.67
-
-**Judge.** La candidate ajoute une distinction selon la taille de l'entreprise (cinquante salariés) et mentionne un délai de quatorze jours que la référence ne contient pas, alors que celle-ci affirme simplement "au moins quinze jours" sans condition.
-
-**Analyse:**
-
----
-
 ### q116 · dated · tier 1
 
 **Question.** Quand on calcule l'indemnité de licenciement, sur quelle période regarde-t-on généralement le salaire du salarié ?
@@ -1120,28 +1169,6 @@ _the governing article was in context and the answer was still wrong_
 **recall@5** 1.00 · **citation F1** 1.00
 
 **Judge.** La candidate omet l'élément central du calcul sur les trois derniers mois : elle ne précise pas qu'il s'agit du "tiers" des trois derniers mois, ce qui change substantiellement le montant du calcul de référence.
-
-**Analyse:**
-
----
-
-### q117 · dated · tier 1
-
-**Question.** À partir de combien de licenciements économiques dans le même mois l'employeur doit-il informer l'administration ?
-
-**Expected.** À partir de dix salariés licenciés pour motif économique dans une même période de trente jours.
-
-**Produced.** L'employeur doit informer l'administration à partir de **moins de dix salariés** licenciés pour motif économique dans une même période de trente jours (information dans les huit jours). Pour **au moins dix salariés** dans la même période, il doit notifier un projet de licenciement avant la première réunion avec les représentants du personnel.
-
-**Required.** code:L1233-46 (code L1233-46)
-
-**Retrieved.** code:L1233-19 (code L1233-19), code:D1233-3 (code D1233-3), code:L1233-46 (code L1233-46), code:R1238-2 (code R1238-2), code:L1233-60 (code L1233-60)
-
-**Cited.** code:L1233-19, code:D1233-3, code:L1233-46
-
-**recall@5** 1.00 · **citation F1** 0.50
-
-**Judge.** La candidate affirme que l'obligation d'informer l'administration commence à "moins de dix salariés", alors que la référence indique clairement "à partir de dix salariés", ce qui contredit directement le seuil établi par la référence.
 
 **Analyse:**
 
@@ -1186,28 +1213,6 @@ _the governing article was in context and the answer was still wrong_
 **recall@5** 1.00 · **citation F1** 1.00
 
 **Judge.** La candidate ajoute une obligation ("L'employeur doit répondre à ces observations et adresser copie de sa réponse") que la référence ne mentionne pas, et omet que c'est l'administration elle-même qui envoie copie de ses observations au CSE et aux organisations syndicales.
-
-**Analyse:**
-
----
-
-### q120 · dated · tier 1
-
-**Question.** Si mon entreprise veut faire travailler des salariés entre 21h et minuit, qu'est-ce que l'employeur doit obligatoirement prévoir pour les ramener chez eux ?
-
-**Expected.** L'employeur doit mettre à disposition un moyen de transport pris en charge par lui qui permet au salarié de regagner son lieu de résidence.
-
-**Produced.** L'employeur doit mettre à disposition un moyen de transport pris en charge par lui qui permet au salarié de regagner son lieu de résidence. Cependant, cette obligation ne s'applique que si un accord collectif d'entreprise, d'établissement, de branche ou territorial le prévoit.
-
-**Required.** code:L3122-19 (code L3122-19)
-
-**Retrieved.** code:L3122-19 (code L3122-19), code:L3122-4 (code L3122-4), code:L3122-20 (code L3122-20), convention:27661888 (convention 3.1), code:L3122-1 (code L3122-1)
-
-**Cited.** code:L3122-19
-
-**recall@5** 1.00 · **citation F1** 1.00
-
-**Judge.** La candidate ajoute une condition (existence d'un accord collectif) que la référence ne mentionne pas, ce qui transforme une obligation apparemment générale en une obligation conditionnelle.
 
 **Analyse:**
 

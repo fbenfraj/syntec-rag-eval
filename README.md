@@ -87,14 +87,14 @@ Six configurations, 142 labelled questions. Full tables in
 [`results/LEADERBOARD.md`](results/LEADERBOARD.md); every run is committed, so the score
 history is in git.
 
-| rung | adds | recall@5 | answers | repealed retrieved |
-|---|---|---|---|---|
-| `baseline` | fixed chunks | 84.2 % | 76.7 % | 66.7 % |
-| `article` | article chunks | 85.8 % | 80.8 % | 67.5 % |
-| `hybrid` | + lexical | 78.3 % | 74.2 % | 61.7 % |
-| `rerank` | + rerank | 87.5 % | 81.7 % | 62.5 % |
-| `rewrite` | + query rewrite | 88.3 % | 81.7 % | 63.3 % |
-| `filtered` | + date filter and precedence | **90.8 %** | 80.0 % | **0.0 %** |
+| rung | adds | recall@5 | answers correct | wrong either way | repealed retrieved |
+|---|---|---|---|---|---|
+| `baseline` | fixed chunks | 84.2 % | 45.0–76.7 % | 23.3 % | 66.7 % |
+| `article` | article chunks | 85.8 % | 46.7–80.8 % | 19.2 % | 67.5 % |
+| `hybrid` | + lexical | 78.3 % | 45.8–74.2 % | 25.8 % | 61.7 % |
+| `rerank` | + rerank | 87.5 % | 49.2–81.7 % | 18.3 % | 62.5 % |
+| `rewrite` | + query rewrite | 88.3 % | 50.0–81.7 % | 18.3 % | 63.3 % |
+| `filtered` | + date filter and precedence | **90.8 %** | 44.2–80.0 % | 20.0 % | **0.0 %** |
 
 Three things worth reading the tables for:
 
@@ -103,10 +103,20 @@ Three things worth reading the tables for:
 - **Two thirds of queries retrieved repealed law** until the date filter, which takes it to
   zero. The model answers correctly from text that no longer applies — an error no accuracy
   metric can see, and the one that matters most in law.
-- **31 of 142 questions fail**, split by cause in
-  [`results/FAILURES.md`](results/FAILURES.md): 4 retrieval misses, 10 generation misses,
-  10 false refusals, 7 citation misses. The first two have different fixes, which is why
-  they are never merged into one number.
+- **Answer correctness is published as a range, on purpose.** Every other number here is
+  checkable without knowing labour law: gold citations are correct by construction, and the
+  unanswerable questions were verified mechanically. Deciding whether an *answer* matches
+  its reference is the one judgement that needs a domain expert, and none worked on this
+  set — a first calibration scored Cohen's kappa 0.489 against a non-expert reader, too weak
+  to validate anything. So the same answers are graded by a strict and a lenient rubric and
+  both are shown. What does not depend on the rubric: **about 20 % of answers are wrong
+  under either reading**. Closing the gap needs roughly two hours from someone who works
+  with the Syntec agreement.
+
+- **Failures are split by cause** in [`results/FAILURES.md`](results/FAILURES.md): 4
+  retrieval misses, 10 generation misses, 43 rubric-dependent, 10 false refusals, 1 citation
+  miss. Retrieval and generation failures have different fixes, which is why they are never
+  merged into one number.
 
 The ablation also caught two real bugs in the system it measures — a precedence bonus that
 was ten times the score range, and a date filter that was a no-op on 84 % of the set. Both

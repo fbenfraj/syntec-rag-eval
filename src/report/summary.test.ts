@@ -16,6 +16,7 @@ const run = (config: string, startedAt: string, recall: number, rows: EvalRow[] 
     goldSetSize: rows.length, asOfDefault: '2026-08-31', startedAt, rows,
     aggregates: {
       n: rows.length, recallAt5: recall, fullRecallAt5: recall, mrr: 0.8, answerCorrectness: 0.9,
+      answerCorrectnessLenient: 0.95, answerWrongUnderBoth: 0.05, answerRubricDependent: 0.05,
       citationCorrectness: 0.95, refusalAccuracy: 0.9, falseRefusalRate: 0.04, supersededRate: 0,
       costEurPerQuery: 0.018, inputTokensPerQuery: 2400, outputTokensPerQuery: 140,
       latencyP50Ms: 900, latencyP95Ms: 2100,

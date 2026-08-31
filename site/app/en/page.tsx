@@ -1,4 +1,4 @@
-import { delta, loadSummary, pct } from '@/lib/results'
+import { delta, loadSummary, pct, range } from '@/lib/results'
 
 const REPO = 'https://github.com/fbenfraj/syntec-rag-eval'
 
@@ -31,8 +31,8 @@ export default function Page() {
           <span className="k">recall@5 · the governing article is retrieved</span>
         </div>
         <div>
-          <span className="n">{pct(best.answerCorrectness)}</span>
-          <span className="k">answers judged correct</span>
+          <span className="n">{pct(best.answerWrongUnderBoth)}</span>
+          <span className="k">answers wrong under either grading rubric</span>
         </div>
         <div>
           <span className="n">{pct(best.supersededRate)}</span>
@@ -79,7 +79,7 @@ export default function Page() {
                       <span className={change.startsWith('+') ? 'up' : 'down'}>({change})</span>
                     )}
                   </td>
-                  <td className="num">{pct(rung.answerCorrectness)}</td>
+                  <td className="num">{range(rung.answerCorrectness, rung.answerCorrectnessLenient)}</td>
                   <td className="num">{pct(rung.citationCorrectness)}</td>
                   <td className="num">{pct(rung.supersededRate)}</td>
                   <td className="num">{rung.costEurPerQuery.toFixed(4)}</td>
@@ -94,6 +94,31 @@ export default function Page() {
         Hybrid search made recall <strong>worse</strong>, by{' '}
         {delta(rungs[2]!.recallAt5, rungs[1]!.recallAt5)} points. It is published as measured: a
         table where every row improves on the last is a table nobody really measured.
+      </p>
+
+      <h2>Why answer correctness is a range</h2>
+
+      <p>
+        Every other number on this page is checkable without knowing French labour law. The expected
+        citations are correct by construction — each question was written from the article it cites —
+        so recall and citation F1 rest on nothing anyone had to remember, and the unanswerable
+        questions were verified mechanically against the corpus.
+      </p>
+
+      <p>
+        Answer correctness is the exception. Deciding whether an answer says the same thing as the
+        reference needs someone who knows the domain, and no qualified annotator worked on this set.
+        A first calibration scored Cohen’s kappa 0.489 against a non-expert reader — too weak an
+        agreement to validate anything — so the judge was left unvalidated rather than certified on
+        a bad sample.
+      </p>
+
+      <p>
+        The published range is the gap between a strict and a lenient rubric applied to the same
+        answers. They disagree on about a third of cases ({pct(best.answerRubricDependent)} here).
+        What does not depend on the rubric: <strong>{pct(best.answerWrongUnderBoth)}</strong> of
+        answers are wrong under both readings. Closing this would take roughly two hours from
+        someone who works with the Syntec agreement, grading 60 sampled answers.
       </p>
 
       <h2>What the date filter changes</h2>

@@ -5,7 +5,20 @@ export interface Aggregates {
   recallAt5: number
   fullRecallAt5: number
   mrr: number
+  /**
+   * Answer correctness under the strict rubric.
+   *
+   * Published as a range with `answerCorrectnessLenient`, never alone. The two rubrics
+   * disagree on roughly a third of answers, and no qualified annotator has adjudicated
+   * between them, so the spread is the honest uncertainty rather than a number to pick
+   * from.
+   */
   answerCorrectness: number
+  answerCorrectnessLenient: number | null
+  /** Answers both rubrics call wrong: wrong on any reading. */
+  answerWrongUnderBoth: number
+  /** Answers the two rubrics disagree about: correctness here is a matter of rubric. */
+  answerRubricDependent: number
   citationCorrectness: number
   /** Over the unanswerable subset. Null when the set has none. */
   refusalAccuracy: number | null
@@ -46,6 +59,17 @@ export function aggregate(rows: EvalRow[]): Aggregates {
     fullRecallAt5: mean(answerable.map((row) => (row.recallAtK === 1 ? 1 : 0))),
     mrr: mean(answerable.map((row) => row.mrr)),
     answerCorrectness: mean(answerable.map((row) => (row.answerCorrect ? 1 : 0))),
+    answerCorrectnessLenient: answerable.some((row) => typeof row.answerCorrectLenient === 'boolean')
+      ? mean(answerable.map((row) => ((row.answerCorrectLenient ?? row.answerCorrect) ? 1 : 0)))
+      : null,
+    answerWrongUnderBoth: mean(
+      answerable.map((row) => (!row.answerCorrect && !(row.answerCorrectLenient ?? row.answerCorrect) ? 1 : 0)),
+    ),
+    answerRubricDependent: mean(
+      answerable.map((row) =>
+        typeof row.answerCorrectLenient === 'boolean' && row.answerCorrectLenient !== row.answerCorrect ? 1 : 0,
+      ),
+    ),
     citationCorrectness: mean(answerable.map((row) => row.citationCorrectness)),
     refusalAccuracy:
       unanswerable.length === 0

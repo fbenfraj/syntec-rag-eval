@@ -61,3 +61,30 @@ describe('catalogue', () => {
     expect(grouped.size).toBe(2)
   })
 })
+
+describe('rubric-dependent answers', () => {
+  const base = (over: Partial<EvalRow> = {}) => row(over)
+
+  it('is not called a generation miss when the two rubrics disagree', () => {
+    expect(classifyFailure(base({ answerCorrect: false, answerCorrectLenient: true, recallAtK: 1 })))
+      .toBe('rubric-dependent')
+  })
+
+  it('is still a generation miss when both rubrics call it wrong', () => {
+    expect(classifyFailure(base({ answerCorrect: false, answerCorrectLenient: false, recallAtK: 1 })))
+      .toBe('generation-miss')
+  })
+
+  it('is still a retrieval miss when both agree and nothing was retrieved', () => {
+    expect(classifyFailure(base({ answerCorrect: false, answerCorrectLenient: false, recallAtK: 0 })))
+      .toBe('retrieval-miss')
+  })
+
+  it('flags disagreement even when the strict rubric passed the answer', () => {
+    expect(classifyFailure(base({ answerCorrect: true, answerCorrectLenient: false }))).toBe('rubric-dependent')
+  })
+
+  it('behaves as before when only one rubric ran', () => {
+    expect(classifyFailure(base({ answerCorrect: false, recallAtK: 1 }))).toBe('generation-miss')
+  })
+})

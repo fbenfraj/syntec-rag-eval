@@ -41,7 +41,7 @@ const grouped = catalogue(winner.rows)
 const failed = [...grouped.values()].reduce((sum, rows) => sum + rows.length, 0)
 
 const ORDER: FailureKind[] = [
-  'retrieval-miss', 'partial-retrieval-miss', 'generation-miss',
+  'retrieval-miss', 'partial-retrieval-miss', 'generation-miss', 'rubric-dependent',
   'false-refusal', 'missed-refusal', 'stale-law', 'citation-miss',
 ]
 

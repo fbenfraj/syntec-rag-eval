@@ -18,7 +18,14 @@ export interface EvalRow {
   actual: string
   recallAtK: number
   mrr: number
+  /**
+   * The strict rubric's verdict. Kept as `answerCorrect` for continuity, but it is one of
+   * two: see `answerCorrectLenient`. Neither is validated against a qualified annotator,
+   * which is why they are published as a range rather than as a number.
+   */
   answerCorrect: boolean
+  /** The lenient rubric's verdict on the same answer, where one was recorded. */
+  answerCorrectLenient?: boolean
   judgeReason: string
   citationCorrectness: number
   refusalOutcome: RefusalOutcome

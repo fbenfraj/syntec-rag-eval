@@ -8,6 +8,9 @@ export interface RungSummary {
   recallAt5: number
   mrr: number
   answerCorrectness: number
+  answerCorrectnessLenient: number | null
+  answerWrongUnderBoth: number
+  answerRubricDependent: number
   citationCorrectness: number
   refusalAccuracy: number | null
   falseRefusalRate: number | null
@@ -56,6 +59,9 @@ function toRung(run: RunResult): RungSummary {
     recallAt5: a.recallAt5,
     mrr: a.mrr,
     answerCorrectness: a.answerCorrectness,
+    answerCorrectnessLenient: a.answerCorrectnessLenient,
+    answerWrongUnderBoth: a.answerWrongUnderBoth,
+    answerRubricDependent: a.answerRubricDependent,
     citationCorrectness: a.citationCorrectness,
     refusalAccuracy: a.refusalAccuracy,
     falseRefusalRate: a.falseRefusalRate,
