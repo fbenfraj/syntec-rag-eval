@@ -1,2 +1,5 @@
 .vercel
 .env.local
+
+# Written by `tsc --noEmit` runs; not part of the app.
+tsconfig.tsbuildinfo

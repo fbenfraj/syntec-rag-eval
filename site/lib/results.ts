@@ -42,15 +42,26 @@ export function loadSummary(): Summary {
   return JSON.parse(readFileSync(join(resultsDir, 'summary.json'), 'utf8')) as Summary
 }
 
-export const pct = (value: number | null): string => (value === null ? 'n/a' : `${(value * 100).toFixed(1)} %`)
+/**
+ * French writes 90,8 % and English writes 90.8 %. The separator is passed down rather than
+ * read from a global, because both translations are rendered by the same process and a
+ * module-level locale would make one of them wrong.
+ */
+export type Locale = 'fr' | 'en'
+
+const decimal = (value: string, locale: Locale): string =>
+  locale === 'fr' ? value.replace('.', ',') : value
+
+export const pct = (value: number | null, locale: Locale = 'en'): string =>
+  value === null ? 'n/a' : `${decimal((value * 100).toFixed(1), locale)} %`
 
 /** Correctness is a range because two rubrics disagree and nobody qualified has adjudicated. */
-export function range(strict: number, lenient: number | null): string {
-  return lenient === null ? pct(strict) : `${pct(strict)} – ${pct(lenient)}`
+export function range(strict: number, lenient: number | null, locale: Locale = 'en'): string {
+  return lenient === null ? pct(strict, locale) : `${pct(strict, locale)} – ${pct(lenient, locale)}`
 }
 
-export function delta(current: number, previous: number): string {
+export function delta(current: number, previous: number, locale: Locale = 'en'): string {
   const difference = (current - previous) * 100
   if (Math.abs(difference) < 0.05) return '='
-  return `${difference > 0 ? '+' : '−'}${Math.abs(difference).toFixed(1)}`
+  return `${difference > 0 ? '+' : '−'}${decimal(Math.abs(difference).toFixed(1), locale)}`
 }
