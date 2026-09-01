@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { fontClass, viewport as sharedViewport } from '@/app/fonts'
 import '../globals.css'
+import { Analytics } from '@/app/components/Analytics'
 
 /**
  * Root layout for the French routes.
@@ -30,7 +31,10 @@ export const viewport = sharedViewport
 export default function FrenchLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" className={fontClass}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

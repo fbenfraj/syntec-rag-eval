@@ -13,3 +13,9 @@ site/node_modules
 data/calibration/*.md
 data/calibration/*-strata.json
 data/calibration/*-prescreen/
+.vercel
+.env*
+
+# The variable documentation is versioned; the values are not.
+!.env.example
+!site/.env.example
