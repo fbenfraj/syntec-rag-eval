@@ -169,3 +169,23 @@ Complete through the eval harness, leaderboard, failure catalogue and report sit
 
 MIT. Corpus content is French public law and the Syntec convention collective, quoted
 for evaluation purposes.
+
+## Deploying
+
+The Vercel project has **no git integration and no root directory configured**, so a deploy is
+`vercel --prod --yes` run from `site/`, not from the repository root.
+
+**The alias does not follow production.** `syntec-rag-eval.vercel.app` is pinned to a specific
+deployment, so a successful `--prod` deploy goes live on the project's other hostnames while the
+canonical URL keeps serving whatever it was pinned to. On 2026-09-01 that gap was 17 hours wide
+and hid a newly added analytics beacon; the site looked deployed and was not. Every deploy must
+end with:
+
+```
+vercel alias set <new-deployment-url> syntec-rag-eval.vercel.app
+```
+
+Then verify against the canonical hostname rather than the deployment URL — `curl -D-` and check
+that `age:` is `0`. This is the URL the FrajTech landing page and the personal portfolio both
+link to, and the one registered in Cloudflare Web Analytics, so it is the only one whose contents
+actually matter.

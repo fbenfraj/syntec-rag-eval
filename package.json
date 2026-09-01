@@ -31,7 +31,8 @@
     "judge:prescreen": "tsx scripts/prescreen-calibration.ts",
     "rejudge": "tsx scripts/rejudge.ts",
     "merge-rubrics": "tsx scripts/merge-rubrics.ts",
-    "demo:seed": "tsx scripts/seed-demo.ts"
+    "demo:seed": "tsx scripts/seed-demo.ts",
+    "readout": "tsx scripts/readout.ts"
   },
   "author": "Farouk Ben Fraj",
   "license": "MIT",
