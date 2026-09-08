@@ -5,6 +5,23 @@ import { existsSync, readFileSync } from 'node:fs'
  * without a dotenv dependency. A value already in the environment always wins, so CI can
  * override any of it.
  */
+/**
+ * Strip one matched pair of surrounding quotes, the way every `.env` consumer does.
+ *
+ * Without this a quoted value keeps its quotes, and a quoted connection string stops being a
+ * URL: `pg` cannot parse `'postgresql://...'`, falls back to its key/value grammar, and comes
+ * back with a nonsense host instead of an error that names the cause. That is exactly how the
+ * 2026-09-15 readout failed on 2026-09-08 with `getaddrinfo ENOTFOUND base` — `DEMO_DATABASE_URL`
+ * was single-quoted in `.env` while `DATABASE_URL` beside it was not, so only the demo half broke.
+ */
+function unquote(value: string): string {
+  const quoted =
+    value.length >= 2 &&
+    (value.startsWith("'") || value.startsWith('"')) &&
+    value.endsWith(value[0])
+  return quoted ? value.slice(1, -1) : value
+}
+
 export function readEnvFile(path = '.env'): Record<string, string> {
   if (!existsSync(path)) return {}
   return Object.fromEntries(
@@ -14,7 +31,7 @@ export function readEnvFile(path = '.env'): Record<string, string> {
       .filter((line) => line.length > 0 && !line.startsWith('#'))
       .map((line) => {
         const separator = line.indexOf('=')
-        return [line.slice(0, separator).trim(), line.slice(separator + 1).trim()] as const
+        return [line.slice(0, separator).trim(), unquote(line.slice(separator + 1).trim())] as const
       })
       .filter(([key]) => key.length > 0),
   )
