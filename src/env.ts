@@ -15,10 +15,9 @@ import { existsSync, readFileSync } from 'node:fs'
  * was single-quoted in `.env` while `DATABASE_URL` beside it was not, so only the demo half broke.
  */
 function unquote(value: string): string {
+  const first = value[0]
   const quoted =
-    value.length >= 2 &&
-    (value.startsWith("'") || value.startsWith('"')) &&
-    value.endsWith(value[0])
+    value.length >= 2 && (first === "'" || first === '"') && value.endsWith(first)
   return quoted ? value.slice(1, -1) : value
 }
 
